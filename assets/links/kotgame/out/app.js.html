@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: app.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: app.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/** 
+ * Start-Button zum Starten des Spiels.
+ * @type {HTMLButtonElement}
+ */
+const startBtn = document.getElementById("start-btn");
+
+/**
+ * Startscreen-Container.
+ * @type {HTMLElement}
+ */
+const startScreen = document.querySelector(".start-screen");
+
+/**
+ * Checkpoint-Meldungscontainer.
+ * @type {HTMLElement}
+ */
+const checkpointScreen = document.querySelector(".checkpoint-screen");
+
+/**
+ * Zeigt eine Nachricht im Checkpoint-Screen an.
+ * @type {HTMLParagraphElement}
+ */
+const checkpointMessage = document.querySelector(".checkpoint-screen > p");
+
+/**
+ * Canvas für das Spiel.
+ * @type {HTMLCanvasElement}
+ */
+const canvas = document.getElementById("canvas");
+
+/**
+ * 2D-Rendering-Kontext.
+ * @type {CanvasRenderingContext2D}
+ */
+const ctx = canvas.getContext("2d");
+
+canvas.width = innerWidth;
+canvas.height = innerHeight;
+
+/**
+ * Schwerkraft, die auf den Spieler wirkt.
+ * @type {number}
+ */
+const gravity = 0.5;
+
+/**
+ * Aktiviert oder deaktiviert Checkpoint-Kollisionen.
+ * @type {boolean}
+ */
+let isCheckpointCollisionDetectionActive = true;
+
+/**
+ * Anzahl eingesammelter Fliegen.
+ * @type {number}
+ */
+let fliesCollected = 0;
+
+/**
+ * Gesamtanzahl der im Level platzierten Fliegen.
+ * @type {number}
+ */
+const totalFlies = 20;
+
+/**
+ * Berechnet eine Größe proportional zur Fensterhöhe.
+ * @param {number} size - Die Basisgröße.
+ * @returns {number} Skalierte Größe.
+ */
+const proportionalSize = (size) => {
+  return innerHeight &lt; 500 ? Math.ceil((size / 500) * innerHeight) : size;
+};
+
+/**
+ * Spielerklasse – repräsentiert den Poop-Character.
+ */
+class Player {
+  constructor() {
+    /**
+     * Position des Spielers.
+     * @type {{x: number, y: number}}
+     */
+    this.position = {
+      x: proportionalSize(100),
+      y: proportionalSize(400),
+    };
+
+    /**
+     * Geschwindigkeit des Spielers.
+     * @type {{x: number, y: number}}
+     */
+    this.velocity = {
+      x: 0,
+      y: 0,
+    };
+
+    /**
+     * Breite des Spielers.
+     * @type {number}
+     */
+    this.width = proportionalSize(40);
+
+    /**
+     * Höhe des Spielers.
+     * @type {number}
+     */
+    this.height = proportionalSize(40);
+  }
+
+  /**
+   * Zeichnet eine Schicht des Kothaufens.
+   * @param {number} x - Mittelpunkt X.
+   * @param {number} y - Mittelpunkt Y.
+   * @param {number} radiusX - Horizontaler Radius.
+   * @param {number} radiusY - Vertikaler Radius.
+   * @param {string} color - Füllfarbe.
+   */
+  drawPoopLayer(x, y, radiusX, radiusY, color) {
+    ctx.beginPath();
+    ctx.ellipse(x, y, radiusX, radiusY, 0, 0, Math.PI * 2);
+    ctx.fillStyle = color;
+    ctx.fill();
+    ctx.stroke();
+  }
+
+  /**
+   * Zeichnet den Poop-Charakter.
+   */
+  draw() {
+    const x = this.position.x + this.width / 2;
+    const y = this.position.y + this.height / 2;
+
+    this.drawPoopLayer(x, y + 20, 20, 10, "#8B4513");
+    this.drawPoopLayer(x, y + 10, 15, 8, "#8B4513");
+    this.drawPoopLayer(x, y, 10, 6, "#8B4513");
+    this.drawPoopLayer(x, y - 5, 5, 3, "#8B4513");
+  }
+
+  /**
+   * Aktualisiert Position, Gravitation und Kollision.
+   */
+  update() {
+    this.draw();
+
+    this.position.x += this.velocity.x;
+    this.position.y += this.velocity.y;
+
+    // Fallbewegung
+    if (this.position.y + this.height + this.velocity.y &lt;= canvas.height) {
+      if (this.position.y &lt; 0) {
+        this.position.y = 0;
+        this.velocity.y = gravity;
+      }
+      this.velocity.y += gravity;
+    } else {
+      this.velocity.y = 0;
+    }
+
+    // Begrenzung links
+    if (this.position.x &lt; this.width) {
+      this.position.x = this.width;
+    }
+
+    // Begrenzung rechts
+    if (this.position.x >= canvas.width - this.width * 2) {
+      this.position.x = canvas.width - this.width * 2;
+    }
+  }
+}
+
+/**
+ * Plattform, auf der der Spieler stehen kann.
+ */
+class Platform {
+  /**
+   * @param {number} x - Plattform X.
+   * @param {number} y - Plattform Y.
+   */
+  constructor(x, y) {
+    this.position = { x, y };
+
+    /**
+     * Breite der Plattform.
+     * @type {number}
+     */
+    this.width = 200;
+
+    /**
+     * Höhe der Plattform.
+     * @type {number}
+     */
+    this.height = proportionalSize(40);
+  }
+
+  /**
+   * Zeichnet die Plattform.
+   */
+  draw() {
+    ctx.fillStyle = "#e53e3e";
+    ctx.fillRect(this.position.x, this.position.y, this.width, this.height);
+  }
+}
+
+/**
+ * Vertikale Blockade, die den Spieler stoppt.
+ */
+class Blockade {
+  /**
+   * @param {number} x - X-Position.
+   * @param {number} y - Y-Position.
+   */
+  constructor(x, y) {
+    this.position = { x, y };
+
+    /**
+     * Breite der Blockade.
+     * @type {number}
+     */
+    this.width = proportionalSize(40);
+
+    /**
+     * Höhe der Blockade.
+     * @type {number}
+     */
+    this.height = 200;
+  }
+
+  /**
+   * Zeichnet die Blockade.
+   */
+  draw() {
+    ctx.fillStyle = "#e53e3e";
+    ctx.fillRect(this.position.x, this.position.y, this.width, this.height);
+  }
+}
+
+/**
+ * Checkpoint-Klasse (Toilette), die der Spieler erreichen muss.
+ */
+class CheckPoint {
+  /**
+   * @param {number} x - X-Position.
+   * @param {number} y - Y-Position.
+   * @param {number} z - Reihenfolge-Index des Checkpoints.
+   */
+  constructor(x, y, z) {
+    this.position = { x, y };
+
+    /**
+     * Breite des Checkpoints.
+     * @type {number}
+     */
+    this.width = proportionalSize(40);
+
+    /**
+     * Höhe des Checkpoints.
+     * @type {number}
+     */
+    this.height = proportionalSize(70);
+
+    /**
+     * Ob dieser Checkpoint bereits aktiviert wurde.
+     * @type {boolean}
+     */
+    this.claimed = false;
+
+    /**
+     * Reihenfolge des Checkpoints.
+     * @type {number}
+     */
+    this.order = z;
+  }
+
+  /**
+   * Zeichnet eine Toilette in Draufsicht.
+   */
+  drawToiletTopView() {
+    const { x, y } = this.position;
+    const toiletWidth = this.width;
+    const toiletHeight = this.height;
+
+    // Toilettensitz (Ellipse)
+    ctx.beginPath();
+    ctx.ellipse(
+      x + toiletWidth / 2,
+      y + toiletHeight / 2,
+      toiletWidth / 2,
+      toiletHeight / 3,
+      0,
+      0,
+      Math.PI * 2
+    );
+    ctx.fillStyle = "#FFFFFF";
+    ctx.fill();
+    ctx.strokeStyle = "#000000";
+    ctx.stroke();
+
+    // Innerer Rand
+    ctx.beginPath();
+    ctx.ellipse(
+      x + toiletWidth / 2,
+      y + toiletHeight / 2,
+      toiletWidth / 3,
+      toiletHeight / 4,
+      0,
+      0,
+      Math.PI * 2
+    );
+    ctx.stroke();
+
+    // Abfluss
+    ctx.beginPath();
+    ctx.arc(
+      x + toiletWidth / 2,
+      y + toiletHeight / 2,
+      5,
+      0,
+      Math.PI * 2
+    );
+    ctx.fillStyle = "#000000";
+    ctx.fill();
+
+    // Toilettentank
+    ctx.fillStyle = "#FFFFFF";
+    ctx.fillRect(x, y - toiletHeight * 0.2, toiletWidth, toiletHeight * 0.2);
+    ctx.strokeRect(x, y - toiletHeight * 0.2, toiletWidth, toiletHeight * 0.2);
+
+    // Spülknopf
+    ctx.beginPath();
+    ctx.arc(x + toiletWidth / 2, y - toiletHeight * 0.1, 4, 0, Math.PI * 2);
+    ctx.fillStyle = "grey";
+    ctx.fill();
+  }
+
+  /**
+   * Zeichnet den Checkpoint, falls nicht eingesammelt.
+   */
+  draw() {
+    if (!this.claimed) {
+      this.drawToiletTopView();
+    }
+  }
+
+  /**
+   * Markiert den Checkpoint als eingesammelt.
+   */
+  claim() {
+    this.width = 0;
+    this.height = 0;
+    this.position.y = Infinity;
+    this.claimed = true;
+  }
+}
+
+/**
+ * Fliegen-Objekt, das eingesammelt werden kann.
+ */
+class Fly {
+  /**
+   * @param {number} x - X-Position.
+   * @param {number} y - Y-Position.
+   */
+  constructor(x, y) {
+    /**
+     * Position der Fliege.
+     * @type {{x:number,y:number}}
+     */
+    this.position = { x, y };
+
+    /**
+     * Körpergröße.
+     * @type {number}
+     */
+    this.bodySize = proportionalSize(10);
+
+    /**
+     * Größe der Flügel.
+     * @type {number}
+     */
+    this.wingSize = proportionalSize(6);
+
+    /**
+     * Status: Fliege eingesammelt?
+     * @type {boolean}
+     */
+    this.collected = false;
+  }
+
+  /**
+   * Zeichnet die Fliege, wenn sie nicht eingesammelt wurde.
+   */
+  draw() {
+    if (!this.collected) {
+      // Körper
+      ctx.fillStyle = "black";
+      ctx.beginPath();
+      ctx.arc(this.position.x, this.position.y, this.bodySize, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Flügel
+      ctx.fillStyle = "grey";
+
+      ctx.beginPath();
+      ctx.arc(
+        this.position.x - this.bodySize,
+        this.position.y - this.wingSize / 2,
+        this.wingSize,
+        0,
+        Math.PI * 2
+      );
+      ctx.fill();
+
+      ctx.beginPath();
+      ctx.arc(
+        this.position.x + this.bodySize,
+        this.position.y - this.wingSize / 2,
+        this.wingSize,
+        0,
+        Math.PI * 2
+      );
+      ctx.fill();
+    }
+  }
+
+  /**
+   * Prüft, ob der Spieler die Fliege berührt.
+   * @param {Player} player - Der Spieler.
+   */
+  checkCollision(player) {
+    const distX = player.position.x + player.width / 2 - this.position.x;
+    const distY = player.position.y + player.height / 2 - this.position.y;
+    const distance = Math.sqrt(distX * distX + distY * distY);
+
+    if (distance &lt; player.width / 2 + this.bodySize) {
+      this.collected = true;
+    }
+  }
+}
+
+// Spielerinstanz
+const player = new Player();
+
+/**
+ * Plattform-Positionen.
+ * @type {{x:number,y:number}[]}
+ */
+const platformPositions = [
+  { x: 500, y: proportionalSize(450) },
+  { x: 700, y: proportionalSize(400) },
+  { x: 850, y: proportionalSize(350) },
+  { x: 900, y: proportionalSize(350) },
+  { x: 1050, y: proportionalSize(150) },
+  { x: 2500, y: proportionalSize(450) },
+  { x: 2900, y: proportionalSize(400) },
+  { x: 3150, y: proportionalSize(350) },
+  { x: 3900, y: proportionalSize(450) },
+  { x: 4200, y: proportionalSize(400) },
+  { x: 4400, y: proportionalSize(200) },
+  { x: 4550, y: proportionalSize(200) },
+  { x: 4700, y: proportionalSize(150) },
+];
+
+/**
+ * Instanzen aller Plattformen.
+ * @type {Platform[]}
+ */
+const platforms = platformPositions.map(
+  (platform) => new Platform(platform.x, platform.y)
+);
+
+/**
+ * Blockade-Positionen.
+ * @type {{x:number,y:number}[]}
+ */
+const blockadePositions = [
+  { x: 1210, y: proportionalSize(-10) },
+  { x: 2860, y: proportionalSize(240) },
+  { x: 2860, y: proportionalSize(0) },
+  { x: 4860, y: proportionalSize(-10) },
+];
+
+/**
+ * Instanzen aller Blockaden.
+ * @type {Blockade[]}
+ */
+const blockade = blockadePositions.map(
+  (block) => new Blockade(block.x, block.y)
+);
+
+/**
+ * Fliegen-Positionen.
+ * @type {{x:number,y:number}[]}
+ */
+const flyPositions = [
+  { x: 550, y: proportionalSize(350) },
+  { x: 700, y: proportionalSize(250) },
+  { x: 1100, y: proportionalSize(450) },
+  { x: 1450, y: proportionalSize(350) },
+  { x: 1800, y: proportionalSize(250) },
+  { x: 2000, y: proportionalSize(450) },
+  { x: 2300, y: proportionalSize(350) },
+  { x: 2500, y: proportionalSize(150) },
+  { x: 2875, y: proportionalSize(220) },
+  { x: 3000, y: proportionalSize(450) },
+  { x: 3250, y: proportionalSize(250) },
+  { x: 3400, y: proportionalSize(450) },
+  { x: 3600, y: proportionalSize(250) },
+  { x: 3780, y: proportionalSize(750) },
+  { x: 3900, y: proportionalSize(550) },
+  { x: 4050, y: proportionalSize(600) },
+  { x: 4300, y: proportionalSize(250) },
+  { x: 4500, y: proportionalSize(100) },
+  { x: 4700, y: proportionalSize(20) },
+  { x: 4800, y: proportionalSize(500) },
+];
+
+/**
+ * Instanzen aller Fliegen.
+ * @type {Fly[]}
+ */
+const flies = flyPositions.map(
+  (fly) => new Fly(fly.x, fly.y)
+);
+
+/**
+ * Checkpoint-Positionen.
+ * @type {{x:number,y:number,z:number}[]}
+ */
+const checkpointPositions = [
+  { x: 1170, y: proportionalSize(80), z: 1 },
+  { x: 2900, y: proportionalSize(330), z: 2 },
+  { x: 4800, y: proportionalSize(80), z: 3 },
+];
+
+/**
+ * Instanzen aller Checkpoints.
+ * @type {CheckPoint[]}
+ */
+const checkpoints = checkpointPositions.map(
+  (checkpoint) => new CheckPoint(checkpoint.x, checkpoint.y, checkpoint.z)
+);
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Blockade.html">Blockade</a></li><li><a href="CheckPoint.html">CheckPoint</a></li><li><a href="Fly.html">Fly</a></li><li><a href="Platform.html">Platform</a></li><li><a href="Player.html">Player</a></li></ul><h3>Global</h3><ul><li><a href="global.html#blockade">blockade</a></li><li><a href="global.html#blockadePositions">blockadePositions</a></li><li><a href="global.html#canvas">canvas</a></li><li><a href="global.html#checkpointMessage">checkpointMessage</a></li><li><a href="global.html#checkpointPositions">checkpointPositions</a></li><li><a href="global.html#checkpointScreen">checkpointScreen</a></li><li><a href="global.html#checkpoints">checkpoints</a></li><li><a href="global.html#ctx">ctx</a></li><li><a href="global.html#flies">flies</a></li><li><a href="global.html#fliesCollected">fliesCollected</a></li><li><a href="global.html#flyPositions">flyPositions</a></li><li><a href="global.html#gravity">gravity</a></li><li><a href="global.html#isCheckpointCollisionDetectionActive">isCheckpointCollisionDetectionActive</a></li><li><a href="global.html#platformPositions">platformPositions</a></li><li><a href="global.html#platforms">platforms</a></li><li><a href="global.html#proportionalSize">proportionalSize</a></li><li><a href="global.html#startBtn">startBtn</a></li><li><a href="global.html#startScreen">startScreen</a></li><li><a href="global.html#totalFlies">totalFlies</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.5</a> on Tue Nov 18 2025 11:42:03 GMT+0100 (Mitteleuropäische Normalzeit)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

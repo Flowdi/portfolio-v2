@@ -48,30 +48,30 @@
 .overlay-inner::before {
   content: "";
   position: absolute;
-  inset: -1px;
+  inset: 0;                  /* direkt auf dem Rand sitzen */
   border-radius: inherit;
-  padding: 1px;
-  background: linear-gradient(135deg,
-    rgba(0, 255, 255, 0.9),
-    rgba(0, 120, 255, 0.7),
-    rgba(180, 70, 255, 0.8)
-  );
-
-  /* Standard – zuerst */
-  mask:
-    linear-gradient(#000 0 0) content-box,
-    linear-gradient(#000 0 0);
-  mask-composite: exclude;
-
-  /* WebKit-Fallback */
-  -webkit-mask:
-    linear-gradient(#000 0 0) content-box,
-    linear-gradient(#000 0 0);
-  -webkit-mask-composite: xor;
-
-  opacity: 0.7;
+  border: 1px solid rgba(0, 200, 255, 0.8);
+  box-shadow:
+    0 0 20px rgba(0, 255, 255, 0.4),
+    0 0 40px rgba(0, 120, 255, 0.4);
   pointer-events: none;
   z-index: -1;
+}
+
+@-moz-document url-prefix() {
+  .overlay-inner::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    border: 1px solid rgba(0, 200, 255, 0.8);
+    box-shadow:
+      0 0 20px rgba(0, 255, 255, 0.4),
+      0 0 40px rgba(0, 120, 255, 0.4);
+    pointer-events: none;
+    z-index: -1;
+    background: none; /* WICHTIG: kein linear-gradient in Firefox */
+  }
 }
 
 

@@ -14,9 +14,8 @@ const skills = {
 const projects = [
   {
     title: "Verbesserte Portfolio Website",
-    desc: "Neue Portfolio Website, weg vom Standard Design Stil",
+    desc: "Neue Portfolio Website, weg vom Standard Design Stil - Die Seite auf der Sie sich gerade befinden",
     tech: ["JavaScript", "HTML", "CSS", "Github"],
-    link: "#"
   },
   {
     title: "Food Tracking App",
@@ -34,7 +33,7 @@ const projects = [
     title: "'Kot' Game 2024",
     desc: "kleines 1-Level Platformer Game",
     tech: ["JavaScript", "HTML", "CSS", "Github"],
-    link: "#"
+    link: "assets/links/kotgame/index.html"
   },
   {
     title: "Erste eigene Website 2024",
@@ -49,9 +48,9 @@ const panelRenderers = {
     <h2>Contact</h2>
     <p>Schreib mir gerne, wenn du Fragen hast oder mit mir arbeiten willst.</p>
     <div class="contact-buttons">
-      <a href="mailto:deine.mail@example.com" class="btn">E-Mail</a>
-      <a href="https://linkedin.com/in/deinprofil" target="_blank" class="btn outline">LinkedIn</a>
       <a href="https://github.com/Flowdi" target="_blank" class="btn outline">GitHub</a>
+      <a href="https://linkedin.com/in/deinprofil" target="_blank" class="btn outline">LinkedIn</a>
+      <a href="mailto:deine.mail@example.com" class="btn">E-Mail</a>
     </div>
   `,
 
@@ -89,8 +88,8 @@ const panelRenderers = {
   certificates: () => `
     <h2>Certificates</h2>
     <ul class="cert-list">
-      <li><strong>Example Cert 1</strong> – Issuer · 2023</li>
-      <li><strong>Example Cert 2</strong> – Issuer · 2022</li>
+      <li><strong>Responsive Webdesign Zertifikat</strong> – Issuer · 2024</li>
+      <li><strong>JavaScript Zertifikat</strong> – Issuer · 2024</li>
     </ul>
   `,
 

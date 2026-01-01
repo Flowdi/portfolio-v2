@@ -239,11 +239,7 @@ canvas {
   inset: -1px;
   border-radius: inherit;
   padding: 1px;
-  background: linear-gradient(135deg,
-    rgba(0, 255, 255, 0.9),
-    rgba(0, 120, 255, 0.7),
-    rgba(180, 70, 255, 0.8)
-  );
+  background: radial-gradient(circle at top left, rgba(20, 60, 120, 0.35), rgba(3, 10, 26, 0.96));
 
   /* Standard – zuerst */
   mask:
