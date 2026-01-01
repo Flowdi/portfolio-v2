@@ -4,7 +4,6 @@ let overlay;
 let closeBtn;
 let overlayBody;
 
-// Beispiel-Daten (hier kannst du dich austoben)
 const skills = {
   frontend: ["HTML", "CSS", "JavaScript", "TypeScript", "React"],
   backend: ["Node.js", "Express", "REST APIs"],
@@ -14,20 +13,37 @@ const skills = {
 
 const projects = [
   {
-    title: "3D Space Portfolio",
-    desc: "Interaktives Portfolio mit Canvas-Animationen und Orbit-Navigation.",
-    tech: ["JavaScript", "Canvas", "Modular JS"],
+    title: "Verbesserte Portfolio Website",
+    desc: "Neue Portfolio Website, weg vom Standard Design Stil",
+    tech: ["JavaScript", "HTML", "CSS", "Github"],
     link: "#"
   },
   {
-    title: "Weather App",
-    desc: "Kleine App mit Echtzeit-Wetterdaten von einer API.",
-    tech: ["JS", "Fetch API"],
+    title: "Food Tracking App",
+    desc: "App zur Übersicht welche Lebensmittel noch im Haushalt sind",
+    tech: ["JavaScript", "HTML", "CSS", "PHP", "MySQL", "Github"],
+    link: "#"
+  },
+    {
+    title: "Portfolio Website",
+    desc: "Verbesserte eigene Website mit integriertem 'Kot' Game",
+    tech: ["JavaScript", "HTML", "CSS", "Github"],
+    link: "assets/links/website2/index.html"
+  },
+  {
+    title: "'Kot' Game 2024",
+    desc: "kleines 1-Level Platformer Game",
+    tech: ["JavaScript", "HTML", "CSS", "Github"],
+    link: "#"
+  },
+  {
+    title: "Erste eigene Website 2024",
+    desc: "Eine erste eigene Website in schlichtem Look",
+    tech: ["JavaSript", "HTML", "CSS"],
     link: "#"
   }
 ];
 
-// Renderer: jede Funktion gibt einen HTML-String zurück
 const panelRenderers = {
   contact: () => `
     <h2>Contact</h2>

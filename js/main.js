@@ -9,6 +9,29 @@ import { initPanels, openPanel } from "./ui/panels.js";
 /* PANELS */
 initPanels();
 
+const overlay = document.getElementById("overlay");
+const overlayInner = document.querySelector(".overlay-inner");
+
+if (overlay && overlayInner) {
+  overlay.addEventListener("mousemove", (e) => {
+    const rect = overlayInner.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width;  // 0 – 1
+    const y = (e.clientY - rect.top) / rect.height; // 0 – 1
+
+    const rotateY = (x - 0.5) * 10; // -5 bis 5 Grad
+    const rotateX = (0.5 - y) * 10;
+
+    overlayInner.style.setProperty("--tiltX", `${rotateX}deg`);
+    overlayInner.style.setProperty("--tiltY", `${rotateY}deg`);
+  });
+
+  overlay.addEventListener("mouseleave", () => {
+    overlayInner.style.setProperty("--tiltX", `0deg`);
+    overlayInner.style.setProperty("--tiltY", `0deg`);
+  });
+}
+
+
 /* ORBIT */
 const orbit = document.getElementById("orbit");
 initOrbit(orbit, (pageId) => {
