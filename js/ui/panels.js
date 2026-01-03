@@ -95,8 +95,8 @@ const panelRenderers = {
 
   about: () => `
     <h2>About Me</h2>
-    <p>Kurzer Text über dich, wer du bist, was dich motiviert und worauf du Bock hast.</p>
-    <p>Du kannst hier auch ein paar persönliche Fun Facts oder deine Richtung schreiben (z.B. "Ich liebe es, UI, Animation und sauberen Code zu verbinden.").</p>
+    <p>Ich bin angehender Fachinformatiker für Anwendungsentwicklung (IHK-Abschluss Juli 2026) mit Leidenschaft für sauberen Code, moderne Webentwicklung und kreative User Interfaces. </p><br>
+    <p>Mein Weg in die IT begann schon früh mit Technikbegeisterung und Gaming – heute setze ich eigene Projekte um und vertiefe mein Wissen kontinuierlich, u. a. durch Zertifikate in JavaScript, MySQL und Fullstack-Development.</p><br><p>Abseits des Bildschirms verbringe ich gerne Zeit in der Natur, gehe wandern oder betreibe Sport – und sammle neue kreative Impulse.</p>
   `
 };
 
