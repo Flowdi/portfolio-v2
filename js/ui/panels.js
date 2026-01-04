@@ -87,13 +87,122 @@ const panelRenderers = {
     </div>
   `,
 
-  certificates: () => `
-    <h2>Certificates</h2>
-    <ul class="cert-list">
-      <li><strong>Responsive Webdesign Zertifikat</strong> – Issuer · 2024</li>
-      <li><strong>JavaScript Zertifikat</strong> – Issuer · 2024</li>
-    </ul>
-  `,
+certificates: () => `
+  <h2>Certificates</h2>
+
+  <div class="cert-section">
+
+    <h3 class="cert-title">Earned Certificates</h3>
+
+    <div class="cert-grid">
+
+      <!-- FreeCodeCamp JS -->
+      <div class="cert-card">
+        <div class="cert-badge">
+          <img src="assets/certificates/fcc-js.png" alt="JavaScript Certification">
+        </div>
+
+        <div class="cert-info">
+          <h4>JavaScript Algorithms & Data Structures</h4>
+          <span class="issuer">freeCodeCamp</span>
+          <span class="year">2024</span>
+        </div>
+
+        <div class="cert-actions">
+          <a href="#" class="btn small">View</a>
+          <a href="#" class="btn small outline">Verify</a>
+        </div>
+      </div>
+
+
+      <!-- FreeCodeCamp Responsive -->
+      <div class="cert-card">
+        <div class="cert-badge">
+          <img src="assets/certificates/fcc-responsive.png" alt="Responsive Web Design">
+        </div>
+
+        <div class="cert-info">
+          <h4>Responsive Web Design</h4>
+          <span class="issuer">freeCodeCamp</span>
+          <span class="year">2024</span>
+        </div>
+
+        <div class="cert-actions">
+          <a href="#" class="btn small">View</a>
+          <a href="#" class="btn small outline">Verify</a>
+        </div>
+      </div>
+
+    </div>
+
+
+
+    <!-- IN PROGRESS -->
+    <h3 class="cert-title">In Progress</h3>
+
+    <div class="cert-grid">
+
+      <div class="cert-card in-progress">
+        <div class="cert-badge placeholder">
+          <span>Coming Soon</span>
+        </div>
+
+        <div class="cert-info">
+          <h4>Fullstack Development</h4>
+          <span class="issuer">Udemy</span>
+          <span class="year">2025</span>
+        </div>
+
+        <div class="cert-status in-progress-status">
+          In Progress
+        </div>
+      </div>
+
+      <div class="cert-card in-progress">
+        <div class="cert-badge placeholder">
+          <span>Coming Soon</span>
+        </div>
+
+        <div class="cert-info">
+          <h4>MySQL Database Certification</h4>
+          <span class="issuer">Udemy</span>
+          <span class="year">2025</span>
+        </div>
+
+        <div class="cert-status in-progress-status">
+          In Progress
+        </div>
+      </div>
+
+    </div>
+
+
+
+    <!-- FUTURE -->
+    <h3 class="cert-title">Upcoming</h3>
+
+    <div class="cert-grid">
+
+      <div class="cert-card upcoming">
+        <div class="cert-badge placeholder">
+          <span>IHK</span>
+        </div>
+
+        <div class="cert-info">
+          <h4>Fachinformatiker Anwendungsentwicklung</h4>
+          <span class="issuer">IHK</span>
+          <span class="year">2026</span>
+        </div>
+
+        <div class="cert-status upcoming-status">
+          July 2026
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+`,
 
   about: () => `
     <h2>About Me</h2>
