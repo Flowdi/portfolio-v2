@@ -5,10 +5,11 @@ let closeBtn;
 let overlayBody;
 
 const skills = {
-  frontend: ["HTML", "CSS", "JavaScript", "TypeScript", "React"],
-  backend: ["Node.js", "Express", "REST APIs"],
-  tools: ["Git", "Docker", "Linux"],
-  soft: ["Teamwork", "Communication", "Problem Solving"]
+  frontend: ["HTML", "CSS", "JavaScript", "TypeScript", "React", "PHP basics"],
+  backend: ["Node.js", "Express", "REST APIs", "MySQl", "PostgreSQL"],
+  tools: ["Git & Github", "VS Code", "Postman", "Docker", "Linux basics"],
+  soft: ["Teamwork", "Communication", "Problem Solving", "eigenständiges Arbeiten", "crativity"],
+  progress: ["Python - aktuell Lern- & Übungsprojekte", "PHP - Aufbau solider Backend Kenntnisse"]
 };
 
 const projects = [
@@ -76,6 +77,7 @@ const panelRenderers = {
     ${renderSkillGroup("Backend", skills.backend)}
     ${renderSkillGroup("Tools", skills.tools)}
     ${renderSkillGroup("Soft Skills", skills.soft)}
+    ${renderSkillGroup("Skills in Progress", skills.progress)}
   `,
 
   projects: () => `
