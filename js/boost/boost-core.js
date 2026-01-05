@@ -34,7 +34,10 @@ function rotate3D(p, angleX, angleY, angleZ) {
 
   return { x, y, z };
 }
-
+/**
+ * 
+ * @param {*} canvasElement 
+ */
 export function initBoostCore(canvasElement) {
   boostCanvas = canvasElement;
   if (!boostCanvas) {
@@ -64,6 +67,10 @@ export function initBoostCore(canvasElement) {
   }
 }
 
+/**
+ * 
+ * @param {number} speedFactor - initialisiert die Geschwindigkeit / Stärke des Boost Effekts
+ */
 export function drawBoostCore(speedFactor) {
   if (!bctx) return;
 
