@@ -1,14 +1,19 @@
 let meteors = [];
-let getSize = () => ({ w: 0, h: 0 });
+let getSize = () => ({ width: 0, height: 0 });
+
+/**
+ * Rendert die Größe der Meteore
+ * @param {number} sizeProvider 
+ */
 
 export function initMeteors(sizeProvider) {
   getSize = sizeProvider;
 
   setInterval(() => {
-    const { w, h } = getSize();
+    const { width, height } = getSize();
     meteors.push({
-      x: Math.random() * w,
-      y: Math.random() * h * 0.4,
+      x: Math.random() * width,
+      y: Math.random() * height * 0.4,
       vx: Math.random() * 8 + 8,
       vy: Math.random() * 3 + 3,
       life: 0
@@ -16,6 +21,11 @@ export function initMeteors(sizeProvider) {
   }, 5000);
 }
 
+/**
+ * 
+ * @param {CanvasRenderingContext2D} ctx - Rendert die Meteore die im Hintergrund immer wieder erscheinen
+ * @param {number} speedFactor - Rendert die Geschwindigkeit mit der sich Meteore bewegen
+ */
 export function drawMeteors(ctx, speedFactor) {
   ctx.save();
   ctx.globalCompositeOperation = "lighter";
