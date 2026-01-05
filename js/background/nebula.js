@@ -5,19 +5,31 @@ let nebulae = [];
 let canvasWidth = 0;
 let canvasHeight = 0;
 
-export function initNebula(w, h) {
-  canvasWidth = w;
-  canvasHeight = h;
+/**
+ * 
+ * @param {number} width - aktuelle Canvasbreite
+ * @param {number} height - aktuelle Canvashöhe
+ */
+
+export function initNebula(width, height) {
+  canvasWidth = width;
+  canvasHeight = height;
 
   nebulae = Array.from({ length: 5 }, (_, i) => ({
-    x: Math.random() * w,
-    y: Math.random() * h,
+    x: Math.random() * width,
+    y: Math.random() * height,
     r: Math.random() * 400 + 260,
     dx: (Math.random() - 0.5) * 0.005,
     dy: (Math.random() - 0.5) * 0.005,
     hue: nebulaColors[i % nebulaColors.length]
   }));
 }
+
+/**
+ * Rendert den Nebel im Hintergrund damit dieser nicht einfach nur schwarz ist
+ * @param {CanvasRenderingContext2D} ctx - 2D Rendering Context des Canvas
+ * @param {number} speedFactor - Geschwindigkeit der Nebelbewegung
+ */
 
 export function drawNebula(ctx, speedFactor) {
   ctx.save();
