@@ -19,6 +19,13 @@ let orbitItems = [];
 let orbitRotation = 0;
 let onSelect = null;
 
+/**
+ * Initialisiert das Orbit UI und erzeugt die klickbaren Orbit-Items.
+ * 
+ * @param {HTMLElement} orbitContainer - DOM-Element, in das die Orbit-Items eingefügt werden
+ * @param {(id: string) => void} onItemSelect - Callback, der beim Klick auf ein Icon aufgerufen wird.
+ */
+
 export function initOrbit(orbitContainer, onItemSelect) {
   if (!orbitContainer) {
     console.warn("initOrbit: orbitContainer ist null/undefined");
@@ -53,10 +60,10 @@ export function initOrbit(orbitContainer, onItemSelect) {
 }
 
 /**
- * Aktualisiert die Orbit-Geschwindigkeit abhängig vom globalen Speed Faktor
+ * Aktualisiert Position, Skalierung und Layer-Reihenfolge der Orbit-Icons
+ * basierend auf dem aktuellen Geschwindigkeitsfaktor der Szene.
  * 
  * @param {number} speedFactor - 1 = normal speed, >1 = boosted speed
- * @returns 
  */
 export function updateOrbit(speedFactor) {
 
