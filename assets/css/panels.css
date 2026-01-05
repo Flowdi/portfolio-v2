@@ -14,7 +14,6 @@
   display: flex;
 }
 
-/* Wenn Overlay offen → leicht schweben */
 .overlay.open .overlay-inner {
   animation: panelFloat 12s ease-in-out infinite alternate;
 }
@@ -40,7 +39,6 @@
   transform-style: preserve-3d;
   transform: rotateX(var(--tiltX, 0deg)) rotateY(var(--tiltY, 0deg));
   transition: transform 0.15s ease-out, box-shadow 0.15s ease-out;
-  /* NEU: Flex-Column, damit der Scrollbereich sich sauber einpasst */
   display: flex;
   flex-direction: column;
 }
@@ -69,11 +67,11 @@
 }
 
 
-/* Neon-Rand als pseudo-element */
+/* Neon-Rand */
 .overlay-inner::before {
   content: "";
   position: absolute;
-  inset: 0;                  /* direkt auf dem Rand sitzen */
+  inset: 0;
   border-radius: inherit;
   border: 1px solid rgba(0, 200, 255, 0.8);
   box-shadow:
@@ -274,7 +272,7 @@
 /* Certificates */
 .cert-section {
   padding-top: 4px;
-  padding-bottom: 16px;   /* extra Luft für den unteren Glow */
+  padding-bottom: 16px;
 }
 
 .cert-title {

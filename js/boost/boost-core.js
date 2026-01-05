@@ -16,7 +16,7 @@ function resizeBoost() {
   boostCanvas.style.height = size + "px";
 }
 
-// 3D-Rotation wie gehabt
+// 3D-Rotation
 function rotate3D(p, angleX, angleY, angleZ) {
   let x = p.x, y = p.y, z = p.z;
 

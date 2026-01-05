@@ -15,10 +15,10 @@ const overlayInner = document.querySelector(".overlay-inner");
 if (overlay && overlayInner) {
   overlay.addEventListener("mousemove", (e) => {
     const rect = overlayInner.getBoundingClientRect();
-    const x = (e.clientX - rect.left) / rect.width;  // 0 – 1
-    const y = (e.clientY - rect.top) / rect.height; // 0 – 1
+    const x = (e.clientX - rect.left) / rect.width;
+    const y = (e.clientY - rect.top) / rect.height;
 
-    const rotateY = (x - 0.5) * 10; // -5 bis 5 Grad
+    const rotateY = (x - 0.5) * 10; 
     const rotateX = (0.5 - y) * 10;
 
     overlayInner.style.setProperty("--tiltX", `${rotateX}deg`);
@@ -44,7 +44,7 @@ const ctx = canvas.getContext("2d");
 
 let w, h;
 function resize() {
-  const DPR = Math.min(window.devicePixelRatio || 1, 1.5); // clamp auf 1.5
+  const DPR = Math.min(window.devicePixelRatio || 1, 1.5);
   w = window.innerWidth;
   h = window.innerHeight;
   canvas.width = w * DPR;

@@ -4,7 +4,7 @@ import { map } from "../util/math.js";
 const orbitRadius = 260;
 const orbitSpeedBase = 0.0005;
 
-// Deine Daten für die Items
+// Orbit Items
 const data = [
   { id: "contact",      label: "Contact",      img: "assets/images/contact.png" },
   { id: "experience",   label: "Experience",   img: "assets/images/experience.png" },
@@ -52,13 +52,8 @@ export function initOrbit(orbitContainer, onItemSelect) {
   });
 }
 
-
-/**
- * Wird in jedem Frame aufgerufen, um die Position & Skalierung zu aktualisieren.
- * speedFactor kommt aus deiner Animation (Boost).
- */
 export function updateOrbit(speedFactor) {
-  // Falls initOrbit nie erfolgreich war
+
   if (orbitItems.length === 0) return;
 
   orbitRotation += orbitSpeedBase * speedFactor;
