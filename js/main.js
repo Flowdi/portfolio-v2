@@ -6,7 +6,9 @@ import { initMeteors, drawMeteors } from "./background/meteors.js";
 import { initBoostCore, drawBoostCore } from "./boost/boost-core.js";
 import { initPanels, openPanel } from "./ui/panels.js";
 
-/* PANELS */
+/**
+ * PANELS
+ */
 initPanels();
 
 const overlay = document.getElementById("overlay");

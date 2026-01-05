@@ -52,6 +52,12 @@ export function initOrbit(orbitContainer, onItemSelect) {
   });
 }
 
+/**
+ * Aktualisiert die Orbit-Geschwindigkeit abhängig vom globalen Speed Faktor
+ * 
+ * @param {number} speedFactor - 1 = normal speed, >1 = boosted speed
+ * @returns 
+ */
 export function updateOrbit(speedFactor) {
 
   if (orbitItems.length === 0) return;

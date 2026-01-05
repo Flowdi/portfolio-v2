@@ -9,6 +9,12 @@ export function initStars(w, h) {
   }));
 }
 
+/**
+ * 
+ * @param {CanvasRenderingContext2D} ctx - 2D Rendering Context des Canvas
+ * @param {number} speedFactor - Faktor, wie schnell Sterne fliegen (1 = normal)
+ * @param {number} w - aktuelle Canvasbreite zum Reset bei Randüberschreitung
+ */
 export function drawStars(ctx, speedFactor, w) {
   ctx.save();
   ctx.fillStyle = "white";
