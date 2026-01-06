@@ -55,21 +55,44 @@ const panelRenderers = {
     </div>
   `,
 
-  experience: () => `
-    <h2>Experience</h2>
-    <div class="timeline">
-      <div class="timeline-item">
-        <h3>Jobtitel @ Firma</h3>
-        <span class="time">2023 – heute</span>
-        <p>Kurzbeschreibung deiner Aufgaben und Highlights.</p>
-      </div>
-      <div class="timeline-item">
-        <h3>Frühere Rolle @ Firma</h3>
-        <span class="time">2021 – 2023</span>
-        <p>Ein paar Stichpunkte zu Technologien, Verantwortung, etc.</p>
-      </div>
+experience: () => `
+  <h2>Developer Journey</h2>
+
+  <div class="timeline">
+
+    <div class="timeline-item">
+      <h3>Umschulung – Fachinformatiker Anwendungsentwicklung</h3>
+      <span class="time">2024 – 2026 (IHK)</span>
+      <p>
+        Fundierter Einstieg in professionelle Softwareentwicklung mit Fokus auf
+        JavaScript, Webtechnologien, Softwarearchitektur, Versionsverwaltung,
+        Projektarbeit und strukturiertes Problemlösen.
+      </p>
     </div>
-  `,
+
+    <div class="timeline-item">
+      <h3>Praxisprojekte & Eigenentwicklung</h3>
+      <span class="time">laufend</span>
+      <p>
+        Aktive Umsetzung eigener Anwendungen – vom kleinen Tool bis hin zu
+        umfangreicheren Webprojekten. Fokus auf sauberen Code, UX, Performance
+        und nachhaltige Struktur.
+      </p>
+    </div>
+
+    <div class="timeline-item">
+      <h3>Weiterbildung & Spezialisierung</h3>
+      <span class="time">2024 – heute</span>
+      <p>
+        Ergänzende Zertifizierungen u.a. über freeCodeCamp und Udemy in
+        JavaScript, MySQL, Responsive Design und Fullstack-Entwicklung.
+        Kontinuierliche Weiterentwicklung als Teil des täglichen Workflows.
+      </p>
+    </div>
+
+  </div>
+`,
+
 
   skills: () => `
     <h2>Skills</h2>

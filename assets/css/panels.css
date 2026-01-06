@@ -247,7 +247,7 @@
 }
 
 .timeline-item {
-  margin-bottom: 1rem;
+  margin-bottom: 1.2rem;
   position: relative;
 }
 
@@ -264,9 +264,9 @@
 
 .timeline .time {
   display: block;
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   opacity: 0.8;
-  margin-bottom: 0.2rem;
+  margin-bottom: 0.3rem;
 }
 
 /* Certificates */
