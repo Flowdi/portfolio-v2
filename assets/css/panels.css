@@ -243,23 +243,29 @@
 /* Timeline */
 .timeline {
   border-left: 2px solid rgba(0, 200, 255, 0.4);
-  padding-left: 1.3rem;
+  padding-left: 1.6rem;
 }
 
 .timeline-item {
-  margin-bottom: 1.2rem;
+  margin-bottom: 1.4rem;
+  padding-left: 1rem;
+  padding-top: 1rem;
   position: relative;
 }
 
 .timeline-item::before {
   content: "";
   position: absolute;
-  left: -10px;
-  top: 4px;
-  width: 10px;
-  height: 10px;
+  left: -8px;
+  top: 1.28rem;        /* sitzt jetzt perfekt auf H3-Höhe */
+  width: 12px;
+  height: 12px;
   border-radius: 50%;
-  background: radial-gradient(circle, #0ff, transparent);
+  border: 2px solid #00eaff;
+  background: rgba(0, 0, 0, 0.4);
+  box-shadow:
+    0 0 10px rgba(0, 200, 255, .7),
+    inset 0 0 6px rgba(0, 200, 255, .5);
 }
 
 .timeline .time {
