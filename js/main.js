@@ -1,5 +1,5 @@
 import { initBoostControls } from "./input/controls.js";
-import { initOrbit, updateOrbit } from "./orbit/orbit-ui.js";
+import { initOrbit, updateOrbit, refreshOrbitLabels } from "./orbit/orbit-ui.js";
 import { initStars, drawStars } from "./background/stars.js";
 import { initNebula, drawNebula } from "./background/nebula.js";
 import { initMeteors, drawMeteors } from "./background/meteors.js";
@@ -51,13 +51,15 @@ function initLanguageSwitch() {
         b.classList.toggle("active", b === btn);
       });
 
-      // aktuell offenes Panel neu rendern (Contact, Experience etc.)
+      // Panels neu rendern
       refreshCurrentPanel();
 
-      // Orbit-Labels: später, wenn Orbit auch i18n nutzt
+      // Orbit-Labels neu setzen 🚀
+      refreshOrbitLabels();
     });
   });
 }
+
 
 // Language Switch JETZT aktivieren
 initLanguageSwitch();
