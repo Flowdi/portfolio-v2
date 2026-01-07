@@ -1,4 +1,5 @@
 import { map } from "../util/math.js";
+import { tOrbitLabel } from "../i18n/bilingual.js";
 
 // Konstante Orbit-Parameter
 const orbitRadius = 260;
@@ -6,12 +7,12 @@ const orbitSpeedBase = 0.0005;
 
 // Orbit Items
 const data = [
-  { id: "contact",      label: "Contact",      img: "assets/images/contact.png" },
-  { id: "experience",   label: "Developer Journey",   img: "assets/images/experience.png" },
-  { id: "skills",       label: "Skills",       img: "assets/images/skills.png" },
-  { id: "projects",     label: "Projects",     img: "assets/images/projects.png" },
-  { id: "certificates", label: "Certificates", img: "assets/images/certificates.png" },
-  { id: "about",        label: "About Me",     img: "assets/images/about.png" }
+  { id: "contact",      img: "assets/images/contact.png" },
+  { id: "experience",   img: "assets/images/experience.png" },
+  { id: "skills",       img: "assets/images/skills.png" },
+  { id: "projects",     img: "assets/images/projects.png" },
+  { id: "certificates", img: "assets/images/certificates.png" },
+  { id: "about",        img: "assets/images/about.png" }
 ];
 
 
@@ -41,23 +42,25 @@ export function initOrbit(orbitContainer, onItemSelect) {
     el.className = "orbit-item";
     el.innerHTML = `
       <div class="icon">
-        <img src="${item.img}" alt="${item.label}">
+        <img src="${item.img}" alt="">
       </div>
-      <div class="label">${item.label}</div>
+      <div class="label">${tOrbitLabel(item.id)}</div>
     `;
 
     el.addEventListener("click", () => {
-      if (onItemSelect) onItemSelect(item.id);
+      if (onSelect) onSelect(item.id);
     });
 
     orbitContainer.appendChild(el);
 
     orbitItems.push({
       el,
+      id: item.id, // 👈 wichtig für spätere Updates
       angle: (i / data.length) * Math.PI * 2
     });
   });
 }
+
 
 /**
  * Aktualisiert Position, Skalierung und Layer-Reihenfolge der Orbit-Icons
@@ -85,6 +88,18 @@ export function updateOrbit(speedFactor) {
       o.el.classList.add("active");
     } else {
       o.el.classList.remove("active");
+    }
+  });
+}
+
+/**
+ * Aktualisiert die Orbit Labels für die Sprachoptionen
+ */
+export function refreshOrbitLabels() {
+  orbitItems.forEach((o) => {
+    const labelEl = o.el.querySelector(".label");
+    if (labelEl) {
+      labelEl.textContent = tOrbitLabel(o.id);
     }
   });
 }
