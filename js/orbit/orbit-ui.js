@@ -7,7 +7,7 @@ const orbitSpeedBase = 0.0005;
 // Orbit Items
 const data = [
   { id: "contact",      label: "Contact",      img: "assets/images/contact.png" },
-  { id: "experience",   label: "Experience",   img: "assets/images/experience.png" },
+  { id: "experience",   label: "Developer Journey",   img: "assets/images/experience.png" },
   { id: "skills",       label: "Skills",       img: "assets/images/skills.png" },
   { id: "projects",     label: "Projects",     img: "assets/images/projects.png" },
   { id: "certificates", label: "Certificates", img: "assets/images/certificates.png" },

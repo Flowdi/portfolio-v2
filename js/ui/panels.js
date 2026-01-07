@@ -47,7 +47,11 @@ const projects = [
 const panelRenderers = {
   contact: () => `
     <h2>Contact</h2>
-    <p>Schreib mir gerne, wenn du Fragen hast oder mit mir arbeiten willst.</p>
+    <p>Ich freue mich über jede Form von Kontakt rund um Webentwicklung, spannende Projekte oder fachlichen Austausch.
+Besonders interessieren mich Frontend-Entwicklung, JavaScript-Ecosystem, moderne Webarchitektur und Clean Code.<br><br>
+
+Wenn du eine Idee, ein Projekt oder einfach nur eine Frage hast – schreib mir gern.<br>
+Ich melde mich so schnell wie möglich zurück.</p>
     <div class="contact-buttons">
       <a href="https://github.com/Flowdi" target="_blank" class="btn outline">GitHub</a>
       <a href="https://linkedin.com/in/deinprofil" target="_blank" class="btn outline">LinkedIn</a>
