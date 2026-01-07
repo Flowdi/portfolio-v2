@@ -4,12 +4,13 @@ import { initStars, drawStars } from "./background/stars.js";
 import { initNebula, drawNebula } from "./background/nebula.js";
 import { initMeteors, drawMeteors } from "./background/meteors.js";
 import { initBoostCore, drawBoostCore } from "./boost/boost-core.js";
-import { initPanels, openPanel } from "./ui/panels.js";
+import { initPanels, openPanel, refreshCurrentPanel } from "./ui/panels.js";
+import { setLang } from "./i18n/bilingual.js";
 
 /**
  * PANELS
  */
-initPanels();
+initPanels();   // Overlay & Panel-System initialisieren
 
 const overlay = document.getElementById("overlay");
 const overlayInner = document.querySelector(".overlay-inner");
@@ -20,7 +21,7 @@ if (overlay && overlayInner) {
     const x = (e.clientX - rect.left) / rect.width;
     const y = (e.clientY - rect.top) / rect.height;
 
-    const rotateY = (x - 0.5) * 10; 
+    const rotateY = (x - 0.5) * 10;
     const rotateX = (0.5 - y) * 10;
 
     overlayInner.style.setProperty("--tiltX", `${rotateX}deg`);
@@ -33,6 +34,33 @@ if (overlay && overlayInner) {
   });
 }
 
+/**
+ * Language Switching
+ */
+function initLanguageSwitch() {
+  const buttons = document.querySelectorAll(".lang-switch button");
+  if (!buttons.length) return;
+
+  buttons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const lang = btn.dataset.lang;
+      setLang(lang);
+
+      // Button-UI updaten
+      buttons.forEach((b) => {
+        b.classList.toggle("active", b === btn);
+      });
+
+      // aktuell offenes Panel neu rendern (Contact, Experience etc.)
+      refreshCurrentPanel();
+
+      // Orbit-Labels: später, wenn Orbit auch i18n nutzt
+    });
+  });
+}
+
+// Language Switch JETZT aktivieren
+initLanguageSwitch();
 
 /* ORBIT */
 const orbit = document.getElementById("orbit");
@@ -74,11 +102,11 @@ initBoostCore(boostCanvas);
 const starBtn = document.getElementById("starBtn");
 const boostHint = document.getElementById("boostHint");
 
-function setTargetSpeed(v) {
+function setTargetSpeedFn(v) {
   targetSpeed = v;
 }
 
-initBoostControls(starBtn, boostHint, setTargetSpeed);
+initBoostControls(starBtn, boostHint, setTargetSpeedFn);
 
 /* MAIN LOOP */
 function animate() {

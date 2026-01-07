@@ -8,10 +8,16 @@
 <link rel="stylesheet" href="assets/css/orbit.css" />
 <link rel="stylesheet" href="assets/css/boost.css" />
 <link rel="stylesheet" href="assets/css/panels.css" />
+<link rel="stylesheet" href="assets/css/layout.css">
 </head>
 <body>
-
+<div class="lang-switch">
+  <button data-lang="de" class="active">DE</button>
+  <span>|</span>
+  <button data-lang="en">EN</button>
+</div>
 <canvas id="stars"></canvas>
+
 <div class="orbit-container">
   <div class="orbit" id="orbit"></div>
 </div>
@@ -28,6 +34,7 @@
     <div id="overlayBody"></div>
   </div>
 </div>
+
 <script type="module" src="js/main.js"></script>
 </body>
 </html>

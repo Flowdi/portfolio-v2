@@ -1,8 +1,11 @@
 // js/ui/panels.js
+import { tPanel } from "../i18n/bilingual.js";
 
 let overlay;
 let closeBtn;
 let overlayBody;
+let currentPanelId = null;
+
 
 const skills = {
   frontend: ["HTML", "CSS", "JavaScript", "TypeScript", "React", "PHP basics"],
@@ -45,57 +48,44 @@ const projects = [
 ];
 
 const panelRenderers = {
-  contact: () => `
-    <h2>Contact</h2>
-    <p>Ich freue mich über jede Form von Kontakt rund um Webentwicklung, spannende Projekte oder fachlichen Austausch.
-Besonders interessieren mich Frontend-Entwicklung, JavaScript-Ecosystem, moderne Webarchitektur und Clean Code.<br><br>
+  contact: () => {
+    const t = tPanel("contact");
+    const introHtml = t.intro.replace(/\n\n/g, "<br><br>");
 
-Wenn du eine Idee, ein Projekt oder einfach nur eine Frage hast – schreib mir gern.<br>
-Ich melde mich so schnell wie möglich zurück.</p>
-    <div class="contact-buttons">
-      <a href="https://github.com/Flowdi" target="_blank" class="btn outline">GitHub</a>
-      <a href="https://linkedin.com/in/deinprofil" target="_blank" class="btn outline">LinkedIn</a>
-      <a href="mailto:deine.mail@example.com" class="btn">E-Mail</a>
-    </div>
-  `,
+    return `
+      <h2>${t.title}</h2>
+      <p>${introHtml}</p>
+      <h3 style="margin-top:1.2rem;">${t.subtitle}</h3>
+      <div class="contact-buttons">
+        <a href="https://github.com/Flowdi" target="_blank" class="btn outline">${t.githubLabel}</a>
+        <a href="https://linkedin.com/in/deinprofil" target="_blank" class="btn outline">${t.linkedinLabel}</a>
+        <a href="mailto:deine.mail@example.com" class="btn">${t.emailLabel}</a>
+      </div>
+    `;
+  },
 
-experience: () => `
-  <h2>Developer Journey</h2>
 
-  <div class="timeline">
+  experience: () => {
+    const t = tPanel("experience");
 
-    <div class="timeline-item">
-      <h3>Umschulung – Fachinformatiker Anwendungsentwicklung</h3>
-      <span class="time">2024 – 2026 (IHK)</span>
-      <p>
-        Fundierter Einstieg in professionelle Softwareentwicklung mit Fokus auf
-        JavaScript, Webtechnologien, Softwarearchitektur, Versionsverwaltung,
-        Projektarbeit und strukturiertes Problemlösen.
-      </p>
-    </div>
+    return `
+      <h2>${t.title}</h2>
+      <div class="timeline">
+        ${t.items
+          .map(
+            (item) => `
+          <div class="timeline-item">
+            <h3>${item.heading}</h3>
+            <span class="time">${item.time}</span>
+            <p>${item.text}</p>
+          </div>
+        `
+          )
+          .join("")}
+      </div>
+    `;
+  },
 
-    <div class="timeline-item">
-      <h3>Praxisprojekte & Eigenentwicklung</h3>
-      <span class="time">laufend</span>
-      <p>
-        Aktive Umsetzung eigener Anwendungen – vom kleinen Tool bis hin zu
-        umfangreicheren Webprojekten. Fokus auf sauberen Code, UX, Performance
-        und nachhaltige Struktur.
-      </p>
-    </div>
-
-    <div class="timeline-item">
-      <h3>Weiterbildung & Spezialisierung</h3>
-      <span class="time">2024 – heute</span>
-      <p>
-        Ergänzende Zertifizierungen u.a. über freeCodeCamp und Udemy in
-        JavaScript, MySQL, Responsive Design und Fullstack-Entwicklung.
-        Kontinuierliche Weiterentwicklung als Teil des täglichen Workflows.
-      </p>
-    </div>
-
-  </div>
-`,
 
 
   skills: () => `
@@ -296,9 +286,20 @@ export function openPanel(id) {
     return;
   }
 
-  overlayBody.innerHTML = renderer();
+  currentPanelId = id;                // 👈 merken, was offen ist
+  overlayBody.innerHTML = renderer(); // neu rendern
   overlay.classList.add("open");
 }
+
+export function refreshCurrentPanel() {
+  if (!overlay || !overlayBody || !currentPanelId) return;
+
+  const renderer = panelRenderers[currentPanelId];
+  if (!renderer) return;
+
+  overlayBody.innerHTML = renderer();
+}
+
 
 export function closePanel() {
   if (!overlay || !overlayBody) return;
