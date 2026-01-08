@@ -183,13 +183,23 @@ certificates: () => {
 
 
   about: () => {
-    const t = tPanel("about");
+  const t = tPanel("about");
 
-    return `
-      <h2>${t.title}</h2>
-      ${t.paragraphs.map((p) => `<p>${p}</p>`).join("<br>")}
-    `;
-  },
+  return `
+    <h2>${t.title}</h2>
+
+    <div class="about-layout">
+      <div class="about-image">
+        <img src="assets/images/about-me.jpg" alt="">
+      </div>
+
+      <div class="about-text">
+        ${t.paragraphs.map(p => `<p>${p}</p>`).join("")}
+      </div>
+    </div>
+  `;
+},
+
 };
 
 /* =========================================

@@ -444,3 +444,43 @@
   display: block;
   border-radius: 10px;
 }
+
+/* About me Bereich */
+
+.about-image {
+  width: 180px;
+  height: 180px;
+  border-radius: 14px;
+  overflow: hidden;
+  filter:
+    grayscale(0%)
+    contrast(1.05)
+    brightness(0.85);
+  box-shadow:
+    0 0 0 1px rgba(0, 200, 255, 0.35),
+    0 0 30px rgba(0, 120, 255, 0.25);
+}
+
+.about-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.about-image::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 180, 255, 0.06);
+}
+
+@media (max-width: 700px) {
+  .about-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .about-image {
+    margin: 0 auto 1.5rem;
+  }
+}
+
