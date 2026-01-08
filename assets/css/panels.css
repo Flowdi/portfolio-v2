@@ -446,6 +446,17 @@
 }
 
 /* About me Bereich */
+.about-layout {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 2.2rem;
+  align-items: center;
+}
+.about-text p {
+  margin-bottom: 1rem;
+  line-height: 1.65;
+  max-width: 60ch;
+}
 
 .about-image {
   width: 180px;
@@ -471,10 +482,15 @@
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(0, 180, 255, 0.06);
+  background: radial-gradient(
+    circle at top,
+    rgba(0, 180, 255, 0.08),
+    transparent 70%
+  );
 }
 
-@media (max-width: 700px) {
+
+@media (max-width: 720px) {
   .about-layout {
     grid-template-columns: 1fr;
   }
@@ -482,5 +498,10 @@
   .about-image {
     margin: 0 auto 1.5rem;
   }
+
+  .about-text {
+    text-align: left;
+  }
 }
+
 
