@@ -97,12 +97,12 @@ const translations = {
 
 // interner Sprach-Status
 const state = {
-  lang: "de", // Startsprache
+  lang: "en", // Startsprache
 };
 
 /**
  * Sprache setzen ("de" oder "en")
- * @param {"de"|"en"} lang
+ * @param {"en"|"de"} lang
  */
 export function setLang(lang) {
   if (translations[lang]) {
@@ -112,7 +112,7 @@ export function setLang(lang) {
 
 /**
  * Aktuelle Sprache holen
- * @returns {"de"|"en"}
+ * @returns {"en"|"de"}
  */
 export function getLang() {
   return state.lang;
