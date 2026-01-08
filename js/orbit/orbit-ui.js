@@ -40,12 +40,18 @@ export function initOrbit(orbitContainer, onItemSelect) {
   data.forEach((item, i) => {
     const el = document.createElement("div");
     el.className = "orbit-item";
-    el.innerHTML = `
+el.innerHTML = `
+  <div class="orbit-item-inner">
+    <div class="orbit-wobble">
       <div class="icon">
         <img src="${item.img}" alt="">
       </div>
       <div class="label">${tOrbitLabel(item.id)}</div>
-    `;
+    </div>
+  </div>
+`;
+
+
 
     el.addEventListener("click", () => {
       if (onSelect) onSelect(item.id);
