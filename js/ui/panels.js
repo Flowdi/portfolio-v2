@@ -4,66 +4,38 @@ import { tPanel } from "../i18n/bilingual.js";
 let overlay;
 let closeBtn;
 let overlayBody;
+
 let currentPanelId = null;
 
-
-const skills = {
-  frontend: ["HTML", "CSS", "JavaScript", "TypeScript", "React", "PHP basics"],
-  backend: ["Node.js", "Express", "REST APIs", "MySQl", "PostgreSQL"],
-  tools: ["Git & Github", "VS Code", "Postman", "Docker", "Linux basics"],
-  soft: ["Teamwork", "Communication", "Problem Solving", "eigenständiges Arbeiten", "crativity"],
-  progress: ["Python - aktuell Lern- & Übungsprojekte", "PHP - Aufbau solider Backend Kenntnisse"]
-};
-
-const projects = [
-  {
-    title: "Verbesserte Portfolio Website",
-    desc: "Neue Portfolio Website, weg vom Standard Design Stil - Die Seite auf der Sie sich gerade befinden",
-    tech: ["JavaScript", "HTML", "CSS", "Github"],
-  },
-  {
-    title: "Food Tracking App",
-    desc: "App zur Übersicht welche Lebensmittel noch im Haushalt sind",
-    tech: ["JavaScript", "HTML", "CSS", "PHP", "MySQL", "Github"],
-    link: "#"
-  },
-    {
-    title: "Portfolio Website",
-    desc: "Verbesserte eigene Website mit integriertem 'Kot' Game",
-    tech: ["JavaScript", "HTML", "CSS", "Github"],
-    link: "assets/links/website2/index.html"
-  },
-  {
-    title: "'Kot' Game 2024",
-    desc: "kleines 1-Level Platformer Game",
-    tech: ["JavaScript", "HTML", "CSS", "Github"],
-    link: "assets/links/kotgame/index.html"
-  },
-  {
-    title: "Erste eigene Website 2024",
-    desc: "Eine erste eigene Website in schlichtem Look",
-    tech: ["JavaSript", "HTML", "CSS"],
-    link: "#"
-  }
-];
+/* =========================================
+   Panel Renderers
+========================================= */
 
 const panelRenderers = {
   contact: () => {
     const t = tPanel("contact");
-    const introHtml = t.intro.replace(/\n\n/g, "<br><br>");
+    const introHtml = toParagraphHtml(t.intro);
 
     return `
       <h2>${t.title}</h2>
       <p>${introHtml}</p>
-      <h3 style="margin-top:1.2rem;">${t.subtitle}</h3>
+
       <div class="contact-buttons">
-        <a href="https://github.com/Flowdi" target="_blank" class="btn outline">${t.githubLabel}</a>
-        <a href="https://linkedin.com/in/deinprofil" target="_blank" class="btn outline">${t.linkedinLabel}</a>
-        <a href="mailto:deine.mail@example.com" class="btn">${t.emailLabel}</a>
+        <a href="https://github.com/Flowdi" target="_blank" rel="noopener" class="btn outline">
+          ${t.buttons.github}
+        </a>
+        <a href="https://linkedin.com/in/deinprofil" target="_blank" rel="noopener" class="btn outline">
+          ${t.buttons.linkedin}
+        </a>
+        <a href="https://www.xing.com/profile/deinprofil" target="_blank" rel="noopener" class="btn outline">
+          ${t.buttons.xing}
+        </a>
+        <a href="mailto:deine.mail@example.com" class="btn">
+          ${t.buttons.email}
+        </a>
       </div>
     `;
   },
-
 
   experience: () => {
     const t = tPanel("experience");
@@ -86,174 +58,258 @@ const panelRenderers = {
     `;
   },
 
+  skills: () => {
+    const t = tPanel("skills");
 
+    return `
+      <h2>${t.title}</h2>
+      ${t.groups.map((g) => renderSkillGroup(g.title, g.items)).join("")}
+    `;
+  },
 
-  skills: () => `
-    <h2>Skills</h2>
-    ${renderSkillGroup("Frontend", skills.frontend)}
-    ${renderSkillGroup("Backend", skills.backend)}
-    ${renderSkillGroup("Tools", skills.tools)}
-    ${renderSkillGroup("Soft Skills", skills.soft)}
-    ${renderSkillGroup("Skills in Progress", skills.progress)}
-  `,
+  projects: () => {
+    const t = tPanel("projects");
 
-  projects: () => `
-    <h2>Projects</h2>
-    <div class="project-grid">
-      ${projects.map(renderProjectCard).join("")}
+    return `
+      <h2>${t.title}</h2>
+      <div class="project-grid">
+        ${t.items.map((p) => renderProjectCard(p, t.viewLabel)).join("")}
+      </div>
+    `;
+  },
+
+certificates: () => {
+  const t = tPanel("certificates");
+
+  const earnedHtml = t.items.earned.map((c) => `
+    <div class="cert-card">
+      <div class="cert-badge">
+        <img src="${c.img}" alt="${escapeHtml(c.title)}">
+      </div>
+
+      <div class="cert-info">
+        <h4>${escapeHtml(c.title)}</h4>
+        <span class="issuer">${escapeHtml(c.issuer)}</span>
+        <span class="year">${escapeHtml(c.year)}</span>
+      </div>
+
+      <div class="cert-actions">
+        <a href="#" class="btn small"
+           data-action="cert-view"
+           data-cert-id="${c.id}">
+          ${t.buttons.view}
+        </a>
+        <a href="${c.verifyUrl || "#"}"
+           class="btn small outline"
+           target="_blank" rel="noopener">
+          ${t.buttons.verify}
+        </a>
+      </div>
     </div>
-  `,
+  `).join("");
 
-certificates: () => `
-  <h2>Certificates</h2>
+  const progressHtml = t.items.progress.map((c) => `
+    <div class="cert-card in-progress">
+      <div class="cert-badge placeholder"><span>Coming Soon</span></div>
 
-  <div class="cert-section">
-
-    <h3 class="cert-title">Earned Certificates</h3>
-
-    <div class="cert-grid">
-
-      <!-- FreeCodeCamp JS -->
-      <div class="cert-card">
-        <div class="cert-badge">
-          <img src="assets/certificates/fcc-js.png" alt="JavaScript Certification">
-        </div>
-
-        <div class="cert-info">
-          <h4>JavaScript Algorithms & Data Structures</h4>
-          <span class="issuer">freeCodeCamp</span>
-          <span class="year">2024</span>
-        </div>
-
-        <div class="cert-actions">
-          <a href="#" class="btn small">View</a>
-          <a href="#" class="btn small outline">Verify</a>
-        </div>
+      <div class="cert-info">
+        <h4>${escapeHtml(c.title)}</h4>
+        <span class="issuer">${escapeHtml(c.issuer)}</span>
+        <span class="year">${escapeHtml(c.year)}</span>
       </div>
 
-
-      <!-- FreeCodeCamp Responsive -->
-      <div class="cert-card">
-        <div class="cert-badge">
-          <img src="assets/certificates/fcc-responsive.png" alt="Responsive Web Design">
-        </div>
-
-        <div class="cert-info">
-          <h4>Responsive Web Design</h4>
-          <span class="issuer">freeCodeCamp</span>
-          <span class="year">2024</span>
-        </div>
-
-        <div class="cert-actions">
-          <a href="#" class="btn small">View</a>
-          <a href="#" class="btn small outline">Verify</a>
-        </div>
+      <div class="cert-status in-progress-status">
+        ${escapeHtml(c.status)}
       </div>
-
     </div>
+  `).join("");
 
+  const upcomingHtml = t.items.upcoming.map((c) => `
+    <div class="cert-card upcoming">
+      <div class="cert-badge placeholder"><span>${escapeHtml(c.issuer)}</span></div>
 
-
-    <!-- IN PROGRESS -->
-    <h3 class="cert-title">In Progress</h3>
-
-    <div class="cert-grid">
-
-      <div class="cert-card in-progress">
-        <div class="cert-badge placeholder">
-          <span>Coming Soon</span>
-        </div>
-
-        <div class="cert-info">
-          <h4>Fullstack Development</h4>
-          <span class="issuer">Udemy</span>
-          <span class="year">2025</span>
-        </div>
-
-        <div class="cert-status in-progress-status">
-          In Progress
-        </div>
+      <div class="cert-info">
+        <h4>${escapeHtml(c.title)}</h4>
+        <span class="issuer">${escapeHtml(c.issuer)}</span>
+        <span class="year">${escapeHtml(c.year)}</span>
       </div>
 
-      <div class="cert-card in-progress">
-        <div class="cert-badge placeholder">
-          <span>Coming Soon</span>
-        </div>
-
-        <div class="cert-info">
-          <h4>MySQL Database Certification</h4>
-          <span class="issuer">Udemy</span>
-          <span class="year">2025</span>
-        </div>
-
-        <div class="cert-status in-progress-status">
-          In Progress
-        </div>
+      <div class="cert-status upcoming-status">
+        ${escapeHtml(c.status)}
       </div>
-
     </div>
+  `).join("");
 
+  // Viewer + Liste in einem Panel: viewer ist zunächst hidden
+  return `
+    <h2>${t.title}</h2>
 
+    <div class="cert-viewer" id="certViewer" aria-hidden="true">
+      <div class="cert-viewer-top">
+        <button class="btn small outline" data-action="cert-back">
+          ${t.buttons.back}
+        </button>
 
-    <!-- FUTURE -->
-    <h3 class="cert-title">Upcoming</h3>
-
-    <div class="cert-grid">
-
-      <div class="cert-card upcoming">
-        <div class="cert-badge placeholder">
-          <span>IHK</span>
+        <div class="cert-viewer-meta">
+          <div class="cert-viewer-kicker">${t.viewer.headline}</div>
+          <div class="cert-viewer-title" id="certViewerTitle"></div>
+          <div class="cert-viewer-sub" id="certViewerSub"></div>
         </div>
 
-        <div class="cert-info">
-          <h4>Fachinformatiker Anwendungsentwicklung</h4>
-          <span class="issuer">IHK</span>
-          <span class="year">2026</span>
-        </div>
-
-        <div class="cert-status upcoming-status">
-          July 2026
-        </div>
+        <a class="btn small" id="certViewerVerify" href="#" target="_blank" rel="noopener">
+          ${t.viewer.verifyHint}
+        </a>
       </div>
 
+      <div class="cert-viewer-media">
+        <img id="certViewerImg" alt="">
+      </div>
     </div>
 
-  </div>
-`,
+    <div class="cert-list" id="certList">
+      <div class="cert-section">
+        <h3 class="cert-title">${t.sections.earned}</h3>
+        <div class="cert-grid">${earnedHtml}</div>
 
-  about: () => `
-    <h2>About Me</h2>
-    <p>Ich bin angehender Fachinformatiker für Anwendungsentwicklung (IHK-Abschluss Juli 2026) mit Leidenschaft für sauberen Code, moderne Webentwicklung und kreative User Interfaces. </p><br>
-    <p>Mein Weg in die IT begann schon früh mit Technikbegeisterung und Gaming – heute setze ich eigene Projekte um und vertiefe mein Wissen kontinuierlich, u. a. durch Zertifikate in JavaScript, MySQL und Fullstack-Development.</p><br><p>Abseits des Bildschirms verbringe ich gerne Zeit in der Natur, gehe wandern oder betreibe Sport – und sammle neue kreative Impulse.</p>
-  `
+        <h3 class="cert-title">${t.sections.progress}</h3>
+        <div class="cert-grid">${progressHtml}</div>
+
+        <h3 class="cert-title">${t.sections.upcoming}</h3>
+        <div class="cert-grid">${upcomingHtml}</div>
+      </div>
+    </div>
+  `;
+},
+
+
+  about: () => {
+    const t = tPanel("about");
+
+    return `
+      <h2>${t.title}</h2>
+      ${t.paragraphs.map((p) => `<p>${p}</p>`).join("<br>")}
+    `;
+  },
 };
 
-// kleine Helper-Funktionen für die Templates
+/* =========================================
+   Helper functions (Templates)
+========================================= */
+
 function renderSkillGroup(title, items) {
   return `
     <div class="skill-group">
       <h3>${title}</h3>
       <div class="skill-chips">
-        ${items.map(i => `<span class="chip">${i}</span>`).join("")}
+        ${items.map((i) => `<span class="chip">${escapeHtml(i)}</span>`).join("")}
       </div>
     </div>
   `;
 }
 
-function renderProjectCard(project) {
+function renderProjectCard(project, viewLabel) {
+  const techHtml = (project.tech || [])
+    .map((t) => `<span class="chip">${escapeHtml(t)}</span>`)
+    .join("");
+
+  const viewBtn = project.link
+    ? `<a href="${project.link}" target="_blank" rel="noopener" class="btn small">${viewLabel}</a>`
+    : "";
+
   return `
     <div class="project-card">
-      <h3>${project.title}</h3>
-      <p>${project.desc}</p>
-      <div class="tags">
-        ${project.tech.map(t => `<span class="chip">${t}</span>`).join("")}
-      </div>
-      ${project.link ? `<a href="${project.link}" target="_blank" class="btn small">View</a>` : ""}
+      <h3>${escapeHtml(project.title)}</h3>
+      <p>${escapeHtml(project.desc)}</p>
+      <div class="tags">${techHtml}</div>
+      ${viewBtn}
     </div>
   `;
 }
 
-// Init & Steuerfunktionen
+// Wandelt "\n\n" zu <br><br> um, lässt normalen Text so wie er ist
+function toParagraphHtml(text) {
+  if (!text) return "";
+  return escapeHtml(text).replace(/\n\n/g, "<br><br>").replace(/\n/g, "<br>");
+}
+
+// Mini-escape, damit dir kein HTML “kaputt” geht, wenn du mal Sonderzeichen im Text hast
+function escapeHtml(str) {
+  return String(str)
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+}
+function afterRender(panelId) {
+  if (panelId === "certificates") {
+    initCertificatesInteractions();
+  }
+}
+
+function initCertificatesInteractions() {
+  // Event Delegation: einmal pro Render – vorherige Listener sicher entfernen
+  overlayBody.onclick = (e) => {
+    const btn = e.target.closest("[data-action]");
+    if (!btn) return;
+
+    const action = btn.dataset.action;
+    if (action === "cert-view") {
+      e.preventDefault();
+      const certId = btn.dataset.certId;
+      openCertificateViewer(certId);
+    }
+
+    if (action === "cert-back") {
+      e.preventDefault();
+      closeCertificateViewer();
+    }
+  };
+}
+
+function openCertificateViewer(certId) {
+  const t = tPanel("certificates");
+  const cert = (t.items.earned || []).find((c) => c.id === certId);
+  if (!cert) return;
+
+  const viewer = overlayBody.querySelector("#certViewer");
+  const list = overlayBody.querySelector("#certList");
+  const img = overlayBody.querySelector("#certViewerImg");
+  const title = overlayBody.querySelector("#certViewerTitle");
+  const sub = overlayBody.querySelector("#certViewerSub");
+  const verify = overlayBody.querySelector("#certViewerVerify");
+
+  if (!viewer || !list || !img || !title || !sub || !verify) return;
+
+  img.src = cert.img;
+  img.alt = cert.title;
+
+  title.textContent = cert.title;
+  sub.textContent = `${cert.issuer} • ${cert.year}`;
+
+  verify.href = cert.verifyUrl || "#";
+  verify.style.display = cert.verifyUrl && cert.verifyUrl !== "#" ? "inline-block" : "none";
+
+  viewer.classList.add("open");
+  viewer.setAttribute("aria-hidden", "false");
+
+  list.classList.add("hidden");
+}
+
+function closeCertificateViewer() {
+  const viewer = overlayBody.querySelector("#certViewer");
+  const list = overlayBody.querySelector("#certList");
+  if (!viewer || !list) return;
+
+  viewer.classList.remove("open");
+  viewer.setAttribute("aria-hidden", "true");
+  list.classList.remove("hidden");
+}
+
+/* =========================================
+   Init & Control functions
+========================================= */
+
 export function initPanels() {
   overlay = document.getElementById("overlay");
   closeBtn = document.getElementById("overlayClose");
@@ -286,9 +342,11 @@ export function openPanel(id) {
     return;
   }
 
-  currentPanelId = id;                // 👈 merken, was offen ist
-  overlayBody.innerHTML = renderer(); // neu rendern
+  currentPanelId = id;
+  overlayBody.innerHTML = renderer();
   overlay.classList.add("open");
+
+  afterRender(id);
 }
 
 export function refreshCurrentPanel() {
@@ -298,6 +356,7 @@ export function refreshCurrentPanel() {
   if (!renderer) return;
 
   overlayBody.innerHTML = renderer();
+  afterRender(currentPanelId);
 }
 
 
@@ -306,4 +365,5 @@ export function closePanel() {
 
   overlay.classList.remove("open");
   overlayBody.innerHTML = "";
+  currentPanelId = null;
 }
