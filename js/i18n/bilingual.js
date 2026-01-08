@@ -167,8 +167,6 @@ certificates: {
     ],
   },
 },
-
-
       about: {
         title: "Über mich",
         paragraphs: [
@@ -345,6 +343,15 @@ certificates: {
       },
     ],
   },
+},
+
+about: {
+  title: "About Me",
+  paragraphs: [
+    "I’m a future application development specialist (IHK exam planned for July 2026) with a passion for clean code, modern web development and creative user interfaces.",
+    "My journey into IT started early with a strong interest in technology and gaming. Today I build my own projects and continuously improve my skills — supported by certificates in JavaScript, MySQL and fullstack topics.",
+    "Outside the screen I enjoy sports, hiking and creative activities to gain new inspiration.",
+  ],
 },
 
 
