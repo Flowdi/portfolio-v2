@@ -3,7 +3,7 @@ import { tOrbitLabel } from "../i18n/bilingual.js";
 
 // Konstante Orbit-Parameter
 const orbitRadius = 260;
-const orbitSpeedBase = 0.0005;
+const orbitSpeedBase = 0.0009;
 
 // Orbit Items
 const data = [
