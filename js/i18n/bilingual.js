@@ -94,32 +94,41 @@ const translations = {
               "Individuelle Portfolio-Website mit Space-UI, Animationen und modularem JavaScript (diese Website).",
             tech: ["JavaScript", "HTML", "CSS", "GitHub", "PHP", "PostgreSQL"],
             preview: "assets/projects/portfolio-v2.jpg",
-            url: "assets/links/website2/index.html"
           },
           {
             title: "Food Tracking App",
             desc:
               "Web-App zur Übersicht vorhandener Lebensmittel im Haushalt.",
             tech: ["JavaScript", "HTML", "CSS", "PHP", "PostgreSQL"],
+            preview: "",
           },
 
           {
+            id: "portfolio-v1",
             title: "Portfolio Website",
             desc:
               "Portfolio Website in schlichtem Design um bisherige Skills und Erfolge zu zeigen.",
             tech: ["JavaScript", "HTML", "CSS"],
+            preview: "assets/projects/portfolio-v1.jpg",
+            url: "assets/links/website2/index.html"
           },
           {
+            id: "kot-game",
             title: "'Kot'-Game",
             desc:
               "Ein 1-Level Platformer Spiel das mit JavaScript geschrieben wurde.",
             tech: ["JavaScript", "HTML", "CSS"],
+            preview: "assets/projects/kotgame.jpg",
+            url: "assets/links/kotgame/index.html",
+            type: "game",
           },
           {
             title: "Erste eigene Website",
             desc:
               "Meine erste eigene Website um erlerntes anzuwenden.",
             tech: ["HTML", " CSS"],
+            preview: "assets/projects/website1.jpg",
+            url: "assets/links/website1/index.html"
           }
         ],
       },

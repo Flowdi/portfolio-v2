@@ -73,10 +73,16 @@ const panelRenderers = {
     return `
       <h2>${t.title}</h2>
       <div class="project-grid">
-        ${t.items.map((p) => renderProjectCard(p, t.viewLabel)).join("")}
+        ${t.items.map(p => renderProjectCard(p, t)).join("")}
+      </div>
+
+      <div class="project-viewer" hidden>
+        <button class="btn outline small project-viewer-back">Back</button>
+        <iframe class="project-frame"></iframe>
       </div>
     `;
   },
+
 
 certificates: () => {
   const t = tPanel("certificates");
@@ -217,24 +223,35 @@ function renderSkillGroup(title, items) {
   `;
 }
 
-function renderProjectCard(project, viewLabel) {
-  const techHtml = (project.tech || [])
-    .map((t) => `<span class="chip">${escapeHtml(t)}</span>`)
-    .join("");
-
-  const viewBtn = project.link
-    ? `<a href="${project.link}" target="_blank" rel="noopener" class="btn small">${viewLabel}</a>`
-    : "";
-
+function renderProjectCard(project, t) {
   return `
-    <div class="project-card">
-      <h3>${escapeHtml(project.title)}</h3>
-      <p>${escapeHtml(project.desc)}</p>
-      <div class="tags">${techHtml}</div>
-      ${viewBtn}
+    <div class="project-card" data-project="${project.id}">
+      
+      ${project.preview ? `
+        <div class="project-preview">
+          <img src="${project.preview}" alt="">
+        </div>
+      ` : ""}
+
+      <div class="project-body">
+        <h3>${project.title}</h3>
+        <p>${project.desc}</p>
+
+        <div class="tags">
+          ${project.tech.map(t => `<span class="chip">${t}</span>`).join("")}
+        </div>
+
+        ${project.url ? `
+          <button class="btn small project-view-btn" data-url="${project.url}">
+            ${t.viewLabel}
+          </button>
+        ` : ""}
+      </div>
+
     </div>
   `;
 }
+
 
 // Wandelt "\n\n" zu <br><br> um, lässt normalen Text so wie er ist
 function toParagraphHtml(text) {
@@ -354,10 +371,33 @@ export function openPanel(id) {
 
   currentPanelId = id;
   overlayBody.innerHTML = renderer();
+  bindProjectView();
+
   overlay.classList.add("open");
 
   afterRender(id);
 }
+
+function bindProjectView() {
+  const viewer = document.querySelector(".project-viewer");
+  const frame = viewer?.querySelector(".project-frame");
+  const backBtn = viewer?.querySelector(".project-viewer-back");
+
+  document.querySelectorAll(".project-view-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      frame.src = btn.dataset.url;
+      viewer.hidden = false;
+      document.querySelector(".project-grid").style.display = "none";
+    });
+  });
+
+  backBtn?.addEventListener("click", () => {
+    frame.src = "";
+    viewer.hidden = true;
+    document.querySelector(".project-grid").style.display = "";
+  });
+}
+
 
 export function refreshCurrentPanel() {
   if (!overlay || !overlayBody || !currentPanelId) return;

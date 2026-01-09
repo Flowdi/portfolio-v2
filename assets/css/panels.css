@@ -209,6 +209,38 @@
 .tags {
   margin-bottom: 0.6rem;
 }
+.project-preview {
+  height: 140px;
+  overflow: hidden;
+  border-radius: 10px;
+  margin-bottom: 0.6rem;
+  position: relative;
+}
+
+.project-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.75) saturate(1.1);
+  transition: transform 0.4s ease;
+}
+
+.project-card:hover .project-preview img {
+  transform: scale(1.08);
+}
+
+/* Viewer */
+.project-viewer {
+  margin-top: 1rem;
+}
+
+.project-frame {
+  width: 100%;
+  height: 60vh;
+  border: none;
+  border-radius: 12px;
+  background: black;
+}
 
 /* Buttons */
 .btn {
