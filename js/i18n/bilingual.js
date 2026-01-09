@@ -91,14 +91,33 @@ const translations = {
             title: "Verbesserte Portfolio Website",
             desc:
               "Individuelle Portfolio-Website mit Space-UI, Animationen und modularem JavaScript (diese Website).",
-            tech: ["JavaScript", "HTML", "CSS", "GitHub"],
+            tech: ["JavaScript", "HTML", "CSS", "GitHub", "PHP", "PostgreSQL"],
           },
           {
             title: "Food Tracking App",
             desc:
               "Web-App zur Übersicht vorhandener Lebensmittel im Haushalt.",
-            tech: ["JavaScript", "HTML", "CSS", "PHP", "MySQL"],
+            tech: ["JavaScript", "HTML", "CSS", "PHP", "PostgreSQL"],
           },
+
+          {
+            title: "Portfolio Website",
+            desc:
+              "Portfolio Website in schlichtem Design um bisherige Skills und Erfolge zu zeigen.",
+            tech: ["JavaScript", "HTML", "CSS"],
+          },
+          {
+            title: "'Kot'-Game",
+            desc:
+              "Ein 1-Level Platformer Spiel das mit JavaScript geschrieben wurde.",
+            tech: ["JavaScript", "HTML", "CSS"],
+          },
+          {
+            title: "Erste eigene Website",
+            desc:
+              "Meine erste eigene Website um erlerntes anzuwenden.",
+            tech: ["HTML", " CSS"],
+          }
         ],
       },
 
@@ -268,14 +287,32 @@ certificates: {
             title: "Enhanced Portfolio Website",
             desc:
               "Custom portfolio website with space UI, animations and modular JavaScript.",
-            tech: ["JavaScript", "HTML", "CSS", "GitHub"],
+            tech: ["JavaScript", "HTML", "CSS", "GitHub", "PHP", "PostgreSQL"],
           },
           {
             title: "Food Tracking App",
             desc:
               "Web app to track available food items at home.",
-            tech: ["JavaScript", "HTML", "CSS", "PHP", "MySQL"],
+            tech: ["JavaScript", "HTML", "CSS", "PHP", "PostgreSQL"],
           },
+          {
+            title: "Portfolio Website",
+            desc:
+              "Portfolio website in a common design to show a few skills and achievements.",
+            tech: ["JavaScript", "HTML", "CSS"],
+          },
+          {
+            title: "'Kot'-Game",
+            desc:
+              "A 1-Level platformer game created in JavaScript.",
+            tech: ["JavaScript", "HTML", "CSS"],
+          },
+          {
+            title: "First own Website",
+            desc:
+              "My first own website using some baseskills that i had learned.",
+            tech: ["HTML", " CSS"],
+          }
         ],
       },
 
