@@ -415,13 +415,19 @@
 }
 
 /* ===== Certificates Viewer ===== */
+/* ===== Certificates: smoother viewer ===== */
 .cert-viewer {
   display: none;
   margin-top: 1rem;
+  opacity: 0;
+  transform: translateY(6px) scale(0.985);
+  transition: opacity 180ms ease, transform 180ms ease;
 }
 
 .cert-viewer.open {
   display: block;
+  opacity: 1;
+  transform: translateY(0) scale(1);
 }
 
 .cert-list.hidden {
@@ -429,22 +435,16 @@
 }
 
 .cert-viewer-top {
-  display: flex;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
   gap: 0.8rem;
   align-items: center;
-  justify-content: space-between;
   margin-bottom: 1rem;
 }
 
 .cert-viewer-meta {
-  flex: 1;
   min-width: 0;
   text-align: center;
-}
-
-.cert-viewer-kicker {
-  font-size: 0.75rem;
-  opacity: 0.75;
 }
 
 .cert-viewer-title {
@@ -459,15 +459,18 @@
 
 .cert-viewer-sub {
   font-size: 0.8rem;
-  opacity: 0.8;
+  opacity: 0.85;
 }
 
+/* Media container + loading */
 .cert-viewer-media {
+  position: relative;
   background: rgba(3, 15, 35, 0.65);
   border: 1px solid rgba(0, 200, 255, 0.25);
   border-radius: 14px;
   padding: 0.8rem;
   box-shadow: 0 0 22px rgba(0, 150, 255, 0.12);
+  overflow: hidden;
 }
 
 .cert-viewer-media img {
@@ -475,7 +478,82 @@
   height: auto;
   display: block;
   border-radius: 10px;
+  cursor: zoom-in;
+  transform: translateZ(0);
 }
+
+/* Loading shimmer overlay */
+.cert-viewer-media.is-loading::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(0, 200, 255, 0.05),
+    rgba(0, 200, 255, 0.16),
+    rgba(0, 200, 255, 0.05)
+  );
+  background-size: 200% 100%;
+  animation: certShimmer 900ms linear infinite;
+  pointer-events: none;
+}
+
+@keyframes certShimmer {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+
+/* ===== Lightbox (Zoom) inside overlay ===== */
+.cert-lightbox {
+  position: fixed;
+  inset: 0;
+  display: none;
+  place-items: center;
+  background: rgba(0, 0, 0, 0.78);
+  z-index: 30; /* über overlay */
+}
+
+.cert-lightbox.open {
+  display: grid;
+}
+
+.cert-lightbox-inner {
+  width: min(1100px, 92vw);
+  max-height: 86vh;
+  padding: 0.9rem;
+  border-radius: 16px;
+  background: rgba(3, 15, 35, 0.82);
+  border: 1px solid rgba(0, 200, 255, 0.35);
+  box-shadow:
+    0 0 24px rgba(0, 255, 255, 0.2),
+    0 0 80px rgba(0, 120, 255, 0.25);
+  backdrop-filter: blur(10px);
+  transform: scale(0.985);
+  opacity: 0;
+  transition: transform 180ms ease, opacity 180ms ease;
+}
+
+.cert-lightbox.open .cert-lightbox-inner {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.cert-lightbox-inner img {
+  width: 100%;
+  height: auto;
+  max-height: calc(86vh - 1.8rem);
+  object-fit: contain;
+  display: block;
+  border-radius: 12px;
+  cursor: zoom-out;
+}
+
+/* Optional: Prev/Next Buttons */
+.cert-nav {
+  display: flex;
+  gap: 0.5rem;
+}
+
 
 /* About me Bereich */
 .about-layout {

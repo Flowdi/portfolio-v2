@@ -22,16 +22,16 @@ const panelRenderers = {
 
       <div class="contact-buttons">
         <a href="https://github.com/Flowdi" target="_blank" rel="noopener" class="btn outline">
-          ${t.buttons.github}
+          ${escapeHtml(t.buttons.github)}
         </a>
         <a href="https://linkedin.com/in/deinprofil" target="_blank" rel="noopener" class="btn outline">
-          ${t.buttons.linkedin}
+          ${escapeHtml(t.buttons.linkedin)}
         </a>
         <a href="https://www.xing.com/profile/deinprofil" target="_blank" rel="noopener" class="btn outline">
-          ${t.buttons.xing}
+          ${escapeHtml(t.buttons.xing)}
         </a>
         <a href="mailto:deine.mail@example.com" class="btn">
-          ${t.buttons.email}
+          ${escapeHtml(t.buttons.email)}
         </a>
       </div>
     `;
@@ -41,17 +41,17 @@ const panelRenderers = {
     const t = tPanel("experience");
 
     return `
-      <h2>${t.title}</h2>
+      <h2>${escapeHtml(t.title)}</h2>
       <div class="timeline">
         ${t.items
           .map(
             (item) => `
-          <div class="timeline-item">
-            <h3>${item.heading}</h3>
-            <span class="time">${item.time}</span>
-            <p>${item.text}</p>
-          </div>
-        `
+              <div class="timeline-item">
+                <h3>${escapeHtml(item.heading)}</h3>
+                <span class="time">${escapeHtml(item.time)}</span>
+                <p>${escapeHtml(item.text)}</p>
+              </div>
+            `
           )
           .join("")}
       </div>
@@ -62,7 +62,7 @@ const panelRenderers = {
     const t = tPanel("skills");
 
     return `
-      <h2>${t.title}</h2>
+      <h2>${escapeHtml(t.title)}</h2>
       ${t.groups.map((g) => renderSkillGroup(g.title, g.items)).join("")}
     `;
   },
@@ -71,141 +71,171 @@ const panelRenderers = {
     const t = tPanel("projects");
 
     return `
-      <h2>${t.title}</h2>
+      <h2>${escapeHtml(t.title)}</h2>
+
       <div class="project-grid">
-        ${t.items.map(p => renderProjectCard(p, t)).join("")}
+        ${t.items.map((p) => renderProjectCard(p, t)).join("")}
       </div>
 
       <div class="project-viewer" hidden>
         <button class="btn outline small project-viewer-back">Back</button>
-        <iframe class="project-frame"></iframe>
+        <iframe class="project-frame" title="Project Preview"></iframe>
       </div>
     `;
   },
 
+  certificates: () => {
+    const t = tPanel("certificates");
 
-certificates: () => {
-  const t = tPanel("certificates");
+    const earnedHtml = (t.items.earned || [])
+      .map(
+        (c) => `
+        <div class="cert-card">
+          <div class="cert-badge">
+            <img src="${escapeAttr(c.img)}" alt="${escapeAttr(c.title)}">
+          </div>
 
-  const earnedHtml = t.items.earned.map((c) => `
-    <div class="cert-card">
-      <div class="cert-badge">
-        <img src="${c.img}" alt="${escapeHtml(c.title)}">
-      </div>
+          <div class="cert-info">
+            <h4>${escapeHtml(c.title)}</h4>
+            <span class="issuer">${escapeHtml(c.issuer)}</span>
+            <span class="year">${escapeHtml(c.year)}</span>
+          </div>
 
-      <div class="cert-info">
-        <h4>${escapeHtml(c.title)}</h4>
-        <span class="issuer">${escapeHtml(c.issuer)}</span>
-        <span class="year">${escapeHtml(c.year)}</span>
-      </div>
+          <div class="cert-actions">
+            <a href="#"
+              class="btn small"
+              data-action="cert-view"
+              data-cert-id="${escapeAttr(c.id)}">
+              ${escapeHtml(t.buttons.view)}
+            </a>
 
-      <div class="cert-actions">
-        <a href="#" class="btn small"
-           data-action="cert-view"
-           data-cert-id="${c.id}">
-          ${t.buttons.view}
-        </a>
-        <a href="${c.verifyUrl || "#"}"
-           class="btn small outline"
-           target="_blank" rel="noopener">
-          ${t.buttons.verify}
-        </a>
-      </div>
-    </div>
-  `).join("");
+            ${
+              c.verifyUrl && c.verifyUrl !== "#"
+                ? `
+                <a href="${escapeAttr(c.verifyUrl)}"
+                  class="btn small outline"
+                  target="_blank" rel="noopener">
+                  ${escapeHtml(t.buttons.verify)}
+                </a>
+              `
+                : ""
+            }
+          </div>
+        </div>
+      `
+      )
+      .join("");
 
-  const progressHtml = t.items.progress.map((c) => `
-    <div class="cert-card in-progress">
-      <div class="cert-badge placeholder"><span>Coming Soon</span></div>
+    const progressHtml = (t.items.progress || [])
+      .map(
+        (c) => `
+        <div class="cert-card in-progress">
+          <div class="cert-badge placeholder"><span>Coming Soon</span></div>
 
-      <div class="cert-info">
-        <h4>${escapeHtml(c.title)}</h4>
-        <span class="issuer">${escapeHtml(c.issuer)}</span>
-        <span class="year">${escapeHtml(c.year)}</span>
-      </div>
+          <div class="cert-info">
+            <h4>${escapeHtml(c.title)}</h4>
+            <span class="issuer">${escapeHtml(c.issuer)}</span>
+            <span class="year">${escapeHtml(c.year)}</span>
+          </div>
 
-      <div class="cert-status in-progress-status">
-        ${escapeHtml(c.status)}
-      </div>
-    </div>
-  `).join("");
+          <div class="cert-status in-progress-status">
+            ${escapeHtml(c.status)}
+          </div>
+        </div>
+      `
+      )
+      .join("");
 
-  const upcomingHtml = t.items.upcoming.map((c) => `
-    <div class="cert-card upcoming">
-      <div class="cert-badge placeholder"><span>${escapeHtml(c.issuer)}</span></div>
+    const upcomingHtml = (t.items.upcoming || [])
+      .map(
+        (c) => `
+        <div class="cert-card upcoming">
+          <div class="cert-badge placeholder"><span>${escapeHtml(c.issuer)}</span></div>
 
-      <div class="cert-info">
-        <h4>${escapeHtml(c.title)}</h4>
-        <span class="issuer">${escapeHtml(c.issuer)}</span>
-        <span class="year">${escapeHtml(c.year)}</span>
-      </div>
+          <div class="cert-info">
+            <h4>${escapeHtml(c.title)}</h4>
+            <span class="issuer">${escapeHtml(c.issuer)}</span>
+            <span class="year">${escapeHtml(c.year)}</span>
+          </div>
 
-      <div class="cert-status upcoming-status">
-        ${escapeHtml(c.status)}
-      </div>
-    </div>
-  `).join("");
+          <div class="cert-status upcoming-status">
+            ${escapeHtml(c.status)}
+          </div>
+        </div>
+      `
+      )
+      .join("");
 
-  // Viewer + Liste in einem Panel: viewer ist zunächst hidden
-  return `
-    <h2>${t.title}</h2>
+    return `
+      <h2>${escapeHtml(t.title)}</h2>
 
-    <div class="cert-viewer" id="certViewer" aria-hidden="true">
-      <div class="cert-viewer-top">
-        <button class="btn small outline" data-action="cert-back">
-          ${t.buttons.back}
-        </button>
+      <!-- Viewer (hidden by default, opened via JS) -->
+      <div class="cert-viewer" id="certViewer" aria-hidden="true">
+        <div class="cert-viewer-top">
+          <button class="btn small outline" data-action="cert-back">
+            ${escapeHtml(t.buttons.back)}
+          </button>
 
-        <div class="cert-viewer-meta">
-          <div class="cert-viewer-kicker">${t.viewer.headline}</div>
-          <div class="cert-viewer-title" id="certViewerTitle"></div>
-          <div class="cert-viewer-sub" id="certViewerSub"></div>
+          <div class="cert-viewer-meta">
+            <div class="cert-viewer-kicker">${escapeHtml(t.viewer.headline)}</div>
+            <div class="cert-viewer-title" id="certViewerTitle"></div>
+            <div class="cert-viewer-sub" id="certViewerSub"></div>
+          </div>
+
+          <div class="cert-nav">
+            <button class="btn small outline" data-action="cert-prev" aria-label="Previous">‹</button>
+            <button class="btn small outline" data-action="cert-next" aria-label="Next">›</button>
+            <a class="btn small" id="certViewerVerify" href="#" target="_blank" rel="noopener">
+              ${escapeHtml(t.viewer.verifyHint)}
+            </a>
+          </div>
         </div>
 
-        <a class="btn small" id="certViewerVerify" href="#" target="_blank" rel="noopener">
-          ${t.viewer.verifyHint}
-        </a>
+        <div class="cert-viewer-media" id="certViewerMedia">
+          <img id="certViewerImg" alt="">
+        </div>
       </div>
 
-      <div class="cert-viewer-media">
-        <img id="certViewerImg" alt="">
+      <!-- Lightbox -->
+      <div class="cert-lightbox" id="certLightbox" aria-hidden="true">
+        <div class="cert-lightbox-inner">
+          <img id="certLightboxImg" alt="">
+        </div>
       </div>
-    </div>
 
-    <div class="cert-list" id="certList">
-      <div class="cert-section">
-        <h3 class="cert-title">${t.sections.earned}</h3>
-        <div class="cert-grid">${earnedHtml}</div>
+      <!-- List -->
+      <div class="cert-list" id="certList">
+        <div class="cert-section">
+          <h3 class="cert-title">${escapeHtml(t.sections.earned)}</h3>
+          <div class="cert-grid">${earnedHtml}</div>
 
-        <h3 class="cert-title">${t.sections.progress}</h3>
-        <div class="cert-grid">${progressHtml}</div>
+          <h3 class="cert-title">${escapeHtml(t.sections.progress)}</h3>
+          <div class="cert-grid">${progressHtml}</div>
 
-        <h3 class="cert-title">${t.sections.upcoming}</h3>
-        <div class="cert-grid">${upcomingHtml}</div>
+          <h3 class="cert-title">${escapeHtml(t.sections.upcoming)}</h3>
+          <div class="cert-grid">${upcomingHtml}</div>
+        </div>
       </div>
-    </div>
-  `;
-},
-
+    `;
+  },
 
   about: () => {
-  const t = tPanel("about");
+    const t = tPanel("about");
 
-  return `
-    <h2>${t.title}</h2>
+    return `
+      <h2>${escapeHtml(t.title)}</h2>
 
-    <div class="about-layout">
-      <div class="about-image">
-        <img src="assets/images/about-me.jpg" alt="">
+      <div class="about-layout">
+        <div class="about-image">
+          <img src="assets/images/about-me.jpg" alt="">
+        </div>
+
+        <div class="about-text">
+          ${(t.paragraphs || []).map((p) => `<p>${escapeHtml(p)}</p>`).join("")}
+        </div>
       </div>
-
-      <div class="about-text">
-        ${t.paragraphs.map(p => `<p>${p}</p>`).join("")}
-      </div>
-    </div>
-  `;
-},
-
+    `;
+  },
 };
 
 /* =========================================
@@ -215,7 +245,7 @@ certificates: () => {
 function renderSkillGroup(title, items) {
   return `
     <div class="skill-group">
-      <h3>${title}</h3>
+      <h3>${escapeHtml(title)}</h3>
       <div class="skill-chips">
         ${items.map((i) => `<span class="chip">${escapeHtml(i)}</span>`).join("")}
       </div>
@@ -225,33 +255,38 @@ function renderSkillGroup(title, items) {
 
 function renderProjectCard(project, t) {
   return `
-    <div class="project-card" data-project="${project.id}">
-      
-      ${project.preview ? `
+    <div class="project-card" data-project="${escapeAttr(project.id || "")}">
+      ${
+        project.preview
+          ? `
         <div class="project-preview">
-          <img src="${project.preview}" alt="">
+          <img src="${escapeAttr(project.preview)}" alt="">
         </div>
-      ` : ""}
+      `
+          : ""
+      }
 
       <div class="project-body">
-        <h3>${project.title}</h3>
-        <p>${project.desc}</p>
+        <h3>${escapeHtml(project.title)}</h3>
+        <p>${escapeHtml(project.desc)}</p>
 
         <div class="tags">
-          ${project.tech.map(t => `<span class="chip">${t}</span>`).join("")}
+          ${(project.tech || []).map((tag) => `<span class="chip">${escapeHtml(tag)}</span>`).join("")}
         </div>
 
-        ${project.url ? `
-          <button class="btn small project-view-btn" data-url="${project.url}">
-            ${t.viewLabel}
+        ${
+          project.url
+            ? `
+          <button class="btn small project-view-btn" data-url="${escapeAttr(project.url)}">
+            ${escapeHtml(t.viewLabel)}
           </button>
-        ` : ""}
+        `
+            : ""
+        }
       </div>
-
     </div>
   `;
 }
-
 
 // Wandelt "\n\n" zu <br><br> um, lässt normalen Text so wie er ist
 function toParagraphHtml(text) {
@@ -259,7 +294,7 @@ function toParagraphHtml(text) {
   return escapeHtml(text).replace(/\n\n/g, "<br><br>").replace(/\n/g, "<br>");
 }
 
-// Mini-escape, damit dir kein HTML “kaputt” geht, wenn du mal Sonderzeichen im Text hast
+// Escape für HTML-Textnodes
 function escapeHtml(str) {
   return String(str)
     .replaceAll("&", "&amp;")
@@ -268,69 +303,204 @@ function escapeHtml(str) {
     .replaceAll('"', "&quot;")
     .replaceAll("'", "&#039;");
 }
+
+// Escape für Attribute (href, src, data-*)
+function escapeAttr(str) {
+  return escapeHtml(str).replaceAll("`", "&#096;");
+}
+
+/* =========================================
+   Panel lifecycle & bindings
+========================================= */
+
 function afterRender(panelId) {
+  if (panelId === "projects") {
+    bindProjectView();
+  }
   if (panelId === "certificates") {
     initCertificatesInteractions();
   }
 }
 
-function initCertificatesInteractions() {
-  // Event Delegation: einmal pro Render – vorherige Listener sicher entfernen
-  overlayBody.onclick = (e) => {
-    const btn = e.target.closest("[data-action]");
-    if (!btn) return;
+function bindProjectView() {
+  const viewer = overlayBody.querySelector(".project-viewer");
+  const frame = viewer?.querySelector(".project-frame");
+  const backBtn = viewer?.querySelector(".project-viewer-back");
+  const grid = overlayBody.querySelector(".project-grid");
 
-    const action = btn.dataset.action;
-    if (action === "cert-view") {
-      e.preventDefault();
-      const certId = btn.dataset.certId;
-      openCertificateViewer(certId);
-    }
+  if (!viewer || !frame || !grid) return;
 
-    if (action === "cert-back") {
-      e.preventDefault();
-      closeCertificateViewer();
-    }
-  };
+  overlayBody.querySelectorAll(".project-view-btn").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      frame.src = btn.dataset.url;
+      viewer.hidden = false;
+      grid.style.display = "none";
+    });
+  });
+
+  backBtn?.addEventListener("click", () => {
+    frame.src = "";
+    viewer.hidden = true;
+    grid.style.display = "";
+  });
 }
 
-function openCertificateViewer(certId) {
+/* ===== Certificates interactions (no leaks) ===== */
+
+let certKeydownHandler = null;
+let certClickHandler = null;
+
+function initCertificatesInteractions() {
   const t = tPanel("certificates");
-  const cert = (t.items.earned || []).find((c) => c.id === certId);
-  if (!cert) return;
+  const earned = t.items.earned || [];
+  let currentIndex = -1;
 
   const viewer = overlayBody.querySelector("#certViewer");
   const list = overlayBody.querySelector("#certList");
+
+  const media = overlayBody.querySelector("#certViewerMedia");
   const img = overlayBody.querySelector("#certViewerImg");
   const title = overlayBody.querySelector("#certViewerTitle");
   const sub = overlayBody.querySelector("#certViewerSub");
   const verify = overlayBody.querySelector("#certViewerVerify");
 
-  if (!viewer || !list || !img || !title || !sub || !verify) return;
+  const lightbox = overlayBody.querySelector("#certLightbox");
+  const lightboxImg = overlayBody.querySelector("#certLightboxImg");
 
-  img.src = cert.img;
-  img.alt = cert.title;
+  if (!viewer || !list || !media || !img || !title || !sub || !verify || !lightbox || !lightboxImg) {
+    return;
+  }
 
-  title.textContent = cert.title;
-  sub.textContent = `${cert.issuer} • ${cert.year}`;
+  // Remove previous handlers (important for refresh/re-render)
+  if (certClickHandler) overlayBody.removeEventListener("click", certClickHandler);
+  if (certKeydownHandler) document.removeEventListener("keydown", certKeydownHandler);
 
-  verify.href = cert.verifyUrl || "#";
-  verify.style.display = cert.verifyUrl && cert.verifyUrl !== "#" ? "inline-block" : "none";
+  function setLoading(isLoading) {
+    media.classList.toggle("is-loading", isLoading);
+  }
 
-  viewer.classList.add("open");
-  viewer.setAttribute("aria-hidden", "false");
+  function showViewerAt(index) {
+    if (index < 0 || index >= earned.length) return;
+    currentIndex = index;
 
-  list.classList.add("hidden");
-}
+    const cert = earned[currentIndex];
 
-function closeCertificateViewer() {
-  const viewer = overlayBody.querySelector("#certViewer");
-  const list = overlayBody.querySelector("#certList");
-  if (!viewer || !list) return;
+    setLoading(true);
 
-  viewer.classList.remove("open");
-  viewer.setAttribute("aria-hidden", "true");
-  list.classList.remove("hidden");
+    title.textContent = cert.title;
+    sub.textContent = `${cert.issuer} • ${cert.year}`;
+
+    verify.href = cert.verifyUrl || "#";
+    verify.style.display = cert.verifyUrl && cert.verifyUrl !== "#" ? "inline-flex" : "none";
+
+    img.onload = () => setLoading(false);
+    img.onerror = () => setLoading(false);
+    img.src = cert.img;
+    img.alt = cert.title;
+
+    viewer.classList.add("open");
+    viewer.setAttribute("aria-hidden", "false");
+    list.classList.add("hidden");
+  }
+
+  function openViewerById(certId) {
+    const idx = earned.findIndex((c) => c.id === certId);
+    if (idx === -1) return;
+    showViewerAt(idx);
+  }
+
+  function closeViewer() {
+    viewer.classList.remove("open");
+    viewer.setAttribute("aria-hidden", "true");
+    list.classList.remove("hidden");
+    currentIndex = -1;
+  }
+
+  function openLightbox() {
+    if (currentIndex < 0) return;
+    lightboxImg.src = img.src;
+    lightboxImg.alt = img.alt;
+    lightbox.classList.add("open");
+    lightbox.setAttribute("aria-hidden", "false");
+  }
+
+  function closeLightbox() {
+    lightbox.classList.remove("open");
+    lightbox.setAttribute("aria-hidden", "true");
+    lightboxImg.src = "";
+  }
+
+  function next() {
+    if (earned.length === 0) return;
+    showViewerAt((currentIndex + 1) % earned.length);
+  }
+
+  function prev() {
+    if (earned.length === 0) return;
+    showViewerAt((currentIndex - 1 + earned.length) % earned.length);
+  }
+
+  certClickHandler = (e) => {
+    const actionEl = e.target.closest("[data-action]");
+    if (actionEl) {
+      const action = actionEl.dataset.action;
+
+      if (action === "cert-view") {
+        e.preventDefault();
+        openViewerById(actionEl.dataset.certId);
+        return;
+      }
+      if (action === "cert-back") {
+        e.preventDefault();
+        closeViewer();
+        return;
+      }
+      if (action === "cert-next") {
+        e.preventDefault();
+        next();
+        return;
+      }
+      if (action === "cert-prev") {
+        e.preventDefault();
+        prev();
+        return;
+      }
+    }
+
+    if (e.target === img) {
+      openLightbox();
+      return;
+    }
+
+    if (e.target.closest("#certLightbox")) {
+      closeLightbox();
+    }
+  };
+
+  certKeydownHandler = (e) => {
+    const overlayOpen = overlay?.classList.contains("open");
+    if (!overlayOpen) return;
+
+    if (e.key === "Escape") {
+      if (lightbox.classList.contains("open")) {
+        closeLightbox();
+        return;
+      }
+      if (viewer.classList.contains("open")) {
+        closeViewer();
+        return;
+      }
+      return;
+    }
+
+    if (viewer.classList.contains("open")) {
+      if (e.key === "ArrowRight") next();
+      if (e.key === "ArrowLeft") prev();
+    }
+  };
+
+  overlayBody.addEventListener("click", certClickHandler);
+  document.addEventListener("keydown", certKeydownHandler);
 }
 
 /* =========================================
@@ -347,9 +517,7 @@ export function initPanels() {
     return;
   }
 
-  if (closeBtn) {
-    closeBtn.addEventListener("click", closePanel);
-  }
+  closeBtn?.addEventListener("click", closePanel);
 
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape") closePanel();
@@ -371,33 +539,10 @@ export function openPanel(id) {
 
   currentPanelId = id;
   overlayBody.innerHTML = renderer();
-  bindProjectView();
-
   overlay.classList.add("open");
 
   afterRender(id);
 }
-
-function bindProjectView() {
-  const viewer = document.querySelector(".project-viewer");
-  const frame = viewer?.querySelector(".project-frame");
-  const backBtn = viewer?.querySelector(".project-viewer-back");
-
-  document.querySelectorAll(".project-view-btn").forEach(btn => {
-    btn.addEventListener("click", () => {
-      frame.src = btn.dataset.url;
-      viewer.hidden = false;
-      document.querySelector(".project-grid").style.display = "none";
-    });
-  });
-
-  backBtn?.addEventListener("click", () => {
-    frame.src = "";
-    viewer.hidden = true;
-    document.querySelector(".project-grid").style.display = "";
-  });
-}
-
 
 export function refreshCurrentPanel() {
   if (!overlay || !overlayBody || !currentPanelId) return;
@@ -408,7 +553,6 @@ export function refreshCurrentPanel() {
   overlayBody.innerHTML = renderer();
   afterRender(currentPanelId);
 }
-
 
 export function closePanel() {
   if (!overlay || !overlayBody) return;
