@@ -96,11 +96,12 @@ const translations = {
             preview: "assets/projects/portfolio-v2.jpg",
           },
           {
+            id: "foodapp",
             title: "Food Tracking App",
             desc:
               "Web-App zur Übersicht vorhandener Lebensmittel im Haushalt.",
             tech: ["JavaScript", "HTML", "CSS", "PHP", "PostgreSQL"],
-            preview: "",
+            preview: "assets/projects/flosfoodapp.jpg",
           },
 
           {
@@ -123,12 +124,13 @@ const translations = {
             type: "game",
           },
           {
+            id: "website1",
             title: "Erste eigene Website",
             desc:
               "Meine erste eigene Website um erlerntes anzuwenden.",
             tech: ["HTML", " CSS"],
             preview: "assets/projects/website1.jpg",
-            url: "assets/links/website1/index.html"
+            url: "assets/links/website1/index.html",
           }
         ],
       },
@@ -296,34 +298,48 @@ certificates: {
         viewLabel: "View",
         items: [
           {
+            id: "portfolio-v2",
             title: "Enhanced Portfolio Website",
             desc:
               "Custom portfolio website with space UI, animations and modular JavaScript.",
             tech: ["JavaScript", "HTML", "CSS", "GitHub", "PHP", "PostgreSQL"],
+            preview: "assets/projects/portfolio-v2.jpg",
           },
           {
+            id: "foodapp",
             title: "Food Tracking App",
             desc:
               "Web app to track available food items at home.",
             tech: ["JavaScript", "HTML", "CSS", "PHP", "PostgreSQL"],
+            preview: "assets/projects/flosfoodapp.jpg",
           },
           {
+            id: "portfolio-v1",
             title: "Portfolio Website",
             desc:
               "Portfolio website in a common design to show a few skills and achievements.",
             tech: ["JavaScript", "HTML", "CSS"],
+            preview: "assets/projects/portfolio-v1.jpg",
+            url: "assets/links/website2/index.html"
           },
           {
+            id: "kot-game",
             title: "'Kot'-Game",
             desc:
               "A 1-Level platformer game created in JavaScript.",
             tech: ["JavaScript", "HTML", "CSS"],
+            preview: "assets/projects/kotgame.jpg",
+            url: "assets/links/kotgame/index.html",
+            type: "game",
           },
           {
+            id: "website1",
             title: "First own Website",
             desc:
               "My first own website using some baseskills that i had learned.",
             tech: ["HTML", " CSS"],
+            preview: "assets/projects/website1.jpg",
+            url: "assets/links/website1/index.html",
           }
         ],
       },
