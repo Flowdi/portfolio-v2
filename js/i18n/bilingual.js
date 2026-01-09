@@ -88,10 +88,13 @@ const translations = {
         viewLabel: "Ansehen",
         items: [
           {
+            id: "portfolio-v2",
             title: "Verbesserte Portfolio Website",
             desc:
               "Individuelle Portfolio-Website mit Space-UI, Animationen und modularem JavaScript (diese Website).",
             tech: ["JavaScript", "HTML", "CSS", "GitHub", "PHP", "PostgreSQL"],
+            preview: "assets/projects/portfolio-v2.jpg",
+            url: "assets/links/website2/index.html"
           },
           {
             title: "Food Tracking App",
