@@ -15,8 +15,20 @@ initPanels();   // Overlay & Panel-System initialisieren
 const overlay = document.getElementById("overlay");
 const overlayInner = document.querySelector(".overlay-inner");
 
+function isPanelMotionAllowed() {
+  // deaktivieren sobald Overlay offen ist (du willst "movement entfernen")
+  // -> return false wenn open
+  return false;
+}
+
+// Wenn du später vielleicht doch wieder willst:
+// return !document.body.classList.contains("reduce-motion");
+
 if (overlay && overlayInner) {
   overlay.addEventListener("mousemove", (e) => {
+    if (!overlay.classList.contains("open")) return;
+    if (!isPanelMotionAllowed()) return;
+
     const rect = overlayInner.getBoundingClientRect();
     const x = (e.clientX - rect.left) / rect.width;
     const y = (e.clientY - rect.top) / rect.height;
@@ -33,6 +45,7 @@ if (overlay && overlayInner) {
     overlayInner.style.setProperty("--tiltY", `0deg`);
   });
 }
+
 
 /**
  * Language Switching

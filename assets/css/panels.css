@@ -15,7 +15,8 @@
 }
 
 .overlay.open .overlay-inner {
-  animation: panelFloat 12s ease-in-out infinite alternate;
+  /*animation: panelFloat 12s ease-in-out infinite alternate;*/
+  animation: none;
 }
 
 @keyframes panelFloat {
