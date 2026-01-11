@@ -362,6 +362,14 @@
   object-fit: cover;
 }
 
+.cert-badge img, #certViewerImg, #certLightboxImg {
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none; /* iOS "Save Image" Menü */
+  pointer-events: auto;
+}
+
+
 .cert-badge.placeholder {
   background: radial-gradient(circle, rgba(0,255,255,.4), transparent 70%);
   color: #8fdfff;

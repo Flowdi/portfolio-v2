@@ -477,6 +477,14 @@ function initCertificatesInteractions() {
     }
   };
 
+  // --- prevent drag + context menu (best-effort) ---
+[img, lightboxImg].forEach((el) => {
+  el.setAttribute("draggable", "false");
+
+  el.addEventListener("dragstart", (e) => e.preventDefault());
+  el.addEventListener("contextmenu", (e) => e.preventDefault());
+});
+
   certKeydownHandler = (e) => {
     const overlayOpen = overlay?.classList.contains("open");
     if (!overlayOpen) return;
@@ -501,6 +509,13 @@ function initCertificatesInteractions() {
 
   overlayBody.addEventListener("click", certClickHandler);
   document.addEventListener("keydown", certKeydownHandler);
+
+  overlayBody.querySelectorAll(".cert-badge img").forEach((thumb) => {
+  thumb.setAttribute("draggable", "false");
+  thumb.addEventListener("dragstart", (e) => e.preventDefault());
+  thumb.addEventListener("contextmenu", (e) => e.preventDefault());
+});
+
 }
 
 /* =========================================
