@@ -320,6 +320,18 @@ function afterRender(panelId) {
   if (panelId === "certificates") {
     initCertificatesInteractions();
   }
+  if (panelId === "about") {
+    protectAboutImage();
+  }
+}
+function protectAboutImage() {
+  const img = overlayBody.querySelector(".about-image img");
+  if (!img) return;
+
+  img.setAttribute("draggable", "false");
+
+  img.addEventListener("dragstart", (e) => e.preventDefault());
+  img.addEventListener("contextmenu", (e) => e.preventDefault());
 }
 
 function bindProjectView() {
