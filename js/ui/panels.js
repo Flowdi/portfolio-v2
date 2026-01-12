@@ -68,24 +68,26 @@ const panelRenderers = {
   },
 
   projects: () => {
-    const t = tPanel("projects");
+  const t = tPanel("projects");
 
-    return `
-      <h2>${escapeHtml(t.title)}</h2>
+  return `
+    <h2>${escapeHtml(t.title)}</h2>
 
-      <div class="project-grid">
-        ${t.items.map((p) => renderProjectCard(p, t)).join("")}
-      </div>
+    <div class="project-grid">
+      ${t.items.map((p) => renderProjectCard(p, t)).join("")}
+    </div>
 
-      <div class="project-viewer" hidden>
-       <div class="project-viewer-bar">
+    <div class="project-viewer" hidden>
+      <div class="project-viewer-bar">
         <button class="btn outline small project-viewer-back">Back</button>
-        <button class="btn outline small project-open-btn">Open</button>
-        </div>
-        <iframe class="project-frame" title="Project Preview"></iframe>
+        <button class="btn outline small project-open-btn">${escapeHtml(t.openLabel)}</button>
       </div>
-    `;
-  },
+
+      <iframe class="project-frame" title="Project Preview"></iframe>
+    </div>
+  `;
+},
+
 
   certificates: () => {
     const t = tPanel("certificates");
@@ -257,39 +259,60 @@ function renderSkillGroup(title, items) {
 }
 
 function renderProjectCard(project, t) {
+  const hasUrl = !!project.url;
+  const hasRepo = !!project.repo;
+
+  const primaryLabel =
+    project.type === "game" ? t.playLabel : t.viewLabel;
+
   return `
     <div class="project-card" data-project="${escapeAttr(project.id || "")}">
-      ${
-        project.preview
-          ? `
+      ${project.preview ? `
         <div class="project-preview">
           <img src="${escapeAttr(project.preview)}" alt="">
         </div>
-      `
-          : ""
-      }
+      ` : ""}
 
       <div class="project-body">
         <h3>${escapeHtml(project.title)}</h3>
         <p>${escapeHtml(project.desc)}</p>
 
+        ${project.built ? `
+          <p class="project-meta">
+            <span class="meta-label">${escapeHtml(t.builtLabel)}</span>
+            ${escapeHtml(project.built)}
+          </p>
+        ` : ""}
+
+        ${project.learned ? `
+          <p class="project-meta">
+            <span class="meta-label">${escapeHtml(t.learnedLabel)}</span>
+            ${escapeHtml(project.learned)}
+          </p>
+        ` : ""}
+
         <div class="tags">
           ${(project.tech || []).map((tag) => `<span class="chip">${escapeHtml(tag)}</span>`).join("")}
         </div>
 
-        ${
-          project.url
-            ? `
-          <button class="btn small project-view-btn" data-url="${escapeAttr(project.url)}">
-            ${escapeHtml(t.viewLabel)}
-          </button>
-        `
-            : ""
-        }
+        <div class="project-actions">
+          ${hasUrl ? `
+            <button class="btn small project-view-btn" data-url="${escapeAttr(project.url)}">
+              ${escapeHtml(primaryLabel)}
+            </button>
+          ` : ""}
+
+          ${hasRepo ? `
+            <a class="btn small outline" href="${escapeAttr(project.repo)}" target="_blank" rel="noopener">
+              ${escapeHtml(t.repoLabel)}
+            </a>
+          ` : ""}
+        </div>
       </div>
     </div>
   `;
 }
+
 
 // Wandelt "\n\n" zu <br><br> um, lässt normalen Text so wie er ist
 function toParagraphHtml(text) {
@@ -341,6 +364,7 @@ function bindProjectView() {
   const viewer = overlayBody.querySelector(".project-viewer");
   const frame = viewer?.querySelector(".project-frame");
   const backBtn = viewer?.querySelector(".project-viewer-back");
+  const openBtn = viewer?.querySelector(".project-open-btn");
   const grid = overlayBody.querySelector(".project-grid");
 
   if (!viewer || !frame || !grid) return;
@@ -361,11 +385,10 @@ function bindProjectView() {
 
   openBtn?.addEventListener("click", () => {
     const url = frame?.src;
-    if (url) {
-      window.open(url, "_blank", "noopener");
-    }
+    if (url) window.open(url, "_blank", "noopener");
   });
 }
+
 
 /* ===== Certificates interactions (no leaks) ===== */
 

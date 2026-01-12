@@ -230,6 +230,37 @@
   transform: scale(1.08);
 }
 
+.project-meta {
+  margin: 0.55rem 0;
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: rgba(230, 248, 255, 0.82);
+}
+
+.project-meta .meta-label {
+  display: inline-block;
+  margin-right: 0.35rem;
+  color: rgba(143, 223, 255, 0.95);
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  font-size: 0.72rem;
+}
+
+.project-actions {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  margin-top: 0.75rem;
+}
+
+.project-viewer-bar {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.6rem;
+  margin-bottom: 0.75rem;
+}
+
+
 /* Viewer */
 .project-viewer {
   margin-top: 0.8rem;
