@@ -277,39 +277,155 @@
 }
 
 /* Timeline */
+/* ================== TIMELINE (Developer Journey) ================== */
+
 .timeline {
-  border-left: 2px solid rgba(0, 200, 255, 0.4);
-  padding-left: 1.6rem;
-}
-
-.timeline-item {
-  margin-bottom: 1.4rem;
-  padding-left: 1rem;
-  padding-top: 1rem;
   position: relative;
+  margin-top: 1.2rem;
+  padding-left: 1.6rem;
+
+  /* weicher rail glow */
+  --rail: rgba(0, 200, 255, 0.45);
+  --rail2: rgba(0, 120, 255, 0.25);
 }
 
+/* Rail */
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 10px;
+  top: 0.2rem;
+  bottom: 0.2rem;
+  width: 2px;
+  background: linear-gradient(
+    180deg,
+    transparent,
+    var(--rail),
+    var(--rail2),
+    transparent
+  );
+  box-shadow: 0 0 16px rgba(0, 200, 255, 0.22);
+  border-radius: 999px;
+}
+
+/* Item card */
+.timeline-item {
+  position: relative;
+  margin: 0 0 1rem 0;
+  padding: 0.95rem 1rem 0.95rem 1rem;
+
+  background: rgba(3, 15, 35, 0.78);
+  border: 1px solid rgba(0, 200, 255, 0.18);
+  border-radius: 14px;
+
+  box-shadow:
+    0 0 18px rgba(0, 120, 255, 0.08),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.03);
+
+  transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+}
+
+/* Hover lift (dezent, nicht zu viel) */
+.timeline-item:hover {
+  transform: translateY(-2px);
+  border-color: rgba(0, 200, 255, 0.28);
+  box-shadow:
+    0 0 26px rgba(0, 160, 255, 0.14),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+}
+
+/* Marker */
 .timeline-item::before {
   content: "";
   position: absolute;
-  left: -8px;
-  top: 1.28rem;        /* sitzt jetzt perfekt auf H3-Höhe */
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  border: 2px solid #00eaff;
-  background: rgba(0, 0, 0, 0.4);
+  left: -18px;     /* sitzt links auf der rail */
+  top: 1.05rem;
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: rgba(0, 255, 255, 0.9);
   box-shadow:
-    0 0 10px rgba(0, 200, 255, .7),
-    inset 0 0 6px rgba(0, 200, 255, .5);
+    0 0 12px rgba(0, 255, 255, 0.6),
+    0 0 24px rgba(0, 120, 255, 0.35);
 }
 
-.timeline .time {
-  display: block;
-  font-size: 0.85rem;
-  opacity: 0.8;
-  margin-bottom: 0.3rem;
+/* Outer ring pulse */
+.timeline-item::after {
+  content: "";
+  position: absolute;
+  left: -22px;
+  top: 0.85rem;
+  width: 18px;
+  height: 18px;
+  border-radius: 999px;
+  border: 1px solid rgba(0, 200, 255, 0.35);
+  box-shadow: 0 0 18px rgba(0, 200, 255, 0.22);
+  animation: timelinePulse 2.6s ease-in-out infinite;
+  pointer-events: none;
+  opacity: 0.85;
 }
+
+@keyframes timelinePulse {
+  0%, 100% { transform: scale(1); opacity: 0.55; }
+  50%      { transform: scale(1.12); opacity: 1; }
+}
+
+/* Title */
+.timeline-item h3 {
+  margin: 0 0 0.35rem 0;
+  font-size: 1.05rem;
+  letter-spacing: 0.2px;
+  color: #c9f2ff;
+  text-shadow: 0 0 10px rgba(0, 200, 255, 0.18);
+}
+
+/* Time / kicker */
+.timeline-item .time {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+
+  font-size: 0.78rem;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+
+  color: rgba(143, 223, 255, 0.92);
+  opacity: 0.9;
+
+  padding: 0.18rem 0.55rem;
+  border-radius: 999px;
+  border: 1px solid rgba(0, 200, 255, 0.18);
+  background: rgba(0, 20, 40, 0.25);
+
+  margin-bottom: 0.55rem;
+}
+
+/* Optional kleines “spark” vor der Zeit */
+.timeline-item .time::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 99px;
+  background: radial-gradient(circle, rgba(0,255,255,1), rgba(0,255,255,0));
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.35);
+}
+
+/* Body text */
+.timeline-item p {
+  margin: 0;
+  line-height: 1.65;
+  font-size: 0.95rem;
+  color: rgba(230, 248, 255, 0.86);
+}
+
+/* Mobile spacing */
+@media (max-width: 520px) {
+  .timeline { padding-left: 1.25rem; }
+  .timeline::before { left: 8px; }
+  .timeline-item::before { left: -16px; }
+  .timeline-item::after { left: -20px; }
+}
+
 
 /* Certificates */
 .cert-section {
