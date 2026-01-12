@@ -29,28 +29,34 @@ const translations = {
       },
 
       experience: {
-        title: "Developer Journey",
-        items: [
-          {
-            heading: "Umschulung – Fachinformatiker Anwendungsentwicklung",
-            time: "2024 – 2026 (IHK)",
-            text:
-              "Fundierter Einstieg in professionelle Softwareentwicklung mit Fokus auf JavaScript, Webtechnologien, Softwarearchitektur, Versionsverwaltung, Projektarbeit und strukturiertes Problemlösen.",
-          },
-          {
-            heading: "Praxisprojekte & Eigenentwicklung",
-            time: "laufend",
-            text:
-              "Aktive Umsetzung eigener Anwendungen – vom kleinen Tool bis hin zu umfangreicheren Webprojekten. Fokus auf sauberen Code, UX, Performance und nachhaltige Struktur.",
-          },
-          {
-            heading: "Weiterbildung & Spezialisierung",
-            time: "2024 – heute",
-            text:
-              "Ergänzende Zertifizierungen über freeCodeCamp und Udemy in JavaScript, MySQL, Responsive Design und Fullstack-Entwicklung.",
-          },
-        ],
-      },
+  title: "Developer Journey",
+  items: [
+    {
+      heading: "Umschulung – Fachinformatiker für Anwendungsentwicklung",
+      time: "2024 – 2026 (IHK)",
+      text:
+        "Strukturierte Ausbildung in professioneller Softwareentwicklung mit Fokus auf JavaScript, moderne Webtechnologien, Softwarearchitektur, Versionsverwaltung und projektbasiertes Arbeiten. Schwerpunkt auf wartbarem Code und realistischen Anwendungsszenarien statt isolierter Übungen."
+    },
+    {
+      heading: "Praxisnahe Entwicklung & echte Projekte",
+      time: "laufend",
+      text:
+        "Konzeption und Umsetzung vollständiger Anwendungen – von kleinen Tools bis zu komplexeren Webprojekten mit Benutzeroberflächen, Datenlogik und modularer Architektur. Dazu gehören API-Anbindungen, Zustandsverwaltung und skalierbare Projektstrukturen."
+    },
+    {
+      heading: "Engineering-Workflow & Qualitätsfokus",
+      time: "2024 – heute",
+      text:
+        "Tägliche Entwicklungsarbeit mit Git, modularem JavaScript, Debugging-Tools und iterativer Verbesserung. Fokus auf lesbaren, wiederverwendbaren Code, Performance-Optimierung und kontinuierliche UX-Verbesserung."
+    },
+    {
+      heading: "Weiterbildung & Spezialisierung",
+      time: "parallel",
+      text:
+        "Gezielte Vertiefung in JavaScript, MySQL, Responsive Design und Fullstack-Themen über freeCodeCamp, Udemy und eigene Projekte. Das Gelernte wird direkt in produktionsnahe Anwendungen übertragen."
+    }
+  ]
+},
 
       skills: {
         title: "Skills",
@@ -243,28 +249,36 @@ certificates: {
       },
 
       experience: {
-        title: "Developer Journey",
-        items: [
-          {
-            heading: "Retraining – Application Development Specialist",
-            time: "2024 – 2026 (IHK)",
-            text:
-              "Solid foundation in professional software development with a focus on JavaScript, web technologies, software architecture and structured problem solving.",
-          },
-          {
-            heading: "Practical Projects & Own Development",
-            time: "ongoing",
-            text:
-              "Continuous work on personal applications – from small tools to more complex web projects.",
-          },
-          {
-            heading: "Continuous Learning & Specialization",
-            time: "2024 – today",
-            text:
-              "Additional certifications via freeCodeCamp and Udemy in JavaScript, MySQL, responsive design and fullstack development.",
-          },
-        ],
-      },
+  title: "Developer Journey",
+  items: [
+    {
+      heading: "Professional Retraining – Application Development Specialist",
+      time: "2024 – 2026 (IHK)",
+      text:
+        "Structured training in professional software development with a strong focus on JavaScript, modern web technologies, software architecture, version control and project-based workflows. Emphasis on clean code, maintainable systems and problem-driven development rather than isolated exercises."
+    },
+    {
+      heading: "Applied Development & Real Projects",
+      time: "ongoing",
+      text:
+        "Design and implementation of complete applications – from small utility tools to multi-page web projects with UI, data handling and modular architecture. Includes building interactive frontends, integrating APIs, managing application state and structuring projects in a scalable way."
+    },
+    {
+      heading: "Engineering Mindset & Workflow",
+      time: "2024 – today",
+      text:
+        "Daily hands-on development using Git, modular JavaScript, debugging tools and iterative improvement. Focus on writing readable, reusable code, improving performance, and refining UX through continuous testing and refactoring."
+    },
+    {
+      heading: "Continuous Learning & Specialization",
+      time: "parallel",
+      text:
+        "Ongoing specialization in JavaScript, MySQL, responsive design and fullstack development through freeCodeCamp, Udemy and self-directed projects. Learning is directly applied to real applications instead of staying theoretical."
+    }
+  ]
+}
+,
+
 
       skills: {
         title: "Skills",
