@@ -78,7 +78,10 @@ const panelRenderers = {
       </div>
 
       <div class="project-viewer" hidden>
+       <div class="project-viewer-bar">
         <button class="btn outline small project-viewer-back">Back</button>
+        <button class="btn outline small project-open-btn">Open</button>
+        </div>
         <iframe class="project-frame" title="Project Preview"></iframe>
       </div>
     `;
@@ -354,6 +357,13 @@ function bindProjectView() {
     frame.src = "";
     viewer.hidden = true;
     grid.style.display = "";
+  });
+
+  openBtn?.addEventListener("click", () => {
+    const url = frame?.src;
+    if (url) {
+      window.open(url, "_blank", "noopener");
+    }
   });
 }
 
