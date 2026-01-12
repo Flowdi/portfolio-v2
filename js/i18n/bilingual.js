@@ -95,56 +95,63 @@ const translations = {
       },
 
       projects: {
-        title: "Projekte",
-        viewLabel: "Ansehen",
-        items: [
-          {
-            id: "portfolio-v2",
-            title: "Verbesserte Portfolio Website",
-            desc:
-              "Individuelle Portfolio-Website mit Space-UI, Animationen und modularem JavaScript (diese Website).",
-            tech: ["JavaScript", "HTML", "CSS", "GitHub", "PHP", "PostgreSQL"],
-            preview: "assets/projects/portfolio-v2.jpg",
-          },
-          {
-            id: "foodapp",
-            title: "Food Tracking App",
-            desc:
-              "Web-App zur Übersicht vorhandener Lebensmittel im Haushalt.",
-            tech: ["JavaScript", "HTML", "CSS", "PHP", "PostgreSQL"],
-            preview: "assets/projects/flosfoodapp.jpg",
-          },
+  title: "Projekte",
+  viewLabel: "Ansehen",
+  openLabel: "Neu öffnen",
+  repoLabel: "Repo",
+  playLabel: "Spielen",
+  builtLabel: "Built:",
+  learnedLabel: "Learned:",
+  items: [
+    {
+      id: "portfolio-v2",
+      title: "Verbesserte Portfolio Website",
+      desc:
+        "Individuelle Portfolio-Website mit Space-UI, Animationen und modularem JavaScript.",
+      tech: ["JavaScript", "HTML", "CSS", "GitHub"],
+      preview: "assets/projects/portfolio-v2.jpg",
+      url: "", // optional: live link, sonst leer lassen
+      repo: "https://github.com/Flowdi", // TODO: genauer Repo-Link
+      built: "Canvas-Background, Orbit-UI, Panels, i18n (DE/EN), modulare Struktur",
+      learned: "UI-State, Event Delegation, Performance/Rendering, saubere Modul-Trennung",
+    },
+    {
+      id: "foodapp",
+      title: "Food Tracking App",
+      desc: "Web-App zur Übersicht vorhandener Lebensmittel im Haushalt.",
+      tech: ["JavaScript", "HTML", "CSS", "PHP", "PostgreSQL"],
+      preview: "assets/projects/flosfoodapp.jpg",
+      url: "",
+      repo: "",
+      built: "CRUD-Flow, Datenmodell, UI-Listen & Detailansichten",
+      learned: "Datenhaltung, Formular-UX, strukturierter Backend/Frontend-Workflow",
+    },
+    {
+      id: "portfolio-v1",
+      title: "Portfolio Website (V1)",
+      desc: "Ältere Portfolio-Website in schlichtem Design.",
+      tech: ["JavaScript", "HTML", "CSS"],
+      preview: "assets/projects/portfolio-v1.jpg",
+      url: "assets/links/website2/index.html",
+      repo: "",
+      built: "Mehrseitiges Layout, UI-Komponenten, grundlegende Animationen",
+      learned: "Layouting, CSS-Struktur, sauberes Refactoring in V2",
+    },
+    {
+      id: "kot-game",
+      title: "'Kot'-Game",
+      desc: "Ein 1-Level Platformer Spiel das mit JavaScript geschrieben wurde.",
+      tech: ["JavaScript", "HTML", "CSS"],
+      preview: "assets/projects/kotgame.jpg",
+      url: "assets/links/kotgame/index.html",
+      repo: "",
+      type: "game",
+      built: "Player Movement, Collision, Level-Loop, Input Handling",
+      learned: "Game Loop, Timing, Debugging von Physik & Zuständen",
+    },
+  ],
+},
 
-          {
-            id: "portfolio-v1",
-            title: "Portfolio Website",
-            desc:
-              "Portfolio Website in schlichtem Design um bisherige Skills und Erfolge zu zeigen.",
-            tech: ["JavaScript", "HTML", "CSS"],
-            preview: "assets/projects/portfolio-v1.jpg",
-            url: "assets/links/website2/index.html"
-          },
-          {
-            id: "kot-game",
-            title: "'Kot'-Game",
-            desc:
-              "Ein 1-Level Platformer Spiel das mit JavaScript geschrieben wurde.",
-            tech: ["JavaScript", "HTML", "CSS"],
-            preview: "assets/projects/kotgame.jpg",
-            url: "assets/links/kotgame/index.html",
-            type: "game",
-          },
-          {
-            id: "website1",
-            title: "Erste eigene Website",
-            desc:
-              "Meine erste eigene Website um erlerntes anzuwenden.",
-            tech: ["HTML", " CSS"],
-            preview: "assets/projects/website1.jpg",
-            url: "assets/links/website1/index.html",
-          }
-        ],
-      },
 
       // --- in translations.de.panels ---
 certificates: {
@@ -317,55 +324,63 @@ certificates: {
       },
 
       projects: {
-        title: "Projects",
-        viewLabel: "View",
-        items: [
-          {
-            id: "portfolio-v2",
-            title: "Enhanced Portfolio Website",
-            desc:
-              "Custom portfolio website with space UI, animations and modular JavaScript.",
-            tech: ["JavaScript", "HTML", "CSS", "GitHub", "PHP", "PostgreSQL"],
-            preview: "assets/projects/portfolio-v2.jpg",
-          },
-          {
-            id: "foodapp",
-            title: "Food Tracking App",
-            desc:
-              "Web app to track available food items at home.",
-            tech: ["JavaScript", "HTML", "CSS", "PHP", "PostgreSQL"],
-            preview: "assets/projects/flosfoodapp.jpg",
-          },
-          {
-            id: "portfolio-v1",
-            title: "Portfolio Website",
-            desc:
-              "Portfolio website in a common design to show a few skills and achievements.",
-            tech: ["JavaScript", "HTML", "CSS"],
-            preview: "assets/projects/portfolio-v1.jpg",
-            url: "assets/links/website2/index.html"
-          },
-          {
-            id: "kot-game",
-            title: "'Kot'-Game",
-            desc:
-              "A 1-Level platformer game created in JavaScript.",
-            tech: ["JavaScript", "HTML", "CSS"],
-            preview: "assets/projects/kotgame.jpg",
-            url: "assets/links/kotgame/index.html",
-            type: "game",
-          },
-          {
-            id: "website1",
-            title: "First own Website",
-            desc:
-              "My first own website using some baseskills that i had learned.",
-            tech: ["HTML", " CSS"],
-            preview: "assets/projects/website1.jpg",
-            url: "assets/links/website1/index.html",
-          }
-        ],
-      },
+  title: "Projects",
+  viewLabel: "View",
+  openLabel: "Open",
+  repoLabel: "Repo",
+  playLabel: "Play",
+  builtLabel: "Built:",
+  learnedLabel: "Learned:",
+  items: [
+    {
+      id: "portfolio-v2",
+      title: "Enhanced Portfolio Website",
+      desc:
+        "Custom portfolio website with space UI, animations and modular JavaScript.",
+      tech: ["JavaScript", "HTML", "CSS", "GitHub"],
+      preview: "assets/projects/portfolio-v2.jpg",
+      url: "",
+      repo: "https://github.com/Flowdi", // TODO: exact repo link
+      built: "Canvas background, orbit UI, panels, i18n (DE/EN), modular structure",
+      learned: "UI state, event delegation, performance/rendering, clean module separation",
+    },
+    {
+      id: "foodapp",
+      title: "Food Tracking App",
+      desc: "Web app to track available food items at home.",
+      tech: ["JavaScript", "HTML", "CSS", "PHP", "PostgreSQL"],
+      preview: "assets/projects/flosfoodapp.jpg",
+      url: "",
+      repo: "",
+      built: "CRUD flow, data model, UI lists & detail views",
+      learned: "data handling, form UX, structured backend/frontend workflow",
+    },
+    {
+      id: "portfolio-v1",
+      title: "Portfolio Website (V1)",
+      desc: "Older portfolio website with a simpler design.",
+      tech: ["JavaScript", "HTML", "CSS"],
+      preview: "assets/projects/portfolio-v1.jpg",
+      url: "assets/links/website2/index.html",
+      repo: "",
+      built: "Multi-page layout, UI components, basic animations",
+      learned: "layouting, CSS structure, refactoring improvements in V2",
+    },
+    {
+      id: "kot-game",
+      title: "'Kot' Game",
+      desc: "A 1-level platformer game built with JavaScript.",
+      tech: ["JavaScript", "HTML", "CSS"],
+      preview: "assets/projects/kotgame.jpg",
+      url: "assets/links/kotgame/index.html",
+      repo: "",
+      type: "game",
+      built: "player movement, collision, level loop, input handling",
+      learned: "game loop, timing, debugging physics/state issues",
+    },
+  ],
+},
+
 
 // --- in translations.en.panels ---
 certificates: {
