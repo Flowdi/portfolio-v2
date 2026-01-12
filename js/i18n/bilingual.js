@@ -32,31 +32,32 @@ const translations = {
   title: "Developer Journey",
   items: [
     {
+      heading: "Engineering Practice & tägliche Entwicklung",
+      time: "laufend",
+      text:
+        "Tägliche Praxis mit JavaScript, Git und modularen Projektstrukturen. Ich plane, entwickle und verbessere vollständige Features – von UI-Interaktionen über State-Handling bis hin zu sauberer Code-Struktur, Debugging und Performance-Optimierung.",
+    },
+    {
+      heading: "Projektbasierte Umsetzung (Apps, Websites & Game)",
+      time: "laufend",
+      text:
+        "Ich setze reale, nutzbare Anwendungen um: Portfolio-Websites, Web-Apps und ein Browser-Game. Jedes Projekt folgt einem vollständigen Ablauf (Konzept → UI → Umsetzung → Testing → Iteration). Diese Website selbst ist ein modular aufgebautes JavaScript-Projekt mit Canvas-Animation, UI-State und dynamischen Panels.",
+    },
+    {
       heading: "Umschulung – Fachinformatiker für Anwendungsentwicklung",
       time: "2024 – 2026 (IHK)",
       text:
-        "Strukturierte Ausbildung in professioneller Softwareentwicklung mit Fokus auf JavaScript, moderne Webtechnologien, Softwarearchitektur, Versionsverwaltung und projektbasiertes Arbeiten. Schwerpunkt auf wartbarem Code und realistischen Anwendungsszenarien statt isolierter Übungen."
-    },
-    {
-      heading: "Praxisnahe Entwicklung & echte Projekte",
-      time: "laufend",
-      text:
-        "Konzeption und Umsetzung vollständiger Anwendungen – von kleinen Tools bis zu komplexeren Webprojekten mit Benutzeroberflächen, Datenlogik und modularer Architektur. Dazu gehören API-Anbindungen, Zustandsverwaltung und skalierbare Projektstrukturen."
-    },
-    {
-      heading: "Engineering-Workflow & Qualitätsfokus",
-      time: "2024 – heute",
-      text:
-        "Tägliche Entwicklungsarbeit mit Git, modularem JavaScript, Debugging-Tools und iterativer Verbesserung. Fokus auf lesbaren, wiederverwendbaren Code, Performance-Optimierung und kontinuierliche UX-Verbesserung."
+        "Strukturierte Ausbildung mit Fokus auf professionelle Softwareentwicklung: Programmiergrundlagen, Webtechnologien, Datenbanken, Softwaredesign, Versionsverwaltung und projektbasiertes Arbeiten. Ziel: IHK-Abschluss im Juli 2026.",
     },
     {
       heading: "Weiterbildung & Spezialisierung",
       time: "parallel",
       text:
-        "Gezielte Vertiefung in JavaScript, MySQL, Responsive Design und Fullstack-Themen über freeCodeCamp, Udemy und eigene Projekte. Das Gelernte wird direkt in produktionsnahe Anwendungen übertragen."
-    }
-  ]
+        "Kontinuierliche Vertiefung über freeCodeCamp, Udemy und eigene Lernprojekte – u.a. in JavaScript, MySQL, Responsive Design und Fullstack-Themen. Inhalte werden direkt in Projekten angewendet, statt nur theoretisch konsumiert.",
+    },
+  ],
 },
+
 
       skills: {
         title: "Skills",
@@ -252,32 +253,32 @@ certificates: {
   title: "Developer Journey",
   items: [
     {
+      heading: "Engineering Practice & Daily Development",
+      time: "ongoing",
+      text:
+        "Daily hands-on work with JavaScript, Git and modular project structures. I plan, build and refine complete features — from UI interactions and state handling to clean structure, debugging and performance improvements.",
+    },
+    {
+      heading: "Project-Driven Implementation (Apps, Websites & Game)",
+      time: "ongoing",
+      text:
+        "I build real, usable applications: portfolio websites, web apps and a browser game. Each project follows a full workflow (concept → UI → implementation → testing → iteration). This portfolio itself is a modular JavaScript project with canvas animation, UI state and dynamic panels.",
+    },
+    {
       heading: "Professional Retraining – Application Development Specialist",
       time: "2024 – 2026 (IHK)",
       text:
-        "Structured training in professional software development with a strong focus on JavaScript, modern web technologies, software architecture, version control and project-based workflows. Emphasis on clean code, maintainable systems and problem-driven development rather than isolated exercises."
-    },
-    {
-      heading: "Applied Development & Real Projects",
-      time: "ongoing",
-      text:
-        "Design and implementation of complete applications – from small utility tools to multi-page web projects with UI, data handling and modular architecture. Includes building interactive frontends, integrating APIs, managing application state and structuring projects in a scalable way."
-    },
-    {
-      heading: "Engineering Mindset & Workflow",
-      time: "2024 – today",
-      text:
-        "Daily hands-on development using Git, modular JavaScript, debugging tools and iterative improvement. Focus on writing readable, reusable code, improving performance, and refining UX through continuous testing and refactoring."
+        "Structured training in professional software development including programming fundamentals, web technologies, databases, software design, version control and project-based work. Target: IHK graduation in July 2026.",
     },
     {
       heading: "Continuous Learning & Specialization",
       time: "parallel",
       text:
-        "Ongoing specialization in JavaScript, MySQL, responsive design and fullstack development through freeCodeCamp, Udemy and self-directed projects. Learning is directly applied to real applications instead of staying theoretical."
-    }
-  ]
-}
-,
+        "Ongoing learning via freeCodeCamp, Udemy and self-directed practice — including JavaScript, MySQL, responsive design and fullstack topics. Everything is applied directly to real projects instead of staying purely theoretical.",
+    },
+  ],
+},
+
 
 
       skills: {
