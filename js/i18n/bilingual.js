@@ -2,6 +2,10 @@
 
 const translations = {
   de: {
+    ui: {
+      boostHint: "Klicke auf die Sphere, um die Rotation zu beschleunigen",
+    },
+
     orbitLabels: {
       contact: "Kontakt",
       experience: "Developer Journey",
@@ -212,6 +216,10 @@ certificates: {
   },
 
   en: {
+    ui: {
+      boostHint: "Click the sphere to boost the rotation",
+    },
+
     orbitLabels: {
       contact: "Contact",
       experience: "Developer Journey",
@@ -443,4 +451,8 @@ export function tPanel(panelId) {
 
 export function tOrbitLabel(orbitId) {
   return translations[state.lang].orbitLabels[orbitId] || orbitId;
+}
+
+export function tUI(key) {
+  return translations[state.lang].ui?.[key] || key;
 }

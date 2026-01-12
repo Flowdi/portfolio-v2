@@ -6,6 +6,7 @@ import { initMeteors, drawMeteors } from "./background/meteors.js";
 import { initBoostCore, drawBoostCore } from "./boost/boost-core.js";
 import { initPanels, openPanel, refreshCurrentPanel } from "./ui/panels.js";
 import { setLang } from "./i18n/bilingual.js";
+import { tUI } from "./i18n/bilingual.js";
 
 /**
  * PANELS
@@ -67,6 +68,8 @@ function initLanguageSwitch() {
       // Panels neu rendern
       refreshCurrentPanel();
 
+      updateBoostHint();
+
       // Orbit-Labels neu setzen 🚀
       refreshOrbitLabels();
     });
@@ -116,6 +119,15 @@ initBoostCore(boostCanvas);
 /* CONTROLS */
 const starBtn = document.getElementById("starBtn");
 const boostHint = document.getElementById("boostHint");
+
+function updateBoostHint() {
+  if (boostHint) {
+    boostHint.textContent = tUI("boostHint");
+  }
+}
+
+updateBoostHint();
+
 
 function setTargetSpeedFn(v) {
   targetSpeed = v;
