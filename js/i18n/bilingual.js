@@ -145,11 +145,11 @@ const translations = {
       repos: {
         placeholder: "",
         items: {
-          "portfolio-v2": "",  // TODO: z.B. "https://github.com/Flowdi/portfolio-v2"
-          "foodapp": "",
-          "portfolio-v1": "",
-          "kot-game": "",
-          "website1": "",
+          "portfolio-v2": "https://github.com/Flowdi/portfolio-v2",
+          "foodapp": "https://github.com/Flowdi/FlosFoodApp",
+          "portfolio-v1": "https://github.com/Flowdi/portfolio-v1",
+          "kot-game": "https://github.com/Flowdi/kotgame",
+          "website1": "https://github.com/Flowdi/website1",
         },
       },
 
@@ -338,11 +338,11 @@ const translations = {
       repos: {
         placeholder: "",
         items: {
-          "portfolio-v2": "",
-          "foodapp": "",
-          "portfolio-v1": "",
-          "kot-game": "",
-          "website1": "",
+          "portfolio-v2": "https://github.com/Flowdi/portfolio-v2",
+          "foodapp": "https://github.com/Flowdi/FlosFoodApp",
+          "portfolio-v1": "https://github.com/Flowdi/portfolio-v1",
+          "kot-game": "https://github.com/Flowdi/kotgame",
+          "website1": "https://github.com/Flowdi/website1",
         },
       },
 
