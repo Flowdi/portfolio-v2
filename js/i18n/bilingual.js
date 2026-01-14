@@ -508,3 +508,10 @@ export function tOrbitLabel(orbitId) {
 export function tUI(key) {
   return translations[state.lang].ui?.[key] || key;
 }
+
+export function tRepo(repoId) {
+  const p = translations[state.lang].panels;
+  const url = p?.repos?.items?.[repoId];
+  if (!url || url === "#" ) return null;
+  return url;
+}

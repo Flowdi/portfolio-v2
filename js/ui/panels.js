@@ -1,5 +1,5 @@
 // js/ui/panels.js
-import { tPanel } from "../i18n/bilingual.js";
+import { tPanel, tRepo } from "../i18n/bilingual.js";
 
 let overlay;
 let closeBtn;
@@ -259,8 +259,9 @@ function renderSkillGroup(title, items) {
 }
 
 function renderProjectCard(project, t) {
-  const hasUrl = !!project.url;
-  const hasRepo = !!project.repo;
+  const repoUrl = project.repoId ? tRepo(project.repoId) : null;
+  const hasRepo = !!repoUrl;
+
 
   const primaryLabel =
     project.type === "game" ? t.playLabel : t.viewLabel;
@@ -303,10 +304,10 @@ function renderProjectCard(project, t) {
           ` : ""}
 
           ${hasRepo ? `
-            <a class="btn small outline" href="${escapeAttr(project.repo)}" target="_blank" rel="noopener">
-              ${escapeHtml(t.repoLabel)}
-            </a>
-          ` : ""}
+  <a class="btn small outline" href="${escapeAttr(repoUrl)}" target="_blank" rel="noopener">
+    ${escapeHtml(t.repoLabel)}
+  </a>
+` : ""}
         </div>
       </div>
     </div>
