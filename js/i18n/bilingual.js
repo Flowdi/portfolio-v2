@@ -111,7 +111,7 @@ const translations = {
       tech: ["JavaScript", "HTML", "CSS", "GitHub"],
       preview: "assets/projects/portfolio-v2.jpg",
       url: "", // optional: live link, sonst leer lassen
-      repo: "https://github.com/Flowdi", // TODO: genauer Repo-Link
+      repoId: "https://github.com/Flowdi", // TODO: genauer Repo-Link
       built: "Canvas-Background, Orbit-UI, Panels, i18n (DE/EN), modulare Struktur",
       learned: "UI-State, Event Delegation, Performance/Rendering, saubere Modul-Trennung",
     },
@@ -122,7 +122,7 @@ const translations = {
       tech: ["JavaScript", "HTML", "CSS", "PHP", "PostgreSQL"],
       preview: "assets/projects/flosfoodapp.jpg",
       url: "",
-      repo: "",
+      repoId: "",
       built: "CRUD-Flow, Datenmodell, UI-Listen & Detailansichten",
       learned: "Datenhaltung, Formular-UX, strukturierter Backend/Frontend-Workflow",
     },
@@ -133,7 +133,7 @@ const translations = {
       tech: ["JavaScript", "HTML", "CSS"],
       preview: "assets/projects/portfolio-v1.jpg",
       url: "assets/links/website2/index.html",
-      repo: "",
+      repoId: "",
       built: "Mehrseitiges Layout, UI-Komponenten, grundlegende Animationen",
       learned: "Layouting, CSS-Struktur, sauberes Refactoring in V2",
     },
@@ -144,12 +144,23 @@ const translations = {
       tech: ["JavaScript", "HTML", "CSS"],
       preview: "assets/projects/kotgame.jpg",
       url: "assets/links/kotgame/index.html",
-      repo: "",
+      repoId: "",
       type: "game",
       built: "Player Movement, Collision, Level-Loop, Input Handling",
       learned: "Game Loop, Timing, Debugging von Physik & Zuständen",
     },
   ],
+},
+
+repos: {
+  placeholder: "#",
+  items: {
+    "portfolio-v2": "",
+    "foodapp": "",
+    "portfolio-v1": "",
+    "kot-game": "",
+    "website1": "",
+  }
 },
 
 
@@ -340,7 +351,7 @@ certificates: {
       tech: ["JavaScript", "HTML", "CSS", "GitHub"],
       preview: "assets/projects/portfolio-v2.jpg",
       url: "",
-      repo: "https://github.com/Flowdi", // TODO: exact repo link
+      repoId: "https://github.com/Flowdi", // TODO: exact repo link
       built: "Canvas background, orbit UI, panels, i18n (DE/EN), modular structure",
       learned: "UI state, event delegation, performance/rendering, clean module separation",
     },
@@ -351,7 +362,7 @@ certificates: {
       tech: ["JavaScript", "HTML", "CSS", "PHP", "PostgreSQL"],
       preview: "assets/projects/flosfoodapp.jpg",
       url: "",
-      repo: "",
+      repoId: "",
       built: "CRUD flow, data model, UI lists & detail views",
       learned: "data handling, form UX, structured backend/frontend workflow",
     },
@@ -362,7 +373,7 @@ certificates: {
       tech: ["JavaScript", "HTML", "CSS"],
       preview: "assets/projects/portfolio-v1.jpg",
       url: "assets/links/website2/index.html",
-      repo: "",
+      repoId: "",
       built: "Multi-page layout, UI components, basic animations",
       learned: "layouting, CSS structure, refactoring improvements in V2",
     },
@@ -373,12 +384,23 @@ certificates: {
       tech: ["JavaScript", "HTML", "CSS"],
       preview: "assets/projects/kotgame.jpg",
       url: "assets/links/kotgame/index.html",
-      repo: "",
+      repoId: "",
       type: "game",
       built: "player movement, collision, level loop, input handling",
       learned: "game loop, timing, debugging physics/state issues",
     },
   ],
+},
+
+repos: {
+  placeholder: "#",
+  items: {
+    "portfolio-v2": "",
+    "foodapp": "",
+    "portfolio-v1": "",
+    "kot-game": "",
+    "website1": "",
+  }
 },
 
 
