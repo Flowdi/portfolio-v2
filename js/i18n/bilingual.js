@@ -29,206 +29,164 @@ const translations = {
       },
 
       experience: {
-  title: "Developer Journey",
-  items: [
-    {
-      heading: "Engineering Practice & tägliche Entwicklung",
-      time: "laufend",
-      text:
-        "Tägliche Praxis mit JavaScript, Git und modularen Projektstrukturen. Ich plane, entwickle und verbessere vollständige Features – von UI-Interaktionen über State-Handling bis hin zu sauberer Code-Struktur, Debugging und Performance-Optimierung.",
-    },
-    {
-      heading: "Projektbasierte Umsetzung (Apps, Websites & Game)",
-      time: "laufend",
-      text:
-        "Ich setze reale, nutzbare Anwendungen um: Portfolio-Websites, Web-Apps und ein Browser-Game. Jedes Projekt folgt einem vollständigen Ablauf (Konzept → UI → Umsetzung → Testing → Iteration). Diese Website selbst ist ein modular aufgebautes JavaScript-Projekt mit Canvas-Animation, UI-State und dynamischen Panels.",
-    },
-    {
-      heading: "Umschulung – Fachinformatiker für Anwendungsentwicklung",
-      time: "2024 – 2026 (IHK)",
-      text:
-        "Strukturierte Ausbildung mit Fokus auf professionelle Softwareentwicklung: Programmiergrundlagen, Webtechnologien, Datenbanken, Softwaredesign, Versionsverwaltung und projektbasiertes Arbeiten. Ziel: IHK-Abschluss im Juli 2026.",
-    },
-    {
-      heading: "Weiterbildung & Spezialisierung",
-      time: "parallel",
-      text:
-        "Kontinuierliche Vertiefung über freeCodeCamp, Udemy und eigene Lernprojekte – u.a. in JavaScript, MySQL, Responsive Design und Fullstack-Themen. Inhalte werden direkt in Projekten angewendet, statt nur theoretisch konsumiert.",
-    },
-  ],
-},
-
+        title: "Developer Journey",
+        items: [
+          {
+            heading: "Engineering Practice & tägliche Entwicklung",
+            time: "laufend",
+            text:
+              "Tägliche Praxis mit JavaScript, Git und modularen Projektstrukturen. Ich plane, entwickle und verbessere vollständige Features – von UI-Interaktionen über State-Handling bis hin zu sauberer Code-Struktur, Debugging und Performance-Optimierung.",
+          },
+          {
+            heading: "Projektbasierte Umsetzung (Apps, Websites & Game)",
+            time: "laufend",
+            text:
+              "Ich setze reale, nutzbare Anwendungen um: Portfolio-Websites, Web-Apps und ein Browser-Game. Jedes Projekt folgt einem vollständigen Ablauf (Konzept → UI → Umsetzung → Testing → Iteration). Diese Website selbst ist ein modular aufgebautes JavaScript-Projekt mit Canvas-Animation, UI-State und dynamischen Panels.",
+          },
+          {
+            heading: "Umschulung – Fachinformatiker für Anwendungsentwicklung",
+            time: "2024 – 2026 (IHK)",
+            text:
+              "Strukturierte Ausbildung mit Fokus auf professionelle Softwareentwicklung: Programmiergrundlagen, Webtechnologien, Datenbanken, Softwaredesign, Versionsverwaltung und projektbasiertes Arbeiten. Ziel: IHK-Abschluss im Juli 2026.",
+          },
+          {
+            heading: "Weiterbildung & Spezialisierung",
+            time: "parallel",
+            text:
+              "Kontinuierliche Vertiefung über freeCodeCamp, Udemy und eigene Lernprojekte – u.a. in JavaScript, MySQL, Responsive Design und Fullstack-Themen. Inhalte werden direkt in Projekten angewendet, statt nur theoretisch konsumiert.",
+          },
+        ],
+      },
 
       skills: {
         title: "Skills",
         groups: [
-          {
-            title: "Frontend",
-            items: ["HTML", "CSS", "JavaScript", "TypeScript", "React"],
-          },
-          {
-            title: "Backend",
-            items: ["Node.js", "Express", "REST APIs", "MySQL", "PostgreSQL"],
-          },
-          {
-            title: "Tools",
-            items: ["Git & GitHub", "VS Code", "Postman", "Docker", "Linux Basics"],
-          },
+          { title: "Frontend", items: ["HTML", "CSS", "JavaScript", "TypeScript", "React"] },
+          { title: "Backend", items: ["Node.js", "Express", "REST APIs", "MySQL", "PostgreSQL"] },
+          { title: "Tools", items: ["Git & GitHub", "VS Code", "Postman", "Docker", "Linux Basics"] },
           {
             title: "Soft Skills",
-            items: [
-              "Teamarbeit",
-              "Kommunikation",
-              "Problemlösung",
-              "Eigenständiges Arbeiten",
-              "Kreativität",
-            ],
+            items: ["Teamarbeit", "Kommunikation", "Problemlösung", "Eigenständiges Arbeiten", "Kreativität"],
           },
           {
             title: "Skills in Progress",
-            items: [
-              "Python – Lern- & Übungsprojekte",
-              "PHP – Aufbau solider Backend-Kenntnisse",
-            ],
+            items: ["Python – Lern- & Übungsprojekte", "PHP – Aufbau solider Backend-Kenntnisse"],
           },
         ],
       },
 
       projects: {
-  title: "Projekte",
-  viewLabel: "Ansehen",
-  openLabel: "Neu öffnen",
-  repoLabel: "Repo",
-  playLabel: "Spielen",
-  builtLabel: "Built:",
-  learnedLabel: "Learned:",
-  items: [
-    {
-      id: "portfolio-v2",
-      title: "Verbesserte Portfolio Website",
-      desc:
-        "Individuelle Portfolio-Website mit Space-UI, Animationen und modularem JavaScript.",
-      tech: ["JavaScript", "HTML", "CSS", "GitHub"],
-      preview: "assets/projects/portfolio-v2.jpg",
-      url: "", // optional: live link, sonst leer lassen
-      repoId: "https://github.com/Flowdi", // TODO: genauer Repo-Link
-      built: "Canvas-Background, Orbit-UI, Panels, i18n (DE/EN), modulare Struktur",
-      learned: "UI-State, Event Delegation, Performance/Rendering, saubere Modul-Trennung",
-    },
-    {
-      id: "foodapp",
-      title: "Food Tracking App",
-      desc: "Web-App zur Übersicht vorhandener Lebensmittel im Haushalt.",
-      tech: ["JavaScript", "HTML", "CSS", "PHP", "PostgreSQL"],
-      preview: "assets/projects/flosfoodapp.jpg",
-      url: "",
-      repoId: "",
-      built: "CRUD-Flow, Datenmodell, UI-Listen & Detailansichten",
-      learned: "Datenhaltung, Formular-UX, strukturierter Backend/Frontend-Workflow",
-    },
-    {
-      id: "portfolio-v1",
-      title: "Portfolio Website (V1)",
-      desc: "Ältere Portfolio-Website in schlichtem Design.",
-      tech: ["JavaScript", "HTML", "CSS"],
-      preview: "assets/projects/portfolio-v1.jpg",
-      url: "assets/links/website2/index.html",
-      repoId: "",
-      built: "Mehrseitiges Layout, UI-Komponenten, grundlegende Animationen",
-      learned: "Layouting, CSS-Struktur, sauberes Refactoring in V2",
-    },
-    {
-      id: "kot-game",
-      title: "'Kot'-Game",
-      desc: "Ein 1-Level Platformer Spiel das mit JavaScript geschrieben wurde.",
-      tech: ["JavaScript", "HTML", "CSS"],
-      preview: "assets/projects/kotgame.jpg",
-      url: "assets/links/kotgame/index.html",
-      repoId: "",
-      type: "game",
-      built: "Player Movement, Collision, Level-Loop, Input Handling",
-      learned: "Game Loop, Timing, Debugging von Physik & Zuständen",
-    },
-  ],
-},
+        title: "Projekte",
+        viewLabel: "Ansehen",
+        openLabel: "Neu öffnen",
+        repoLabel: "Repo",
+        playLabel: "Spielen",
+        builtLabel: "Built:",
+        learnedLabel: "Learned:",
+        items: [
+          {
+            id: "portfolio-v2",
+            title: "Verbesserte Portfolio Website",
+            desc: "Individuelle Portfolio-Website mit Space-UI, Animationen und modularem JavaScript.",
+            tech: ["JavaScript", "HTML", "CSS", "GitHub"],
+            preview: "assets/projects/portfolio-v2.jpg",
+            url: "", // optional
+            repoId: "portfolio-v2",
+            built: "Canvas-Background, Orbit-UI, Panels, i18n (DE/EN), modulare Struktur",
+            learned: "UI-State, Event Delegation, Performance/Rendering, saubere Modul-Trennung",
+          },
+          {
+            id: "foodapp",
+            title: "Food Tracking App",
+            desc: "Web-App zur Übersicht vorhandener Lebensmittel im Haushalt.",
+            tech: ["JavaScript", "HTML", "CSS", "PHP", "PostgreSQL"],
+            preview: "assets/projects/flosfoodapp.jpg",
+            url: "",
+            repoId: "foodapp",
+            built: "CRUD-Flow, Datenmodell, UI-Listen & Detailansichten",
+            learned: "Datenhaltung, Formular-UX, strukturierter Backend/Frontend-Workflow",
+          },
+          {
+            id: "portfolio-v1",
+            title: "Portfolio Website (V1)",
+            desc: "Ältere Portfolio-Website in schlichtem Design.",
+            tech: ["JavaScript", "HTML", "CSS"],
+            preview: "assets/projects/portfolio-v1.jpg",
+            url: "assets/links/website2/index.html",
+            repoId: "portfolio-v1",
+            built: "Mehrseitiges Layout, UI-Komponenten, grundlegende Animationen",
+            learned: "Layouting, CSS-Struktur, sauberes Refactoring in V2",
+          },
+          {
+            id: "kot-game",
+            title: "'Kot'-Game",
+            desc: "Ein 1-Level Platformer Spiel das mit JavaScript geschrieben wurde.",
+            tech: ["JavaScript", "HTML", "CSS"],
+            preview: "assets/projects/kotgame.jpg",
+            url: "assets/links/kotgame/index.html",
+            repoId: "kot-game",
+            type: "game",
+            built: "Player Movement, Collision, Level-Loop, Input Handling",
+            learned: "Game Loop, Timing, Debugging von Physik & Zuständen",
+          },
+          {
+            id: "website1",
+            title: "Erste eigene Website",
+            desc: "Meine erste eigene Website um erlerntes anzuwenden.",
+            tech: ["HTML", "CSS"],
+            preview: "assets/projects/website1.jpg",
+            url: "assets/links/website1/index.html",
+            repoId: "website1",
+          },
+        ],
+      },
 
-repos: {
-  placeholder: "#",
-  items: {
-    "portfolio-v2": "",
-    "foodapp": "",
-    "portfolio-v1": "",
-    "kot-game": "",
-    "website1": "",
-  }
-},
+      // Zentral gepflegte Repo-Links (Placeholder = leer => Button wird nicht gezeigt)
+      repos: {
+        placeholder: "",
+        items: {
+          "portfolio-v2": "",  // TODO: z.B. "https://github.com/Flowdi/portfolio-v2"
+          "foodapp": "",
+          "portfolio-v1": "",
+          "kot-game": "",
+          "website1": "",
+        },
+      },
 
+      certificates: {
+        title: "Zertifikate",
+        sections: { earned: "Abgeschlossene Zertifikate", progress: "In Bearbeitung", upcoming: "Geplant" },
+        buttons: { view: "Ansehen", verify: "Verifizieren", back: "Zurück" },
+        viewer: { headline: "Zertifikat", verifyHint: "Verifikation öffnen" },
+        items: {
+          earned: [
+            {
+              id: "fcc-js",
+              title: "JavaScript Algorithms & Data Structures",
+              issuer: "freeCodeCamp",
+              year: "2024",
+              img: "assets/certificates/fcc-js.png",
+              verifyUrl: "#",
+            },
+            {
+              id: "fcc-responsive",
+              title: "Responsive Web Design",
+              issuer: "freeCodeCamp",
+              year: "2024",
+              img: "assets/certificates/fcc-responsive.png",
+              verifyUrl: "#",
+            },
+          ],
+          progress: [
+            { id: "udemy-fullstack", title: "Fullstack Development", issuer: "Udemy", year: "2025", status: "In Progress" },
+            { id: "udemy-mysql", title: "MySQL Database Certification", issuer: "Udemy", year: "2025", status: "In Progress" },
+          ],
+          upcoming: [
+            { id: "ihk-fiae", title: "Fachinformatiker Anwendungsentwicklung", issuer: "IHK", year: "2026", status: "July 2026" },
+          ],
+        },
+      },
 
-      // --- in translations.de.panels ---
-certificates: {
-  title: "Zertifikate",
-  sections: {
-    earned: "Abgeschlossene Zertifikate",
-    progress: "In Bearbeitung",
-    upcoming: "Geplant",
-  },
-  buttons: {
-    view: "Ansehen",
-    verify: "Verifizieren",
-    back: "Zurück",
-  },
-  viewer: {
-    headline: "Zertifikat",
-    verifyHint: "Verifikation öffnen",
-  },
-  items: {
-    earned: [
-      {
-        id: "fcc-js",
-        title: "JavaScript Algorithms & Data Structures",
-        issuer: "freeCodeCamp",
-        year: "2024",
-        img: "assets/certificates/fcc-js.png",
-        // TODO: hier deine echte freeCodeCamp Verify-URL rein
-        verifyUrl: "#",
-      },
-      {
-        id: "fcc-responsive",
-        title: "Responsive Web Design",
-        issuer: "freeCodeCamp",
-        year: "2024",
-        img: "assets/certificates/fcc-responsive.png",
-        // TODO: hier deine echte freeCodeCamp Verify-URL rein
-        verifyUrl: "#",
-      },
-    ],
-    progress: [
-      {
-        id: "udemy-fullstack",
-        title: "Fullstack Development",
-        issuer: "Udemy",
-        year: "2025",
-        status: "In Progress",
-      },
-      {
-        id: "udemy-mysql",
-        title: "MySQL Database Certification",
-        issuer: "Udemy",
-        year: "2025",
-        status: "In Progress",
-      },
-    ],
-    upcoming: [
-      {
-        id: "ihk-fiae",
-        title: "Fachinformatiker Anwendungsentwicklung",
-        issuer: "IHK",
-        year: "2026",
-        status: "July 2026",
-      },
-    ],
-  },
-},
       about: {
         title: "Über mich",
         paragraphs: [
@@ -268,223 +226,173 @@ certificates: {
       },
 
       experience: {
-  title: "Developer Journey",
-  items: [
-    {
-      heading: "Engineering Practice & Daily Development",
-      time: "ongoing",
-      text:
-        "Daily hands-on work with JavaScript, Git and modular project structures. I plan, build and refine complete features — from UI interactions and state handling to clean structure, debugging and performance improvements.",
-    },
-    {
-      heading: "Project-Driven Implementation (Apps, Websites & Game)",
-      time: "ongoing",
-      text:
-        "I build real, usable applications: portfolio websites, web apps and a browser game. Each project follows a full workflow (concept → UI → implementation → testing → iteration). This portfolio itself is a modular JavaScript project with canvas animation, UI state and dynamic panels.",
-    },
-    {
-      heading: "Professional Retraining – Application Development Specialist",
-      time: "2024 – 2026 (IHK)",
-      text:
-        "Structured training in professional software development including programming fundamentals, web technologies, databases, software design, version control and project-based work. Target: IHK graduation in July 2026.",
-    },
-    {
-      heading: "Continuous Learning & Specialization",
-      time: "parallel",
-      text:
-        "Ongoing learning via freeCodeCamp, Udemy and self-directed practice — including JavaScript, MySQL, responsive design and fullstack topics. Everything is applied directly to real projects instead of staying purely theoretical.",
-    },
-  ],
-},
-
-
-
-      skills: {
-        title: "Skills",
-        groups: [
+        title: "Developer Journey",
+        items: [
           {
-            title: "Frontend",
-            items: ["HTML", "CSS", "JavaScript", "TypeScript", "React"],
+            heading: "Engineering Practice & Daily Development",
+            time: "ongoing",
+            text:
+              "Daily hands-on work with JavaScript, Git and modular project structures. I plan, build and refine complete features — from UI interactions and state handling to clean structure, debugging and performance improvements.",
           },
           {
-            title: "Backend",
-            items: ["Node.js", "Express", "REST APIs", "MySQL", "PostgreSQL"],
+            heading: "Project-Driven Implementation (Apps, Websites & Game)",
+            time: "ongoing",
+            text:
+              "I build real, usable applications: portfolio websites, web apps and a browser game. Each project follows a full workflow (concept → UI → implementation → testing → iteration). This portfolio itself is a modular JavaScript project with canvas animation, UI state and dynamic panels.",
           },
           {
-            title: "Tools",
-            items: ["Git & GitHub", "VS Code", "Postman", "Docker", "Linux Basics"],
+            heading: "Professional Retraining – Application Development Specialist",
+            time: "2024 – 2026 (IHK)",
+            text:
+              "Structured training in professional software development including programming fundamentals, web technologies, databases, software design, version control and project-based work. Target: IHK graduation in July 2026.",
           },
           {
-            title: "Soft Skills",
-            items: [
-              "Teamwork",
-              "Communication",
-              "Problem Solving",
-              "Self-directed Work",
-              "Creativity",
-            ],
-          },
-          {
-            title: "Skills in Progress",
-            items: [
-              "Python – learning & practice projects",
-              "PHP – building solid backend skills",
-            ],
+            heading: "Continuous Learning & Specialization",
+            time: "parallel",
+            text:
+              "Ongoing learning via freeCodeCamp, Udemy and self-directed practice — including JavaScript, MySQL, responsive design and fullstack topics. Everything is applied directly to real projects instead of staying purely theoretical.",
           },
         ],
       },
 
+      skills: {
+        title: "Skills",
+        groups: [
+          { title: "Frontend", items: ["HTML", "CSS", "JavaScript", "TypeScript", "React"] },
+          { title: "Backend", items: ["Node.js", "Express", "REST APIs", "MySQL", "PostgreSQL"] },
+          { title: "Tools", items: ["Git & GitHub", "VS Code", "Postman", "Docker", "Linux Basics"] },
+          {
+            title: "Soft Skills",
+            items: ["Teamwork", "Communication", "Problem Solving", "Self-directed Work", "Creativity"],
+          },
+          { title: "Skills in Progress", items: ["Python – learning & practice projects", "PHP – building solid backend skills"] },
+        ],
+      },
+
       projects: {
-  title: "Projects",
-  viewLabel: "View",
-  openLabel: "Open",
-  repoLabel: "Repo",
-  playLabel: "Play",
-  builtLabel: "Built:",
-  learnedLabel: "Learned:",
-  items: [
-    {
-      id: "portfolio-v2",
-      title: "Enhanced Portfolio Website",
-      desc:
-        "Custom portfolio website with space UI, animations and modular JavaScript.",
-      tech: ["JavaScript", "HTML", "CSS", "GitHub"],
-      preview: "assets/projects/portfolio-v2.jpg",
-      url: "",
-      repoId: "https://github.com/Flowdi", // TODO: exact repo link
-      built: "Canvas background, orbit UI, panels, i18n (DE/EN), modular structure",
-      learned: "UI state, event delegation, performance/rendering, clean module separation",
-    },
-    {
-      id: "foodapp",
-      title: "Food Tracking App",
-      desc: "Web app to track available food items at home.",
-      tech: ["JavaScript", "HTML", "CSS", "PHP", "PostgreSQL"],
-      preview: "assets/projects/flosfoodapp.jpg",
-      url: "",
-      repoId: "",
-      built: "CRUD flow, data model, UI lists & detail views",
-      learned: "data handling, form UX, structured backend/frontend workflow",
-    },
-    {
-      id: "portfolio-v1",
-      title: "Portfolio Website (V1)",
-      desc: "Older portfolio website with a simpler design.",
-      tech: ["JavaScript", "HTML", "CSS"],
-      preview: "assets/projects/portfolio-v1.jpg",
-      url: "assets/links/website2/index.html",
-      repoId: "",
-      built: "Multi-page layout, UI components, basic animations",
-      learned: "layouting, CSS structure, refactoring improvements in V2",
-    },
-    {
-      id: "kot-game",
-      title: "'Kot' Game",
-      desc: "A 1-level platformer game built with JavaScript.",
-      tech: ["JavaScript", "HTML", "CSS"],
-      preview: "assets/projects/kotgame.jpg",
-      url: "assets/links/kotgame/index.html",
-      repoId: "",
-      type: "game",
-      built: "player movement, collision, level loop, input handling",
-      learned: "game loop, timing, debugging physics/state issues",
-    },
-  ],
-},
-
-repos: {
-  placeholder: "#",
-  items: {
-    "portfolio-v2": "",
-    "foodapp": "",
-    "portfolio-v1": "",
-    "kot-game": "",
-    "website1": "",
-  }
-},
-
-
-// --- in translations.en.panels ---
-certificates: {
-  title: "Certificates",
-  sections: {
-    earned: "Earned Certificates",
-    progress: "In Progress",
-    upcoming: "Upcoming",
-  },
-  buttons: {
-    view: "View",
-    verify: "Verify",
-    back: "Back",
-  },
-  viewer: {
-    headline: "Certificate",
-    verifyHint: "Open verification",
-  },
-  items: {
-    earned: [
-      {
-        id: "fcc-js",
-        title: "JavaScript Algorithms & Data Structures",
-        issuer: "freeCodeCamp",
-        year: "2024",
-        img: "assets/certificates/fcc-js.png",
-        // TODO: put your real freeCodeCamp verify URL here
-        verifyUrl: "#",
+        title: "Projects",
+        viewLabel: "View",
+        openLabel: "Open",
+        repoLabel: "Repo",
+        playLabel: "Play",
+        builtLabel: "Built:",
+        learnedLabel: "Learned:",
+        items: [
+          {
+            id: "portfolio-v2",
+            title: "Enhanced Portfolio Website",
+            desc: "Custom portfolio website with space UI, animations and modular JavaScript.",
+            tech: ["JavaScript", "HTML", "CSS", "GitHub"],
+            preview: "assets/projects/portfolio-v2.jpg",
+            url: "",
+            repoId: "portfolio-v2",
+            built: "Canvas background, orbit UI, panels, i18n (DE/EN), modular structure",
+            learned: "UI state, event delegation, performance/rendering, clean module separation",
+          },
+          {
+            id: "foodapp",
+            title: "Food Tracking App",
+            desc: "Web app to track available food items at home.",
+            tech: ["JavaScript", "HTML", "CSS", "PHP", "PostgreSQL"],
+            preview: "assets/projects/flosfoodapp.jpg",
+            url: "",
+            repoId: "foodapp",
+            built: "CRUD flow, data model, UI lists & detail views",
+            learned: "data handling, form UX, structured backend/frontend workflow",
+          },
+          {
+            id: "portfolio-v1",
+            title: "Portfolio Website (V1)",
+            desc: "Older portfolio website with a simpler design.",
+            tech: ["JavaScript", "HTML", "CSS"],
+            preview: "assets/projects/portfolio-v1.jpg",
+            url: "assets/links/website2/index.html",
+            repoId: "portfolio-v1",
+            built: "Multi-page layout, UI components, basic animations",
+            learned: "layouting, CSS structure, refactoring improvements in V2",
+          },
+          {
+            id: "kot-game",
+            title: "'Kot' Game",
+            desc: "A 1-level platformer game built with JavaScript.",
+            tech: ["JavaScript", "HTML", "CSS"],
+            preview: "assets/projects/kotgame.jpg",
+            url: "assets/links/kotgame/index.html",
+            repoId: "kot-game",
+            type: "game",
+            built: "player movement, collision, level loop, input handling",
+            learned: "game loop, timing, debugging physics/state issues",
+          },
+          {
+            id: "website1",
+            title: "First own Website",
+            desc: "My first own website using skills I had just learned.",
+            tech: ["HTML", "CSS"],
+            preview: "assets/projects/website1.jpg",
+            url: "assets/links/website1/index.html",
+            repoId: "website1",
+          },
+        ],
       },
-      {
-        id: "fcc-responsive",
-        title: "Responsive Web Design",
-        issuer: "freeCodeCamp",
-        year: "2024",
-        img: "assets/certificates/fcc-responsive.png",
-        // TODO: put your real freeCodeCamp verify URL here
-        verifyUrl: "#",
-      },
-    ],
-    progress: [
-      {
-        id: "udemy-fullstack",
-        title: "Fullstack Development",
-        issuer: "Udemy",
-        year: "2025",
-        status: "In Progress",
-      },
-      {
-        id: "udemy-mysql",
-        title: "MySQL Database Certification",
-        issuer: "Udemy",
-        year: "2025",
-        status: "In Progress",
-      },
-    ],
-    upcoming: [
-      {
-        id: "ihk-fiae",
-        title: "Application Development Specialist",
-        issuer: "IHK",
-        year: "2026",
-        status: "July 2026",
-      },
-    ],
-  },
-},
 
-about: {
-  title: "About Me",
-  paragraphs: [
-    "I’m a future application development specialist (IHK exam planned for July 2026) with a passion for clean code, modern web development and creative user interfaces.",
-    "My journey into IT started early with a strong interest in technology and gaming. Today I build my own projects and continuously improve my skills — supported by certificates in JavaScript, MySQL and fullstack topics.",
-    "Outside the screen I enjoy sports, hiking and creative activities to gain new inspiration.",
-  ],
-},
+      repos: {
+        placeholder: "",
+        items: {
+          "portfolio-v2": "",
+          "foodapp": "",
+          "portfolio-v1": "",
+          "kot-game": "",
+          "website1": "",
+        },
+      },
 
+      certificates: {
+        title: "Certificates",
+        sections: { earned: "Earned Certificates", progress: "In Progress", upcoming: "Upcoming" },
+        buttons: { view: "View", verify: "Verify", back: "Back" },
+        viewer: { headline: "Certificate", verifyHint: "Open verification" },
+        items: {
+          earned: [
+            {
+              id: "fcc-js",
+              title: "JavaScript Algorithms & Data Structures",
+              issuer: "freeCodeCamp",
+              year: "2024",
+              img: "assets/certificates/fcc-js.png",
+              verifyUrl: "#",
+            },
+            {
+              id: "fcc-responsive",
+              title: "Responsive Web Design",
+              issuer: "freeCodeCamp",
+              year: "2024",
+              img: "assets/certificates/fcc-responsive.png",
+              verifyUrl: "#",
+            },
+          ],
+          progress: [
+            { id: "udemy-fullstack", title: "Fullstack Development", issuer: "Udemy", year: "2025", status: "In Progress" },
+            { id: "udemy-mysql", title: "MySQL Database Certification", issuer: "Udemy", year: "2025", status: "In Progress" },
+          ],
+          upcoming: [
+            { id: "ihk-fiae", title: "Application Development Specialist", issuer: "IHK", year: "2026", status: "July 2026" },
+          ],
+        },
+      },
 
+      about: {
+        title: "About Me",
+        paragraphs: [
+          "I’m a future application development specialist (IHK exam planned for July 2026) with a passion for clean code, modern web development and creative user interfaces.",
+          "My journey into IT started early with a strong interest in technology and gaming. Today I build my own projects and continuously improve my skills — supported by certificates in JavaScript, MySQL and fullstack topics.",
+          "Outside the screen I enjoy sports, hiking and creative activities to gain new inspiration.",
+        ],
+      },
     },
   },
 };
 
-// interner Sprachstatus
+// internal language state
 const state = {
   lang: "en",
 };
@@ -509,9 +417,10 @@ export function tUI(key) {
   return translations[state.lang].ui?.[key] || key;
 }
 
+// Repo resolver: return null => hide button
 export function tRepo(repoId) {
   const p = translations[state.lang].panels;
-  const url = p?.repos?.items?.[repoId];
-  if (!url || url === "#" ) return null;
+  const url = p?.repos?.items?.[repoId] ?? p?.repos?.placeholder ?? "";
+  if (!url || url === "#") return null;
   return url;
 }

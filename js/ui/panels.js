@@ -17,7 +17,7 @@ const panelRenderers = {
     const introHtml = toParagraphHtml(t.intro);
 
     return `
-      <h2>${t.title}</h2>
+      <h2>${escapeHtml(t.title)}</h2>
       <p>${introHtml}</p>
 
       <div class="contact-buttons">
@@ -43,7 +43,7 @@ const panelRenderers = {
     return `
       <h2>${escapeHtml(t.title)}</h2>
       <div class="timeline">
-        ${t.items
+        ${(t.items || [])
           .map(
             (item) => `
               <div class="timeline-item">
@@ -63,31 +63,30 @@ const panelRenderers = {
 
     return `
       <h2>${escapeHtml(t.title)}</h2>
-      ${t.groups.map((g) => renderSkillGroup(g.title, g.items)).join("")}
+      ${(t.groups || []).map((g) => renderSkillGroup(g.title, g.items)).join("")}
     `;
   },
 
   projects: () => {
-  const t = tPanel("projects");
+    const t = tPanel("projects");
 
-  return `
-    <h2>${escapeHtml(t.title)}</h2>
+    return `
+      <h2>${escapeHtml(t.title)}</h2>
 
-    <div class="project-grid">
-      ${t.items.map((p) => renderProjectCard(p, t)).join("")}
-    </div>
-
-    <div class="project-viewer" hidden>
-      <div class="project-viewer-bar">
-        <button class="btn outline small project-viewer-back">Back</button>
-        <button class="btn outline small project-open-btn">${escapeHtml(t.openLabel)}</button>
+      <div class="project-grid">
+        ${(t.items || []).map((p) => renderProjectCard(p, t)).join("")}
       </div>
 
-      <iframe class="project-frame" title="Project Preview"></iframe>
-    </div>
-  `;
-},
+      <div class="project-viewer" hidden>
+        <div class="project-viewer-bar">
+          <button class="btn outline small project-viewer-back">Back</button>
+          <button class="btn outline small project-open-btn">${escapeHtml(t.openLabel)}</button>
+        </div>
 
+        <iframe class="project-frame" title="Project Preview"></iframe>
+      </div>
+    `;
+  },
 
   certificates: () => {
     const t = tPanel("certificates");
@@ -174,7 +173,6 @@ const panelRenderers = {
     return `
       <h2>${escapeHtml(t.title)}</h2>
 
-      <!-- Viewer (hidden by default, opened via JS) -->
       <div class="cert-viewer" id="certViewer" aria-hidden="true">
         <div class="cert-viewer-top">
           <button class="btn small outline" data-action="cert-back">
@@ -201,14 +199,12 @@ const panelRenderers = {
         </div>
       </div>
 
-      <!-- Lightbox -->
       <div class="cert-lightbox" id="certLightbox" aria-hidden="true">
         <div class="cert-lightbox-inner">
           <img id="certLightboxImg" alt="">
         </div>
       </div>
 
-      <!-- List -->
       <div class="cert-list" id="certList">
         <div class="cert-section">
           <h3 class="cert-title">${escapeHtml(t.sections.earned)}</h3>
@@ -252,19 +248,20 @@ function renderSkillGroup(title, items) {
     <div class="skill-group">
       <h3>${escapeHtml(title)}</h3>
       <div class="skill-chips">
-        ${items.map((i) => `<span class="chip">${escapeHtml(i)}</span>`).join("")}
+        ${(items || []).map((i) => `<span class="chip">${escapeHtml(i)}</span>`).join("")}
       </div>
     </div>
   `;
 }
 
 function renderProjectCard(project, t) {
+  const hasUrl = !!project.url;
+
+  // Repo automatisch aus i18n resolver
   const repoUrl = project.repoId ? tRepo(project.repoId) : null;
   const hasRepo = !!repoUrl;
 
-
-  const primaryLabel =
-    project.type === "game" ? t.playLabel : t.viewLabel;
+  const primaryLabel = project.type === "game" ? t.playLabel : t.viewLabel;
 
   return `
     <div class="project-card" data-project="${escapeAttr(project.id || "")}">
@@ -304,18 +301,17 @@ function renderProjectCard(project, t) {
           ` : ""}
 
           ${hasRepo ? `
-  <a class="btn small outline" href="${escapeAttr(repoUrl)}" target="_blank" rel="noopener">
-    ${escapeHtml(t.repoLabel)}
-  </a>
-` : ""}
+            <a class="btn small outline" href="${escapeAttr(repoUrl)}" target="_blank" rel="noopener">
+              ${escapeHtml(t.repoLabel)}
+            </a>
+          ` : ""}
         </div>
       </div>
     </div>
   `;
 }
 
-
-// Wandelt "\n\n" zu <br><br> um, lässt normalen Text so wie er ist
+// Wandelt "\n\n" zu <br><br> um
 function toParagraphHtml(text) {
   if (!text) return "";
   return escapeHtml(text).replace(/\n\n/g, "<br><br>").replace(/\n/g, "<br>");
@@ -341,22 +337,16 @@ function escapeAttr(str) {
 ========================================= */
 
 function afterRender(panelId) {
-  if (panelId === "projects") {
-    bindProjectView();
-  }
-  if (panelId === "certificates") {
-    initCertificatesInteractions();
-  }
-  if (panelId === "about") {
-    protectAboutImage();
-  }
+  if (panelId === "projects") bindProjectView();
+  if (panelId === "certificates") initCertificatesInteractions();
+  if (panelId === "about") protectAboutImage();
 }
+
 function protectAboutImage() {
-  const img = overlayBody.querySelector(".about-image img");
+  const img = overlayBody?.querySelector(".about-image img");
   if (!img) return;
 
   img.setAttribute("draggable", "false");
-
   img.addEventListener("dragstart", (e) => e.preventDefault());
   img.addEventListener("contextmenu", (e) => e.preventDefault());
 }
@@ -390,7 +380,6 @@ function bindProjectView() {
   });
 }
 
-
 /* ===== Certificates interactions (no leaks) ===== */
 
 let certKeydownHandler = null;
@@ -413,9 +402,7 @@ function initCertificatesInteractions() {
   const lightbox = overlayBody.querySelector("#certLightbox");
   const lightboxImg = overlayBody.querySelector("#certLightboxImg");
 
-  if (!viewer || !list || !media || !img || !title || !sub || !verify || !lightbox || !lightboxImg) {
-    return;
-  }
+  if (!viewer || !list || !media || !img || !title || !sub || !verify || !lightbox || !lightboxImg) return;
 
   // Remove previous handlers (important for refresh/re-render)
   if (certClickHandler) overlayBody.removeEventListener("click", certClickHandler);
@@ -486,6 +473,19 @@ function initCertificatesInteractions() {
     showViewerAt((currentIndex - 1 + earned.length) % earned.length);
   }
 
+  // prevent drag + context menu (best-effort)
+  [img, lightboxImg].forEach((el) => {
+    el.setAttribute("draggable", "false");
+    el.addEventListener("dragstart", (e) => e.preventDefault());
+    el.addEventListener("contextmenu", (e) => e.preventDefault());
+  });
+
+  overlayBody.querySelectorAll(".cert-badge img").forEach((thumb) => {
+    thumb.setAttribute("draggable", "false");
+    thumb.addEventListener("dragstart", (e) => e.preventDefault());
+    thumb.addEventListener("contextmenu", (e) => e.preventDefault());
+  });
+
   certClickHandler = (e) => {
     const actionEl = e.target.closest("[data-action]");
     if (actionEl) {
@@ -523,14 +523,6 @@ function initCertificatesInteractions() {
     }
   };
 
-  // --- prevent drag + context menu (best-effort) ---
-[img, lightboxImg].forEach((el) => {
-  el.setAttribute("draggable", "false");
-
-  el.addEventListener("dragstart", (e) => e.preventDefault());
-  el.addEventListener("contextmenu", (e) => e.preventDefault());
-});
-
   certKeydownHandler = (e) => {
     const overlayOpen = overlay?.classList.contains("open");
     if (!overlayOpen) return;
@@ -555,13 +547,6 @@ function initCertificatesInteractions() {
 
   overlayBody.addEventListener("click", certClickHandler);
   document.addEventListener("keydown", certKeydownHandler);
-
-  overlayBody.querySelectorAll(".cert-badge img").forEach((thumb) => {
-  thumb.setAttribute("draggable", "false");
-  thumb.addEventListener("dragstart", (e) => e.preventDefault());
-  thumb.addEventListener("contextmenu", (e) => e.preventDefault());
-});
-
 }
 
 /* =========================================
@@ -601,7 +586,6 @@ export function openPanel(id) {
   currentPanelId = id;
   overlayBody.innerHTML = renderer();
   overlay.classList.add("open");
-
   afterRender(id);
 }
 
