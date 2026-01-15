@@ -32,24 +32,28 @@ const translations = {
   title: "Developer Journey",
   items: [
     {
+      phase: "engineering",
       heading: "Software Engineering Practice",
       time: "laufend",
       text:
         "Tägliche praktische Arbeit mit JavaScript, Git und modularen Projektstrukturen. Ich entwickle, teste und verbessere Features kontinuierlich – von UI-Interaktionen und State-Handling bis hin zu sauberer Code-Architektur, Debugging und Performance-Optimierung."
     },
     {
+      phase: "projects", 
       heading: "Project-Based Development",
       time: "laufend",
       text:
         "Umsetzung realer, nutzbarer Anwendungen wie Portfolio-Websites, Web-Apps und eines Browser-Games. Jedes Projekt folgt einem vollständigen Entwicklungszyklus: Konzept → UI → Implementierung → Testing → Iteration. Diese Website selbst ist ein modular aufgebautes JavaScript-Projekt mit Canvas-Animationen, UI-State und dynamischen Panels."
     },
     {
+      phase: "education",
       heading: "Umschulung – Fachinformatiker für Anwendungsentwicklung (IHK)",
       time: "2024 – 2026",
       text:
         "Strukturierte Ausbildung in professioneller Softwareentwicklung mit Fokus auf Programmiergrundlagen, Webtechnologien, Datenbanken, Softwaredesign, Versionsverwaltung und projektbasiertes Arbeiten. Ziel ist der IHK-Abschluss im Juli 2026."
     },
     {
+      phase: "growth",  
       heading: "Continuous Learning & Specialization",
       time: "parallel",
       text:
@@ -230,24 +234,28 @@ const translations = {
   title: "Developer Journey",
   items: [
     {
+      phase: "engineering",
       heading: "Software Engineering Practice",
       time: "ongoing",
       text:
         "Daily hands-on work with JavaScript, Git and modular project structures. I continuously build, test and refine features — from UI interactions and state handling to clean code architecture, debugging and performance optimization."
     },
     {
+      phase: "projects", 
       heading: "Project-Based Development",
       time: "ongoing",
       text:
         "Development of real, usable applications such as portfolio websites, web apps and a browser-based game. Each project follows a full development cycle: concept → UI → implementation → testing → iteration. This portfolio itself is a modular JavaScript project with canvas animations, UI state and dynamic panels."
     },
     {
+      phase: "education", 
       heading: "Professional Retraining – Application Development Specialist (IHK)",
       time: "2024 – 2026",
       text:
         "Structured training in professional software development, covering programming fundamentals, web technologies, databases, software design, version control and project-based work. Target: IHK graduation in July 2026."
     },
     {
+      phase: "growth",  
       heading: "Continuous Learning & Specialization",
       time: "parallel",
       text:

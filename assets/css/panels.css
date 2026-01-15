@@ -778,3 +778,91 @@
 }
 
 
+/* ===== Space Timeline ===== */
+.space-timeline {
+  position: relative;
+  padding-left: 68px;
+}
+
+.space-timeline::before {
+  content: "";
+  position: absolute;
+  left: 30px;
+  top: 6px;
+  bottom: 6px;
+  width: 2px;
+  background: linear-gradient(
+    to bottom,
+    rgba(0,255,255,.15),
+    rgba(0,120,255,.45),
+    rgba(180,70,255,.25)
+  );
+  box-shadow: 0 0 14px rgba(0,200,255,.35);
+  border-radius: 999px;
+}
+
+.space-timeline .timeline-item {
+  position: relative;
+  margin-bottom: 1.2rem;
+}
+
+.space-timeline .timeline-content {
+  background: rgba(3, 15, 35, 0.55);
+  border: 1px solid rgba(0, 200, 255, 0.18);
+  border-radius: 14px;
+  padding: 0.9rem 1rem;
+  box-shadow: 0 0 18px rgba(0, 150, 255, 0.10);
+}
+
+.space-timeline .timeline-node {
+  position: absolute;
+  left: 14px;
+  top: 12px;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+
+  background: radial-gradient(circle at 35% 30%,
+    rgba(255,255,255,.9),
+    rgba(0,200,255,.45),
+    rgba(0,50,120,.15) 70%
+  );
+
+  box-shadow:
+    0 0 10px rgba(0,255,255,.45),
+    0 0 24px rgba(0,120,255,.25);
+}
+
+.space-timeline .timeline-icon {
+  width: 16px;
+  height: 16px;
+  background: rgba(255,255,255,.95);
+
+  -webkit-mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+
+  mask-size: contain;
+  mask-repeat: no-repeat;
+  mask-position: center;
+
+  opacity: .95;
+  filter: drop-shadow(0 0 10px rgba(0,255,255,.35));
+}
+
+@keyframes nodePulse {
+  0%   { transform: scale(1);   box-shadow: 0 0 10px rgba(0,255,255,.35), 0 0 24px rgba(0,120,255,.22); }
+  100% { transform: scale(1.04); box-shadow: 0 0 16px rgba(0,255,255,.55), 0 0 34px rgba(0,120,255,.30); }
+}
+
+.space-timeline .timeline-node {
+  animation: nodePulse 4.8s ease-in-out infinite alternate;
+}
+
+/* Phase Icons (du kannst die svgs später ersetzen) */
+.phase-engineering .timeline-icon { -webkit-mask-image: url("assets/icons/gear.svg"); mask-image: url("assets/icons/gear.svg"); }
+.phase-projects    .timeline-icon { -webkit-mask-image: url("assets/icons/satellite.svg"); mask-image: url("assets/icons/satellite.svg"); }
+.phase-education   .timeline-icon { -webkit-mask-image: url("assets/icons/astronaut.svg"); mask-image: url("assets/icons/astronaut.svg"); }
+.phase-growth      .timeline-icon { -webkit-mask-image: url("assets/icons/radar.svg"); mask-image: url("assets/icons/radar.svg"); }

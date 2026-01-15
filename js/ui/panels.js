@@ -38,25 +38,33 @@ const panelRenderers = {
   },
 
   experience: () => {
-    const t = tPanel("experience");
+  const t = tPanel("experience");
 
-    return `
-      <h2>${escapeHtml(t.title)}</h2>
-      <div class="timeline">
-        ${(t.items || [])
-          .map(
-            (item) => `
-              <div class="timeline-item">
+  return `
+    <h2>${escapeHtml(t.title)}</h2>
+
+    <div class="timeline space-timeline">
+      ${(t.items || [])
+        .map(
+          (item) => `
+            <div class="timeline-item phase-${escapeAttr(item.phase || "engineering")}">
+              <div class="timeline-node" aria-hidden="true">
+                <div class="timeline-icon" aria-hidden="true"></div>
+              </div>
+
+              <div class="timeline-content">
                 <h3>${escapeHtml(item.heading)}</h3>
                 <span class="time">${escapeHtml(item.time)}</span>
                 <p>${escapeHtml(item.text)}</p>
               </div>
-            `
-          )
-          .join("")}
-      </div>
-    `;
-  },
+            </div>
+          `
+        )
+        .join("")}
+    </div>
+  `;
+},
+
 
   skills: () => {
     const t = tPanel("skills");
