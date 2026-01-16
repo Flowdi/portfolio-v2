@@ -1,0 +1,117 @@
+/* ================== OVERLAY / PANELS (BASE) ================== */
+.overlay{
+  position:fixed; inset:0;
+  background:rgba(0,0,0,.7);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:10;
+  perspective:1200px;
+}
+.overlay.open{ display:flex; }
+
+.overlay-inner{
+  position:relative;
+  background:radial-gradient(circle at top left, rgba(20,60,120,.35), rgba(3,10,26,.96));
+  border-radius:18px;
+  padding:2rem 2.5rem;
+  max-width:900px;
+  width:90%;
+  max-height:80vh;
+  box-shadow:0 0 20px rgba(0,255,255,.25), 0 0 60px rgba(0,120,255,.35);
+  border:1px solid rgba(0,200,255,.4);
+  backdrop-filter: blur(18px);
+  transform-style:preserve-3d;
+  display:flex;
+  flex-direction:column;
+}
+
+.overlay-inner::before{
+  content:"";
+  position:absolute; inset:0;
+  border-radius:inherit;
+  border:1px solid rgba(0,200,255,.8);
+  box-shadow:0 0 20px rgba(0,255,255,.4), 0 0 40px rgba(0,120,255,.4);
+  pointer-events:none;
+  z-index:-1;
+}
+
+.overlay-close{
+  position:absolute;
+  top:.6rem; right:.8rem;
+  border:none;
+  background:transparent;
+  color:#8fdfff;
+  font-size:2rem;
+  cursor:pointer;
+}
+
+#overlayBody{
+  flex:1 1 auto;
+  min-height:0;
+  overflow-y:auto;
+  overflow-x:hidden;
+  padding:10px 46px 32px 46px;
+  scrollbar-width:thin;
+  scrollbar-color: rgba(0,200,255,.7) transparent;
+}
+#overlayBody::-webkit-scrollbar{ width:6px; }
+#overlayBody::-webkit-scrollbar-thumb{ background:rgba(0,200,255,.7); border-radius:999px; }
+#overlayBody::-webkit-scrollbar-track{ background:transparent; }
+
+h2{
+  margin-bottom:1rem;
+  font-size:1.8rem;
+  color:#8fdfff;
+  text-shadow:0 0 10px rgba(0,200,255,.8);
+  position:relative;
+  padding-bottom:.4rem;
+}
+h2::after{
+  content:"";
+  position:absolute;
+  left:0; bottom:0;
+  width:140px; height:2px;
+  background:linear-gradient(90deg, transparent, rgba(0,255,255,1), rgba(0,120,255,1), transparent);
+  background-size:200% 100%;
+  animation:dividerFlow 2.4s linear infinite;
+  box-shadow:0 0 12px rgba(0,200,255,.9);
+}
+@keyframes dividerFlow{ 0%{background-position:0% 50%} 100%{background-position:200% 50%} }
+
+p{ line-height:1.6; font-size:.95rem; }
+
+.btn{
+  display:inline-block;
+  padding:.4rem .9rem;
+  border-radius:999px;
+  border:1px solid rgba(0,200,255,.7);
+  background:transparent;
+  color:white;
+  font-size:.85rem;
+  text-decoration:none;
+  cursor:pointer;
+}
+.btn:hover{
+  background:linear-gradient(90deg, #00c6ff, #0072ff);
+  border-color:transparent;
+}
+.btn.small{ font-size:.75rem; padding:.3rem .8rem; }
+.btn.outline{ background:transparent; }
+
+.chip{
+  display:inline-block;
+  padding:.2rem .6rem;
+  margin:0 .4rem .4rem 0;
+  border-radius:999px;
+  border:1px solid rgba(0,200,255,.5);
+  font-size:.78rem;
+  background:rgba(3,15,35,.9);
+}
+
+.contact-buttons{
+  display:flex;
+  flex-wrap:wrap;
+  gap:.6rem;
+  margin-top:1rem;
+}
