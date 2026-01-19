@@ -163,8 +163,8 @@
   mask-position:center;
 
   filter:
-    drop-shadow(0 0 6px rgba(0,255,255,.45))
-    drop-shadow(0 0 14px rgba(0,120,255,.22));
+    drop-shadow(0 0 7px rgba(0,255,255,.55))
+    drop-shadow(0 0 16px rgba(0,120,255,.28));
 }
 
 
