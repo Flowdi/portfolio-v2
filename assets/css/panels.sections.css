@@ -104,28 +104,33 @@
 }
 
 /* ===== Timeline Icon as IMAGE (Orbit-style) ===== */
-
+/* 1) Node: kein Kreis/kein Rand/kein Glow */
 .space-timeline .timeline-node{
+  width: 52px;
+  height: 52px;
+
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+
+  display: grid;
+  place-items: center;
+}
+
+/* 2) Optional: kleiner Rail-Dot (damit die Linie nicht "leer" wirkt) */
+.space-timeline .timeline-node::before{
+  content:"";
   position:absolute;
-  left:14px;
-  top:14px;
-  width:44px;
-  height:44px;
-  border-radius:50%;
-  display:grid;
-  place-items:center;
+  left: 50%;
+  top: 50%;
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  transform: translate(-50%, -50%);
 
-  background: radial-gradient(circle at 35% 30%,
-    rgba(255,255,255,.95),
-    rgba(0,200,255,.35),
-    rgba(0,50,120,.10) 70%
-  );
-
-  box-shadow:
-    0 0 12px rgba(0,255,255,.45),
-    0 0 34px rgba(0,120,255,.25);
-
-  overflow:hidden;
+  background: rgba(0,255,255,.9);
+  box-shadow: 0 0 10px rgba(0,255,255,.55), 0 0 22px rgba(0,120,255,.35);
+  opacity: .55; /* damit es nicht mit dem Icon konkurriert */
 }
 
 .space-timeline .timeline-node::after{
@@ -143,49 +148,35 @@
   pointer-events:none;
 }
 
-.space-timeline .timeline-icon-img{
-  width:34px;
-  height:34px;
-  object-fit:contain;
-  user-select:none;
-  -webkit-user-select:none;
-  -webkit-touch-callout:none;
-  pointer-events:none;
-  filter: drop-shadow(0 0 10px rgba(0,255,255,.35));
+@keyframes iconBreathe {
+  0%   { transform: scale(1); }
+  100% { transform: scale(1.04); }
 }
+
+.space-timeline .timeline-icon-img{
+  width: 42px;
+  height: 42px;
+  object-fit: contain;
+
+  opacity: 1;
+  filter:
+    saturate(1.25)
+    contrast(1.12)
+    brightness(1.06)
+    drop-shadow(0 0 14px rgba(0,255,255,.55))
+    drop-shadow(0 0 28px rgba(0,120,255,.40));
+}
+
 
 /* optional: kleines "float" */
 @keyframes nodeFloat {
   0%   { transform: translateY(0); }
   100% { transform: translateY(-3px); }
 }
-.space-timeline .timeline-node{
-  animation: nodeFloat 4.8s ease-in-out infinite alternate;
-}
 
 .space-timeline .timeline-icon{
-  width:16px;
-  height:16px;
-
-  /* Neon statt "weiß" */
-  background: linear-gradient(180deg,
-    rgba(180,255,255,.95),
-    rgba(0,200,255,.85),
-    rgba(140,120,255,.75)
-  );
-
-  -webkit-mask-size:contain;
-  -webkit-mask-repeat:no-repeat;
-  -webkit-mask-position:center;
-  mask-size:contain;
-  mask-repeat:no-repeat;
-  mask-position:center;
-
-  filter:
-    drop-shadow(0 0 7px rgba(0,255,255,.55))
-    drop-shadow(0 0 16px rgba(0,120,255,.28));
+  display: none;
 }
-
 
 /* Content Card */
 .space-timeline .timeline-content{
