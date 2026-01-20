@@ -72,154 +72,103 @@
 }
 
 /* ================== SPACE TIMELINE (Developer Journey) ================== */
-
-/* Wichtig: wir benutzen nur .space-timeline */
-/* ===== Space Timeline (FIXED) ===== */
-.space-timeline {
-  position: relative;
-  padding-left: 0; /* <<< WICHTIG: kein padding mehr */
+.space-timeline{
+  position:relative;
+  padding-left:0;
 }
 
-.space-timeline::before {
-  content: "";
-  position: absolute;
-  left: 30px;
-  top: 6px;
-  bottom: 6px;
+/* Rail weiter nach rechts + etwas weicher */
+.space-timeline::before{
+  content:"";
+  position:absolute;
+  left: 44px;              /* <<< vorher 30px -> weiter rechts */
+  top: 10px;
+  bottom: 10px;
   width: 2px;
+  border-radius:999px;
   background: linear-gradient(
     to bottom,
-    rgba(0,255,255,.15),
-    rgba(0,120,255,.45),
-    rgba(180,70,255,.25)
+    rgba(0,255,255,.10),
+    rgba(0,160,255,.35),
+    rgba(180,70,255,.18)
   );
-  box-shadow: 0 0 14px rgba(0,200,255,.35);
-  border-radius: 999px;
+  box-shadow: 0 0 14px rgba(0,200,255,.28);
 }
 
-/* Item bleibt "voll breit", nur der Content wird eingerückt */
-.space-timeline .timeline-item {
-  position: relative;
+/* Item */
+.space-timeline .timeline-item{
+  position:relative;
   margin-bottom: 1.2rem;
 }
 
-/* ===== Timeline Icon as IMAGE (Orbit-style) ===== */
-/* 1) Node: kein Kreis/kein Rand/kein Glow */
-.space-timeline .timeline-node{
-  width: 52px;
-  height: 52px;
-
-  background: transparent !important;
-  border: none !important;
-  box-shadow: none !important;
-
-  display: grid;
-  place-items: center;
-}
-
-/* 2) Optional: kleiner Rail-Dot (damit die Linie nicht "leer" wirkt) */
-.space-timeline .timeline-node::before{
-  content:"";
-  position:absolute;
-  left: 50%;
-  top: 50%;
-  width: 8px;
-  height: 8px;
-  border-radius: 999px;
-  transform: translate(-50%, -50%);
-
-  background: rgba(0,255,255,.9);
-  box-shadow: 0 0 10px rgba(0,255,255,.55), 0 0 22px rgba(0,120,255,.35);
-  opacity: .55; /* damit es nicht mit dem Icon konkurriert */
-}
-
-.space-timeline .timeline-node::after{
-  content:"";
-  position:absolute;
-  inset:-10px;
-  border-radius:50%;
-  background: radial-gradient(circle,
-    rgba(0,255,255,.35),
-    rgba(0,120,255,.20),
-    transparent 70%
-  );
-  filter: blur(10px);
-  opacity:.75;
-  pointer-events:none;
-}
-
-@keyframes iconBreathe {
-  0%   { transform: scale(1); }
-  100% { transform: scale(1.04); }
-}
-
-.space-timeline .timeline-icon-img{
-  width: 42px;
-  height: 42px;
-  object-fit: contain;
-
-  opacity: 1;
-  filter:
-    saturate(1.25)
-    contrast(1.12)
-    brightness(1.06)
-    drop-shadow(0 0 14px rgba(0,255,255,.55))
-    drop-shadow(0 0 28px rgba(0,120,255,.40));
-}
-
-
-/* optional: kleines "float" */
-@keyframes nodeFloat {
-  0%   { transform: translateY(0); }
-  100% { transform: translateY(-3px); }
-}
-
-.space-timeline .timeline-icon{
-  display: none;
-}
-
-/* Content Card */
+/* Content rückt ebenfalls mit, damit Rail/Icons nicht "zu links" wirken */
 .space-timeline .timeline-content{
-  margin-left:68px;
-  background:rgba(3,15,35,.55);
-  border:1px solid rgba(0,200,255,.18);
-  border-radius:14px;
-  padding:.9rem 1rem;
-  box-shadow:0 0 18px rgba(0,150,255,.10);
-  transition:transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+  margin-left: 108px;      /* <<< vorher 68px -> mehr Luft links */
+  background: rgba(3,15,35,.55);
+  border: 1px solid rgba(0,200,255,.18);
+  border-radius: 14px;
+  padding: .9rem 1rem;
+  box-shadow: 0 0 18px rgba(0,150,255,.10);
+  transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
 }
 
 .space-timeline .timeline-item:hover .timeline-content{
-  transform:translateY(-2px);
-  border-color:rgba(0,200,255,.28);
-  box-shadow:0 0 26px rgba(0,160,255,.14);
+  transform: translateY(-2px);
+  border-color: rgba(0,200,255,.28);
+  box-shadow: 0 0 26px rgba(0,160,255,.14);
 }
 
-.space-timeline h3{
-  display: inline-block;
-  position: relative;
-  margin: 0 0 .35rem 0;
-  font-size: 1.05rem;
-  color: #c9f2ff;
-  text-shadow: 0 0 10px rgba(0,200,255,.18);
-  width: fit-content;
-  max-width: 100%;
+/* Node sitzt auf der Rail (Rail ist bei 44px, Node zentriert darauf) */
+.space-timeline .timeline-node{
+  position:absolute;
+  left:44px;
+  top:35px;
+  width:0;
+  height:0;
+  transform:translateX(-50%);
+  background:none;
+  box-shadow:none;
+  pointer-events:none;
 }
 
-.space-timeline h3::after{
+
+/* kleiner Dot auf der Rail, damit's "connected" wirkt */
+.space-timeline .timeline-node::before{
   content:"";
-  display:block;
-  height:2px;
-  margin-top:.35rem;
-  width: 100%;
-  border-radius: 999px;
-  background: linear-gradient(90deg,
-    rgba(0,255,255,.9),
-    rgba(0,120,255,.75),
-    rgba(180,70,255,.35)
-  );
-  box-shadow: 0 0 12px rgba(0,200,255,.35);
-  opacity: .85;
+  position:absolute;
+  left:50%;
+  top:50%;
+  width:6px;
+  height:6px;
+  border-radius:50%;
+  transform:translate(-50%,-50%);
+  background: rgba(0,255,255,.6);
+  box-shadow: 0 0 10px rgba(0,255,255,.35);
+}
+
+
+/* NEU: Bild-Icons (statt mask) */
+.space-timeline .timeline-icon-img{
+  width: 56px;          /* <<< größer */
+  height: 56px;
+  object-fit: contain;
+
+  opacity: .75;         /* so lassen, gefällt dir */
+  transform: translate(-50%, -50%);
+
+  filter:
+    saturate(1.15)
+    contrast(1.08)
+    drop-shadow(0 0 18px rgba(0,255,255,.45))
+    drop-shadow(0 0 42px rgba(0,120,255,.32));
+}
+
+/* Typo */
+.space-timeline h3{
+  margin:0 0 .35rem 0;
+  font-size:1.05rem;
+  color:#c9f2ff;
+  text-shadow: 0 0 10px rgba(0,200,255,.18);
 }
 
 .space-timeline .time{
@@ -228,27 +177,37 @@
   gap:.45rem;
   font-size:.78rem;
   text-transform:uppercase;
-  color:rgba(143,223,255,.92);
+  color: rgba(143,223,255,.92);
   padding:.18rem .55rem;
   border-radius:999px;
-  border:1px solid rgba(0,200,255,.18);
-  background:rgba(0,20,40,.25);
+  border: 1px solid rgba(0,200,255,.18);
+  background: rgba(0,20,40,.25);
   margin-bottom:.55rem;
 }
+
 .space-timeline .time::before{
   content:"";
   width:6px; height:6px;
   border-radius:99px;
-  background:radial-gradient(circle, rgba(0,255,255,1), rgba(0,255,255,0));
-  box-shadow:0 0 10px rgba(0,255,255,.35);
+  background: radial-gradient(circle, rgba(0,255,255,1), rgba(0,255,255,0));
+  box-shadow: 0 0 10px rgba(0,255,255,.35);
 }
 
 .space-timeline p{
   margin:0;
   line-height:1.65;
   font-size:.95rem;
-  color:rgba(230,248,255,.86);
+  color: rgba(230,248,255,.86);
 }
+
+/* Mobile: alles etwas kompakter */
+@media (max-width:520px){
+  .space-timeline::before{ left: 32px; }
+  .space-timeline .timeline-node{ left: 32px; width: 52px; height: 52px; }
+  .space-timeline .timeline-content{ margin-left: 86px; }
+  .space-timeline .timeline-icon-img{ width: 38px; height: 38px; }
+}
+
 
 /* Mobile */
 @media (max-width:520px){
