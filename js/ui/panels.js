@@ -40,16 +40,30 @@ const panelRenderers = {
   experience: () => {
   const t = tPanel("experience");
 
+  // Timeline Icon-Mapping (Phase -> Bild)
+  const phaseIcons = {
+    engineering: "assets/icons/timeline/engineering.png",
+    projects: "assets/icons/timeline/projects.png",
+    education: "assets/icons/timeline/education.png",
+    growth: "assets/icons/timeline/growth.png",
+  };
+
   return `
     <h2>${escapeHtml(t.title)}</h2>
 
     <div class="timeline space-timeline">
       ${(t.items || [])
-        .map(
-          (item) => `
-            <div class="timeline-item phase-${escapeAttr(item.phase || "engineering")}">
+        .map((item) => {
+          const phase = item.phase || "engineering";
+          const iconSrc = phaseIcons[phase] || phaseIcons.engineering;
+
+          return `
+            <div class="timeline-item phase-${escapeAttr(phase)}">
               <div class="timeline-node" aria-hidden="true">
-                <div class="timeline-icon" aria-hidden="true"></div>
+                <img class="timeline-icon-img"
+                     src="${escapeAttr(iconSrc)}"
+                     alt=""
+                     draggable="false">
               </div>
 
               <div class="timeline-content">
@@ -58,13 +72,12 @@ const panelRenderers = {
                 <p>${escapeHtml(item.text)}</p>
               </div>
             </div>
-          `
-        )
+          `;
+        })
         .join("")}
     </div>
   `;
 },
-
 
   skills: () => {
     const t = tPanel("skills");

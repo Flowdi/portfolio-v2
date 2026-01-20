@@ -103,45 +103,64 @@
   margin-bottom: 1.2rem;
 }
 
-/* <<< Content rückt nach rechts, Node bleibt links auf der Rail */
+/* ===== Timeline Icon as IMAGE (Orbit-style) ===== */
+
 .space-timeline .timeline-node{
   position:absolute;
   left:14px;
-  top:16px;
-  width:34px;
-  height:34px;
+  top:14px;
+  width:44px;
+  height:44px;
   border-radius:50%;
   display:grid;
   place-items:center;
 
-  background:
-    radial-gradient(circle at 30% 25%,
-      rgba(255,255,255,.95),
-      rgba(0,255,255,.45) 35%,
-      rgba(0,120,255,.20) 62%,
-      rgba(0,0,0,0) 74%
-    );
-
-  border: 1px solid rgba(0, 220, 255, 0.38);
+  background: radial-gradient(circle at 35% 30%,
+    rgba(255,255,255,.95),
+    rgba(0,200,255,.35),
+    rgba(0,50,120,.10) 70%
+  );
 
   box-shadow:
-    0 0 10px rgba(0,255,255,.45),
-    0 0 26px rgba(0,120,255,.25),
-    inset 0 0 10px rgba(0,255,255,.12);
+    0 0 12px rgba(0,255,255,.45),
+    0 0 34px rgba(0,120,255,.25);
 
-  animation: nodePulse 4.8s ease-in-out infinite alternate;
+  overflow:hidden;
 }
 
-/* zusätzlicher Neon-Ring */
 .space-timeline .timeline-node::after{
   content:"";
   position:absolute;
-  inset:-6px;
+  inset:-10px;
   border-radius:50%;
-  border:1px solid rgba(0,200,255,.22);
-  box-shadow: 0 0 18px rgba(0,200,255,.25);
-  opacity:.9;
+  background: radial-gradient(circle,
+    rgba(0,255,255,.35),
+    rgba(0,120,255,.20),
+    transparent 70%
+  );
+  filter: blur(10px);
+  opacity:.75;
   pointer-events:none;
+}
+
+.space-timeline .timeline-icon-img{
+  width:34px;
+  height:34px;
+  object-fit:contain;
+  user-select:none;
+  -webkit-user-select:none;
+  -webkit-touch-callout:none;
+  pointer-events:none;
+  filter: drop-shadow(0 0 10px rgba(0,255,255,.35));
+}
+
+/* optional: kleines "float" */
+@keyframes nodeFloat {
+  0%   { transform: translateY(0); }
+  100% { transform: translateY(-3px); }
+}
+.space-timeline .timeline-node{
+  animation: nodeFloat 4.8s ease-in-out infinite alternate;
 }
 
 .space-timeline .timeline-icon{
@@ -239,12 +258,6 @@
   font-size:.95rem;
   color:rgba(230,248,255,.86);
 }
-
-/* !!! WICHTIG: Icon-Pfade relativ zu assets/css/ */
-.phase-engineering .timeline-icon{ -webkit-mask-image:url("../icons/gear.svg"); mask-image:url("../icons/gear.svg"); }
-.phase-projects    .timeline-icon{ -webkit-mask-image:url("../icons/satellite.svg"); mask-image:url("../icons/satellite.svg"); }
-.phase-education   .timeline-icon{ -webkit-mask-image:url("../icons/astronaut.svg"); mask-image:url("../icons/astronaut.svg"); }
-.phase-growth      .timeline-icon{ -webkit-mask-image:url("../icons/radar.svg"); mask-image:url("../icons/radar.svg"); }
 
 /* Mobile */
 @media (max-width:520px){
