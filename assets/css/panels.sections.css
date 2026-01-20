@@ -95,6 +95,34 @@
   box-shadow: 0 0 14px rgba(0,200,255,.28);
 }
 
+/* ===== Rail Pulse (very subtle) ===== */
+@keyframes railPulse {
+  0%, 100% { opacity: .10; }
+  50%      { opacity: .13; } /* nur minimal */
+}
+
+/* bestehende Rail bleibt gleich, wir legen einen Glow drüber */
+.space-timeline::after{
+  content:"";
+  position:absolute;
+  left:30px;
+  top:6px;
+  bottom:6px;
+  width:2px;
+  border-radius:999px;
+
+  background: linear-gradient(
+    to bottom,
+    rgba(0,255,255,.25),
+    rgba(0,120,255,.35),
+    rgba(180,70,255,.22)
+  );
+
+  filter: blur(1px);
+  animation: railPulse 4.8s ease-in-out infinite;
+  pointer-events:none;
+}
+
 /* Item */
 .space-timeline .timeline-item{
   position:relative;
@@ -200,20 +228,39 @@
   color: rgba(230,248,255,.86);
 }
 
+/* ===== Hover: icon slightly brighter ===== */
+.space-timeline .timeline-item:hover .timeline-node img.timeline-icon-img{
+  opacity: .92;
+  filter:
+    saturate(1.25)
+    contrast(1.12)
+    drop-shadow(0 0 22px rgba(0,255,255,.55))
+    drop-shadow(0 0 52px rgba(0,120,255,.36));
+}
+
+/* ===== Subtle Icon Float ===== */
+@keyframes iconFloat {
+  0%   { transform: translate(-50%, -50%) translateY(0); }
+  50%  { transform: translate(-50%, -50%) translateY(-2px); }
+  100% { transform: translate(-50%, -50%) translateY(0); }
+}
+
+.space-timeline .timeline-node img.timeline-icon-img{
+  animation: iconFloat 6.5s ease-in-out infinite;
+  will-change: transform, filter;
+}
+
+/* leichte Variation pro Item, damit es nicht "synchron" wirkt */
+.space-timeline .timeline-item:nth-child(2) .timeline-node img.timeline-icon-img{ animation-delay: .6s; }
+.space-timeline .timeline-item:nth-child(3) .timeline-node img.timeline-icon-img{ animation-delay: 1.1s; }
+.space-timeline .timeline-item:nth-child(4) .timeline-node img.timeline-icon-img{ animation-delay: 1.7s; }
+
 /* Mobile: alles etwas kompakter */
 @media (max-width:520px){
   .space-timeline::before{ left: 32px; }
   .space-timeline .timeline-node{ left: 32px; width: 52px; height: 52px; }
   .space-timeline .timeline-content{ margin-left: 86px; }
   .space-timeline .timeline-icon-img{ width: 38px; height: 38px; }
-}
-
-
-/* Mobile */
-@media (max-width:520px){
-  .space-timeline .timeline-content{ margin-left:62px; }
-  .space-timeline::before{ left:26px; }
-  .space-timeline .timeline-node{ left:9px; }
 }
 
 /* ================== Certificates ================== */
