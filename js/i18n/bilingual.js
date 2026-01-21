@@ -66,7 +66,7 @@ const translations = {
       skills: {
         title: "Skills",
         groups: [
-          { title: "Frontend", items: ["HTML", "CSS", "JavaScript", "TypeScript", "React"] },
+          { title: "Frontend", items: ["HTML", "CSS", "JavaScript", "TypeScript", "React", "Python Basics"] },
           { title: "Backend", items: ["Node.js", "Express", "REST APIs", "MySQL", "PostgreSQL"] },
           { title: "Tools", items: ["Git & GitHub", "VS Code", "Postman", "Docker", "Linux Basics"] },
           {
@@ -268,7 +268,7 @@ const translations = {
       skills: {
         title: "Skills",
         groups: [
-          { title: "Frontend", items: ["HTML", "CSS", "JavaScript", "TypeScript", "React"] },
+          { title: "Frontend", items: ["HTML", "CSS", "JavaScript", "TypeScript", "React", "Python Basics"] },
           { title: "Backend", items: ["Node.js", "Express", "REST APIs", "MySQL", "PostgreSQL"] },
           { title: "Tools", items: ["Git & GitHub", "VS Code", "Postman", "Docker", "Linux Basics"] },
           {
