@@ -177,8 +177,8 @@
 
 /* Icon Image bigger + slightly transparent */
 .space-timeline .timeline-node img.timeline-icon-img{
-  width: 46px;
-  height: 46px;
+  width: 52px;
+  height: 52px;
   object-fit: contain;
 
   opacity: .78; /* du wolltest etwas transparenter */
@@ -213,6 +213,13 @@
     drop-shadow(0 0 24px rgba(0,255,255,.48))
     drop-shadow(0 0 58px rgba(0,120,255,.28));
 }
+
+.space-timeline .timeline-item:hover .timeline-content{
+  box-shadow:
+    0 0 26px rgba(0,160,255,.25),
+    inset 0 0 0 1px rgba(0,255,255,.12);
+}
+
 
 /* Headings / time keep as you had */
 .space-timeline h3{
