@@ -26,7 +26,7 @@
   transform-style: preserve-3d;
 }
 
-/* Inner wrapper, den wir animieren dürfen */
+/* Inner wrapper, that gets animated */
 .orbit-item-inner {
   display: grid;
   place-items: center;
@@ -35,7 +35,7 @@
   will-change: transform, filter;
 }
 
-/* ===== Hover / Active Gesamt-Feeling ===== */
+/* ===== Hover / Active ===== */
 .orbit-item:hover .orbit-item-inner {
   transform: scale(1.32) !important;
   animation: hoverWobble 650ms ease-in-out 1;
@@ -93,15 +93,15 @@
 .icon::after {
   content: "";
   position: absolute;
-  inset: -18px;                 /* mehr Fläche für Glow */
+  inset: -18px;
   border-radius: 50%;
   background: radial-gradient(
     circle,
-    rgba(0, 255, 255, 0.85),    /* stärker im Kern */
+    rgba(0, 255, 255, 0.85),
     rgba(0, 160, 255, 0.28),
     transparent 70%
   );
-  filter: blur(18px);           /* weicher & größer */
+  filter: blur(18px);
   opacity: 0;
   transform: scale(0.92);
   transition: opacity 200ms ease, transform 200ms ease, filter 200ms ease;
@@ -114,7 +114,6 @@
   filter: blur(22px);
 }
 
-/* Active bekommt immer ein bisschen Energie */
 .orbit-item.active .icon::after {
   opacity: 0.65;
   transform: scale(1.06);
@@ -131,7 +130,7 @@
   transition: transform 220ms ease;
 }
 
-/* Bild nur beim Hover leicht verändern */
+/* Change picture only at hover */
 .orbit-item:hover .icon img {
   transform: scale(1.06) rotate(0.6deg);
 }

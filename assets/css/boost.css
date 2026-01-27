@@ -41,7 +41,7 @@
   100% { opacity: 0; }
 }
 
-/* Wenn der Nutzer die Sphere hovered → Hinweis wieder gut sichtbar */
+/* user hovers sphere -> better visual */
 .star-button:hover + .boost-hint {
   opacity: 1 !important;
   animation: none;

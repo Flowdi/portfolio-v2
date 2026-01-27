@@ -77,9 +77,9 @@
 .space-timeline{
   position:relative;
   padding-left:0;
-  --rail-x: 34px;          /* <<< Rail etwas nach rechts */
-  --node-size: 56px;       /* <<< Icon-Node größer */
-  --content-offset: 92px;  /* <<< Content weiter rechts (mehr Luft) */
+  --rail-x: 34px;
+  --node-size: 56px;
+  --content-offset: 92px;
 }
 
 /* Rail */
@@ -100,7 +100,7 @@
   box-shadow: 0 0 14px rgba(0,200,255,.25);
 }
 
-/* Rail Pulse Overlay (super subtle) */
+/* Rail Pulse Overlay */
 @keyframes railPulse{
   0%,100%{ opacity:.10; }
   50%{ opacity:.13; }
@@ -148,7 +148,7 @@
   box-shadow: 0 0 26px rgba(0,160,255,.14);
 }
 
-/* ===== Node (ROUND) — keine eckige Fläche mehr ===== */
+/* ===== Node (ROUND) ===== */
 .space-timeline .timeline-node{
   position:absolute;
   left: calc(var(--rail-x) - (var(--node-size) / 2));
@@ -161,7 +161,6 @@
   display:grid;
   place-items:center;
 
-  /* nur Glow + subtle glass */
   background: radial-gradient(circle at 35% 30%,
     rgba(255,255,255,.10),
     rgba(0,200,255,.10),
@@ -172,16 +171,15 @@
     0 0 18px rgba(0,255,255,.18),
     0 0 40px rgba(0,120,255,.10);
 
-  pointer-events:none; /* damit Hover über Card sauber bleibt */
+  pointer-events:none;
 }
 
-/* Icon Image bigger + slightly transparent */
 .space-timeline .timeline-node img.timeline-icon-img{
   width: 52px;
   height: 52px;
   object-fit: contain;
 
-  opacity: .78; /* du wolltest etwas transparenter */
+  opacity: .78;
   filter:
     saturate(1.08)
     drop-shadow(0 0 18px rgba(0,255,255,.32))
@@ -221,7 +219,7 @@
 }
 
 
-/* Headings / time keep as you had */
+/* Headings */
 .space-timeline h3{
   margin:0 0 .35rem 0;
   font-size:1.05rem;
@@ -313,8 +311,6 @@
   -webkit-touch-callout:none;
 }
 
-/* Viewer + Lightbox: (deine bestehenden Styles kannst du hier lassen, wenn sie passen) */
-
 /* ================== About ================== */
 .about-layout{
   display:grid;
@@ -323,7 +319,7 @@
   align-items:center;
 }
 .about-image{
-  position:relative;          /* <-- FIX für ::after */
+  position:relative;
   width:180px;
   height:180px;
   border-radius:14px;

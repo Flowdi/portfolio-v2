@@ -58,7 +58,6 @@
 #overlayBody::-webkit-scrollbar{ width:6px; }
 #overlayBody::-webkit-scrollbar-thumb{ background:rgba(0,200,255,.7); border-radius:999px; }
 #overlayBody::-webkit-scrollbar-track{ background:transparent; }
-/* Panel Title underline = immer so breit wie Text */
 #overlayBody h2{
   display: inline-block;
   position: relative;
