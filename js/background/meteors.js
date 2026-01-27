@@ -2,7 +2,7 @@ let meteors = [];
 let getSize = () => ({ width: 0, height: 0 });
 
 /**
- * Rendert die Größe der Meteore
+ * Renders the size of the meteors
  * @param {number} sizeProvider 
  */
 
@@ -23,8 +23,8 @@ export function initMeteors(sizeProvider) {
 
 /**
  * 
- * @param {CanvasRenderingContext2D} ctx - Rendert die Meteore die im Hintergrund immer wieder erscheinen
- * @param {number} speedFactor - Rendert die Geschwindigkeit mit der sich Meteore bewegen
+ * @param {CanvasRenderingContext2D} ctx - renders the meteors that appear in the background
+ * @param {number} speedFactor - renders the speed of the meteors
  */
 export function drawMeteors(ctx, speedFactor) {
   ctx.save();

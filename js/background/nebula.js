@@ -7,8 +7,8 @@ let canvasHeight = 0;
 
 /**
  * 
- * @param {number} width - aktuelle Canvasbreite
- * @param {number} height - aktuelle Canvashöhe
+ * @param {number} width - canvaswidth
+ * @param {number} height - canvasheight
  */
 
 export function initNebula(width, height) {
@@ -26,9 +26,9 @@ export function initNebula(width, height) {
 }
 
 /**
- * Rendert den Nebel im Hintergrund damit dieser nicht einfach nur schwarz ist
- * @param {CanvasRenderingContext2D} ctx - 2D Rendering Context des Canvas
- * @param {number} speedFactor - Geschwindigkeit der Nebelbewegung
+ * renders the fog in the background so background isnt just black
+ * @param {CanvasRenderingContext2D} ctx - 2D Rendering context of the canvas
+ * @param {number} speedFactor - speed of the fog movement
  */
 
 export function drawNebula(ctx, speedFactor) {

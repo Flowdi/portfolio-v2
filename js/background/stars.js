@@ -2,8 +2,8 @@ let stars = [];
 
 /**
  * 
- * @param {number} width - initialisiert die Sterne im Hintergrund
- * @param {number} height - initialisiert die Sterne im Hintergrund
+ * @param {number} width - initialises the stars in the background
+ * @param {number} height - initialises the stars in the background
  */
 export function initStars(width, height) {
   stars = Array.from({ length: 320 }, () => ({
@@ -16,10 +16,10 @@ export function initStars(width, height) {
 
 /**
  * 
- * @param {CanvasRenderingContext2D} ctx - 2D Rendering Context des Canvas
- * @param {number} speedFactor - Faktor, wie schnell Sterne fliegen (1 = normal)
- * @param {number} width - aktuelle Canvasbreite zum Reset bei Randüberschreitung
- * @param {number} height - aktuelle Canvashöhe
+ * @param {CanvasRenderingContext2D} ctx - 2D rendering context of the canvas
+ * @param {number} speedFactor - factor, how fast the stars move(1 = normal)
+ * @param {number} width - current canvas width
+ * @param {number} height - current canvas height
  */
 export function drawStars(ctx, speedFactor, width, height) {
   ctx.save();
