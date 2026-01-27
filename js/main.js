@@ -11,19 +11,14 @@ import { tUI } from "./i18n/bilingual.js";
 /**
  * PANELS
  */
-initPanels();   // Overlay & Panel-System initialisieren
+initPanels();   // Overlay & Panel-System initialising
 
 const overlay = document.getElementById("overlay");
 const overlayInner = document.querySelector(".overlay-inner");
 
 function isPanelMotionAllowed() {
-  // deaktivieren sobald Overlay offen ist (du willst "movement entfernen")
-  // -> return false wenn open
   return false;
 }
-
-// Wenn du später vielleicht doch wieder willst:
-// return !document.body.classList.contains("reduce-motion");
 
 if (overlay && overlayInner) {
   overlay.addEventListener("mousemove", (e) => {
@@ -60,24 +55,24 @@ function initLanguageSwitch() {
       const lang = btn.dataset.lang;
       setLang(lang);
 
-      // Button-UI updaten
+      // Button-UI update
       buttons.forEach((b) => {
         b.classList.toggle("active", b === btn);
       });
 
-      // Panels neu rendern
+      // Panels new render
       refreshCurrentPanel();
 
       updateBoostHint();
 
-      // Orbit-Labels neu setzen 🚀
+      // set Orbit-Labels new
       refreshOrbitLabels();
     });
   });
 }
 
 
-// Language Switch JETZT aktivieren
+// Language Switch activate NOW
 initLanguageSwitch();
 
 /* ORBIT */
@@ -107,7 +102,7 @@ resize();
 let speedFactor = 1;
 let targetSpeed = 1;
 
-/* BACKGROUND MODULES INITIALISIEREN */
+/* BACKGROUND MODULES INITIALISING */
 initStars(w, h);
 initNebula(w, h);
 initMeteors(() => ({ w, h }));

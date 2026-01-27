@@ -1,7 +1,7 @@
 import { map } from "../util/math.js";
 import { tOrbitLabel } from "../i18n/bilingual.js";
 
-// Konstante Orbit-Parameter
+// constant orbit-parameters
 const orbitRadius = 260;
 const orbitSpeedBase = 0.0009;
 
@@ -21,10 +21,10 @@ let orbitRotation = 0;
 let onSelect = null;
 
 /**
- * Initialisiert das Orbit UI und erzeugt die klickbaren Orbit-Items.
+ * initialises the orbit ui and creates clickable orbit items
  * 
- * @param {HTMLElement} orbitContainer - DOM-Element, in das die Orbit-Items eingefügt werden
- * @param {(id: string) => void} onItemSelect - Callback, der beim Klick auf ein Icon aufgerufen wird.
+ * @param {HTMLElement} orbitContainer - DOM-Element, in which the orbit items get pasted in
+ * @param {(id: string) => void} onItemSelect - Callback, that gets calles by clicking on an icon
  */
 
 export function initOrbit(orbitContainer, onItemSelect) {
@@ -61,7 +61,7 @@ el.innerHTML = `
 
     orbitItems.push({
       el,
-      id: item.id, // 👈 wichtig für spätere Updates
+      id: item.id,
       angle: (i / data.length) * Math.PI * 2
     });
   });
@@ -69,8 +69,8 @@ el.innerHTML = `
 
 
 /**
- * Aktualisiert Position, Skalierung und Layer-Reihenfolge der Orbit-Icons
- * basierend auf dem aktuellen Geschwindigkeitsfaktor der Szene.
+ * updates position, scaling and layer-order of the orbit icons
+ * based on the current speedfactor of the scene
  * 
  * @param {number} speedFactor - 1 = normal speed, >1 = boosted speed
  */
@@ -99,7 +99,7 @@ export function updateOrbit(speedFactor) {
 }
 
 /**
- * Aktualisiert die Orbit Labels für die Sprachoptionen
+ * refreshes the orbit labels for the speechoptions
  */
 export function refreshOrbitLabels() {
   orbitItems.forEach((o) => {

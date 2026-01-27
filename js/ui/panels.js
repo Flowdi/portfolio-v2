@@ -40,7 +40,7 @@ const panelRenderers = {
   experience: () => {
   const t = tPanel("experience");
 
-  // Timeline Icon-Mapping (Phase -> Bild)
+  // Timeline Icon-Mapping
   const phaseIcons = {
     engineering: "assets/icons/timeline/engineering.png",
     projects: "assets/icons/timeline/projects.png",
@@ -278,7 +278,7 @@ function renderSkillGroup(title, items) {
 function renderProjectCard(project, t) {
   const hasUrl = !!project.url;
 
-  // Repo automatisch aus i18n resolver
+  // Repo automatic of i18n resolver
   const repoUrl = project.repoId ? tRepo(project.repoId) : null;
   const hasRepo = !!repoUrl;
 
@@ -332,13 +332,13 @@ function renderProjectCard(project, t) {
   `;
 }
 
-// Wandelt "\n\n" zu <br><br> um
+// changes "\n\n" to <br><br> 
 function toParagraphHtml(text) {
   if (!text) return "";
   return escapeHtml(text).replace(/\n\n/g, "<br><br>").replace(/\n/g, "<br>");
 }
 
-// Escape für HTML-Textnodes
+// Escape for HTML-textnodes
 function escapeHtml(str) {
   return String(str)
     .replaceAll("&", "&amp;")
@@ -348,7 +348,7 @@ function escapeHtml(str) {
     .replaceAll("'", "&#039;");
 }
 
-// Escape für Attribute (href, src, data-*)
+// Escape for attributes (href, src, data-*)
 function escapeAttr(str) {
   return escapeHtml(str).replaceAll("`", "&#096;");
 }

@@ -6,7 +6,7 @@ const coreParticles = [];
 const coreParticleCount = 220;
 let corePulse = 0;
 
-// Canvas an Größe anpassen
+// fit canvas size
 function resizeBoost() {
   if (!boostCanvas) return;
   const size = 180;
@@ -16,7 +16,7 @@ function resizeBoost() {
   boostCanvas.style.height = size + "px";
 }
 
-// 3D-Rotation
+// 3D-rotation
 function rotate3D(p, angleX, angleY, angleZ) {
   let x = p.x, y = p.y, z = p.z;
 
@@ -69,7 +69,7 @@ export function initBoostCore(canvasElement) {
 
 /**
  * 
- * @param {number} speedFactor - initialisiert die Geschwindigkeit / Stärke des Boost Effekts
+ * @param {number} speedFactor - initialises the speed and strength of the boost effect
  */
 export function drawBoostCore(speedFactor) {
   if (!bctx) return;
@@ -118,7 +118,7 @@ export function drawBoostCore(speedFactor) {
   bctx.arc(cx, cy, sphereRadius * 0.9, 0, Math.PI * 2);
   bctx.fill();
 
-  // Partikel
+  // Particle
   for (const p of coreParticles) {
     const pos = rotate3D(p, angleX, angleY, angleZ);
 

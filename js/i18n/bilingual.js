@@ -146,7 +146,7 @@ const translations = {
         ],
       },
 
-      // Zentral gepflegte Repo-Links (Placeholder = leer => Button wird nicht gezeigt)
+      // central placed repo links
       repos: {
         placeholder: "",
         items: {
